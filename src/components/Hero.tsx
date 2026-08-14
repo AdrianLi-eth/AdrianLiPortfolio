@@ -64,20 +64,6 @@ export default function Hero() {
           />
         </a>
       </div>
-
-      {/* Scroll hint */}
-      <div
-        className="anim-fade-up absolute bottom-10 left-6 flex items-center gap-4 sm:left-10"
-        style={{ animationDelay: '900ms' }}
-      >
-        <span className="text-xs uppercase tracking-[0.25em] text-ink-faint">
-          Scroll
-        </span>
-        <span
-          className="anim-line-grow h-px w-16 bg-line-strong"
-          style={{ animationDelay: '1200ms' }}
-        />
-      </div>
     </section>
   )
 }

@@ -1,101 +1,22 @@
 import type { ReactNode } from 'react'
 
 import BackToHome from './BackToHome'
+import {
+  HighlightCard,
+  NumberedItem,
+  P,
+  Section,
+  SubTitle,
+  WideImg,
+} from './project/ProjectShared'
 
 const IMG = '/media/buy-crypto'
-
-function SectionTitle({ children }: { children: ReactNode }) {
-  return (
-    <h2 className="text-[26px] font-bold leading-[1.4] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
-      {children}
-    </h2>
-  )
-}
-
-function SubTitle({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-[19px] font-bold leading-[1.5] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
-      {children}
-    </p>
-  )
-}
-
-function P({
-  children,
-  medium,
-  small,
-}: {
-  children: ReactNode
-  medium?: boolean
-  small?: boolean
-}) {
-  return (
-    <p
-      className={`leading-[1.75] text-paper-dim [font-family:'Noto_Sans_SC',sans-serif] ${
-        small ? 'text-[12px] leading-[1.6]' : 'text-[15px]'
-      } ${medium ? 'font-semibold text-paper-ink' : 'font-normal'}`}
-    >
-      {children}
-    </p>
-  )
-}
 
 function Bullet({ children }: { children: ReactNode }) {
   return (
     <div className="flex gap-1.5 text-[12px] leading-[1.6] text-paper-dim [font-family:'Noto_Sans_SC',sans-serif]">
       <span>•</span>
       <span>{children}</span>
-    </div>
-  )
-}
-
-function NumberedItem({ n, children }: { n: number | string; children: ReactNode }) {
-  return (
-    <div className="flex gap-1.5 text-[12px] leading-[1.6] text-paper-dim [font-family:'Noto_Sans_SC',sans-serif]">
-      <span className="text-paper-ink">{n}.</span>
-      <span>{children}</span>
-    </div>
-  )
-}
-
-function Tag({ children }: { children: string }) {
-  return (
-    <span className="inline-flex h-[25px] items-center rounded-full border border-line px-3 text-[12px] text-paper-dim">
-      {children}
-    </span>
-  )
-}
-
-function WideImg({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
-  return (
-    <div
-      className={`overflow-hidden bg-surface-2 ${className}`}
-    >
-      <img src={src} alt={alt} className="h-auto w-full object-contain" />
-    </div>
-  )
-}
-
-function HighlightCard({
-  title,
-  children,
-  tags,
-}: {
-  title: string
-  children: ReactNode
-  tags?: string[]
-}) {
-  return (
-    <div className="flex min-w-0 flex-1 flex-col gap-3.5 border-[1.5px] border-line bg-surface-2 px-8 py-7">
-      <p className="text-[24px] font-bold leading-8 text-paper-ink">{title}</p>
-      <div className="text-[15px] leading-7 text-paper-dim">{children}</div>
-      {tags && (
-        <div className="mt-auto flex flex-wrap gap-2 pt-2">
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
@@ -198,13 +119,13 @@ export default function BuyCryptoPage() {
         <BackToHome />
 
         <article className="flex w-full flex-col gap-4 border border-line bg-paper pb-20 pt-16 sm:px-16 sm:pb-20 sm:pt-16 [font-family:'Noto_Sans_SC',sans-serif]">
-          <h1 className="px-4 pb-8 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
+          <h1 className="px-4 pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
             Binance - Buy Crypto 2.0
           </h1>
 
           {/* Highlight Cards */}
-          <section className="flex flex-col gap-5 px-4 pb-12 sm:px-0">
-            <div className="flex flex-col gap-6 lg:flex-row">
+          <section className="flex flex-col gap-5 px-4 sm:px-0">
+            <div className="flex flex-col gap-5 lg:flex-row">
               <HighlightCard
                 title="What I Did"
                 tags={['Product Research', 'UX Research', 'Data Driven', 'UX / UI']}
@@ -252,48 +173,45 @@ export default function BuyCryptoPage() {
                 </ol>
               </HighlightCard>
             </div>
-
-            {/* Design Process */}
-            <div className="flex flex-col gap-5 pt-12">
-              <SectionTitle>Design Process</SectionTitle>
-              <div className="flex flex-wrap items-center gap-2">
-                {PROCESS_STEPS.map((step, i) => (
-                  <div key={step} className="flex items-center gap-2">
-                    <div className="flex h-20 w-[140px] items-center justify-center rounded-lg border border-line bg-surface-2 p-4 text-center text-[12px] font-semibold text-paper-ink">
-                      {step}
-                    </div>
-                    {i < PROCESS_STEPS.length - 1 && (
-                      <span className="text-[18px] text-paper-dim">→</span>
-                    )}
-                  </div>
-                ))}
-              </div>
-              <P medium small>
-                Define requirement
-              </P>
-              <P small>
-                We collect user feedbacks from social media (TG/Twitter/App store/Google store) and CS
-                ticket pool to know what are the user issues and pain point using current product.
-                User feedbacks mainly talked about trading fees, unsuccessful transactions. I
-                catogrized user feedback into different categories
-              </P>
-              <div className="flex flex-col gap-1">
-                <Bullet>Complain(Fees, transaction time, KYC etc.)</Bullet>
-                <Bullet>Product experience</Bullet>
-                <Bullet>New features</Bullet>
-                <Bullet>Trading issues</Bullet>
-              </div>
-              <P small>
-                I toke these feedbacks into discussion with product and business team to prioritise
-                user issue to determine what are we going to solve in next release based on the
-                value and impacts.
-              </P>
-              <WideImg src={`${IMG}/user-feedback.png`} alt="User feedback categories" />
-            </div>
           </section>
 
-          {/* Design research */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
+          <Section title="Design Process">
+            <div className="flex flex-wrap items-center gap-2">
+              {PROCESS_STEPS.map((step, i) => (
+                <div key={step} className="flex items-center gap-2">
+                  <div className="flex h-20 w-[140px] items-center justify-center rounded-lg border border-line bg-surface-2 p-4 text-center text-[12px] font-semibold text-paper-ink">
+                    {step}
+                  </div>
+                  {i < PROCESS_STEPS.length - 1 && (
+                    <span className="text-[18px] text-paper-dim">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+            <P medium small>
+              Define requirement
+            </P>
+            <P small>
+              We collect user feedbacks from social media (TG/Twitter/App store/Google store) and CS
+              ticket pool to know what are the user issues and pain point using current product.
+              User feedbacks mainly talked about trading fees, unsuccessful transactions. I
+              catogrized user feedback into different categories
+            </P>
+            <div className="flex flex-col gap-1">
+              <Bullet>Complain(Fees, transaction time, KYC etc.)</Bullet>
+              <Bullet>Product experience</Bullet>
+              <Bullet>New features</Bullet>
+              <Bullet>Trading issues</Bullet>
+            </div>
+            <P small>
+              I toke these feedbacks into discussion with product and business team to prioritise
+              user issue to determine what are we going to solve in next release based on the
+              value and impacts.
+            </P>
+            <WideImg src={`${IMG}/user-feedback.png`} alt="User feedback categories" />
+          </Section>
+
+          <Section>
             <SubTitle>Design research</SubTitle>
             <P small>
               Conducted competitor research to analyze OKX, Bybit, Coinbase and Karken buy crypto
@@ -303,15 +221,18 @@ export default function BuyCryptoPage() {
               the concept design.
             </P>
             <P small>The three improvements are:</P>
-            <NumberedItem n={1}>Remove low interactive features from page</NumberedItem>
-            <NumberedItem n={2}>Reduce UI hierarchy of the page</NumberedItem>
-            <NumberedItem n={3}>
-              Combine enter amount step and choose payment step into one
+            <NumberedItem n={1}>
+              <P small>Remove low interactive features from page</P>
             </NumberedItem>
-          </section>
+            <NumberedItem n={2}>
+              <P small>Reduce UI hierarchy of the page</P>
+            </NumberedItem>
+            <NumberedItem n={3}>
+              <P small>Combine enter amount step and choose payment step into one</P>
+            </NumberedItem>
+          </Section>
 
-          {/* Concept design through validation */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
+          <Section>
             <SubTitle>Concept design and testing</SubTitle>
             <P small>
               Based on the research we designed few proposals, we run the early stage design testing
@@ -332,20 +253,20 @@ export default function BuyCryptoPage() {
               We send out user survey, look at the product data(order SR, step CR and CSAT) after
               launch, keep tracking on user feedbacks and iterate the product.
             </P>
-          </section>
+          </Section>
 
-          {/* Project Challenges */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
-            <SectionTitle>Project Challenges</SectionTitle>
+          <Section title="Project Challenges">
             <SubTitle>Challenges</SubTitle>
             <NumberedItem n={1}>
-              Project scope. 20+ fiat buy crypto channels, involves 350+ pages.
+              <P small>Project scope. 20+ fiat buy crypto channels, involves 350+ pages.</P>
             </NumberedItem>
             <NumberedItem n={2}>
-              Cross team collaboration (Product, DS team, UIKit developer).
+              <P small>Cross team collaboration (Product, DS team, UIKit developer).</P>
             </NumberedItem>
             <SubTitle>What I did</SubTitle>
-            <NumberedItem n={1}>Version control</NumberedItem>
+            <NumberedItem n={1}>
+              <P small>Version control</P>
+            </NumberedItem>
             <div className="pl-6">
               <Bullet>PhaseI - MVP, core flow and pages</Bullet>
               <Bullet>PhaseII - Channel update</Bullet>
@@ -357,42 +278,48 @@ export default function BuyCryptoPage() {
               and result page as our first launch, as it has the most impact to current product
               without taking too much resources from each team.
             </P>
-            <NumberedItem n={2}>Project work procedure</NumberedItem>
+            <NumberedItem n={2}>
+              <P small>Project work procedure</P>
+            </NumberedItem>
             <P small>
               Arranged a kickoff meeting, give introduction to the project and support we need and
               confirm the POC of each team, set project timeline and the delivery. Schedule a
               regular catch up meeting for teams, update progress and status, track on potential
               risks.
             </P>
-          </section>
+          </Section>
 
-          {/* Research Details */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
-            <SectionTitle>Research Details</SectionTitle>
+          <Section title="Research Details">
             <SubTitle>Internally, we looked at</SubTitle>
             <NumberedItem n={1}>
-              Product user data. That includes order successful rate, conversion rate of each step,
-              time spend on each page etc.
+              <P small>
+                Product user data. That includes order successful rate, conversion rate of each step,
+                time spend on each page etc.
+              </P>
             </NumberedItem>
             <NumberedItem n={2}>
-              User journey map to find user pain point and potential improvement.
+              <P small>User journey map to find user pain point and potential improvement.</P>
             </NumberedItem>
-            <NumberedItem n={3}>How user interact with product on each step.</NumberedItem>
+            <NumberedItem n={3}>
+              <P small>How user interact with product on each step.</P>
+            </NumberedItem>
             <SubTitle>Externally, we looked at</SubTitle>
             <NumberedItem n={1}>
-              Top5 exchange buy crypto product UIUX in the industry, typically OKX. Generate
-              product UIUX report and share with product team to determine product improvement plan.
+              <P small>
+                Top5 exchange buy crypto product UIUX in the industry, typically OKX. Generate
+                product UIUX report and share with product team to determine product improvement plan.
+              </P>
             </NumberedItem>
             <NumberedItem n={2}>
-              User feedback. We analysis user feedback from user feedback system which collects user
-              comments, suggestions from internal user survey and social media(Twitter, Telegram,
-              App store, GooglePlay etc.)
+              <P small>
+                User feedback. We analysis user feedback from user feedback system which collects user
+                comments, suggestions from internal user survey and social media(Twitter, Telegram,
+                App store, GooglePlay etc.)
+              </P>
             </NumberedItem>
-          </section>
+          </Section>
 
-          {/* Competitor Analysis */}
-          <section className="flex flex-col gap-6 px-4 py-12 sm:px-0">
-            <SectionTitle>Competitor Analysis(basis)</SectionTitle>
+          <Section title="Competitor Analysis(basis)" className="gap-6">
             <div className="flex flex-col gap-6 lg:flex-row">
               <WideImg
                 src={`${IMG}/competitor-row1-left.png`}
@@ -462,10 +389,9 @@ export default function BuyCryptoPage() {
                 className="min-w-0 flex-1"
               />
             </div>
-          </section>
+          </Section>
 
-          {/* User Behaviour */}
-          <section className="px-4 py-12 sm:px-0">
+          <Section className="gap-6">
             <div className="flex flex-col gap-6 lg:flex-row">
               <WideImg
                 src={`${IMG}/user-behaviour-left.png`}
@@ -504,11 +430,9 @@ export default function BuyCryptoPage() {
                 className="min-w-0 flex-1"
               />
             </div>
-          </section>
+          </Section>
 
-          {/* Design Upgrade Direction */}
-          <section className="flex flex-col gap-6 px-4 py-12 sm:px-0">
-            <SectionTitle>Design Upgrade Direction</SectionTitle>
+          <Section title="Design Upgrade Direction" className="gap-6">
             <P small>After analysing, we narrowed down to few key points:</P>
             <Bullet>Reduce page UI hierarchy, let user focus on core feature and content.</Bullet>
             <Bullet>Remove low relative features.</Bullet>
@@ -526,24 +450,28 @@ export default function BuyCryptoPage() {
                 <div>
                   <p className="text-[14px] font-semibold text-paper-ink">UI</p>
                   <NumberedItem n={1}>
-                    Reduce UI hierarchy by reducing colour, font types.
+                    <P small>Reduce UI hierarchy by reducing colour, font types.</P>
                   </NumberedItem>
                   <NumberedItem n={2}>
-                    Highlight the amount number to make visual focused.
+                    <P small>Highlight the amount number to make visual focused.</P>
                   </NumberedItem>
                 </div>
                 <div>
                   <p className="text-[14px] font-semibold text-paper-ink">UX</p>
                   <NumberedItem n={1}>
-                    Move the CTA to the position that is easier to reach.
+                    <P small>Move the CTA to the position that is easier to reach.</P>
                   </NumberedItem>
-                  <NumberedItem n={2}>Reduce recurring entrance of same feature.</NumberedItem>
-                  <NumberedItem n={3}>Remove Max feature which has low usage rate.</NumberedItem>
+                  <NumberedItem n={2}>
+                    <P small>Reduce recurring entrance of same feature.</P>
+                  </NumberedItem>
+                  <NumberedItem n={3}>
+                    <P small>Remove Max feature which has low usage rate.</P>
+                  </NumberedItem>
                   <NumberedItem n={4}>
-                    Combine buy/sell switch interaction to be more intuitive.
+                    <P small>Combine buy/sell switch interaction to be more intuitive.</P>
                   </NumberedItem>
                   <NumberedItem n={5}>
-                    Combine steps to increase order placing efficiency.
+                    <P small>Combine steps to increase order placing efficiency.</P>
                   </NumberedItem>
                 </div>
               </div>
@@ -567,22 +495,22 @@ export default function BuyCryptoPage() {
                 <div>
                   <p className="text-[14px] font-semibold text-paper-ink">UI</p>
                   <NumberedItem n={1}>
-                    Reduce visual noise, keep payment method list clean and scannable.
+                    <P small>Reduce visual noise, keep payment method list clean and scannable.</P>
                   </NumberedItem>
                   <NumberedItem n={2}>
-                    Use clear iconography to speed up recognition.
+                    <P small>Use clear iconography to speed up recognition.</P>
                   </NumberedItem>
                 </div>
                 <div>
                   <p className="text-[14px] font-semibold text-paper-ink">UX</p>
                   <NumberedItem n={1}>
-                    Highlight recommended/default payment method for new users.
+                    <P small>Highlight recommended/default payment method for new users.</P>
                   </NumberedItem>
                   <NumberedItem n={2}>
-                    Reduce steps required to switch payment method.
+                    <P small>Reduce steps required to switch payment method.</P>
                   </NumberedItem>
                   <NumberedItem n={3}>
-                    Surface payment method limits and fees earlier in the flow.
+                    <P small>Surface payment method limits and fees earlier in the flow.</P>
                   </NumberedItem>
                 </div>
               </div>
@@ -593,11 +521,9 @@ export default function BuyCryptoPage() {
                 <ColorSwatches colors={NEW_COLORS} />
               </div>
             </div>
-          </section>
+          </Section>
 
-          {/* Simplified User Flow */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
-            <SectionTitle>Simplified User Flow</SectionTitle>
+          <Section title="Simplified User Flow">
             <div className="flex flex-wrap items-center gap-4">
               {[
                 { label: 'Enter amount' },
@@ -618,11 +544,9 @@ export default function BuyCryptoPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </Section>
 
-          {/* Design Validation */}
-          <section className="flex flex-col gap-6 px-4 py-12 sm:px-0">
-            <SectionTitle>Design Validation</SectionTitle>
+          <Section title="Design Validation" className="gap-6">
             <P small>
               We conducted a user survey to see user&apos;s satisfaction of the new design and their
               feedbacks.
@@ -658,20 +582,18 @@ export default function BuyCryptoPage() {
                 </P>
               </div>
             </div>
-          </section>
+          </Section>
 
-          {/* Data */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
+          <Section>
             <P small>
               We also looked at user data from step CR and order SR rate, compare to the old design,
               the new design step1 to step3 CR increased by 48.34%. The user CSAT increased 3.8%,
               product defect rate drop by 0.6%.
             </P>
             <WideImg src={`${IMG}/data-metrics.png`} alt="Data metrics" />
-          </section>
+          </Section>
 
-          {/* Final UI - Dark */}
-          <section className="flex flex-col gap-5 bg-[#1d222a] px-4 py-12 sm:px-0">
+          <Section className="gap-5 bg-[#1d222a]">
             <p className="text-[24px] font-bold text-white">Final UI</p>
             <p className="text-[16px] font-bold text-white">Dark</p>
             <WideImg src={`${IMG}/final-dark-row1.png`} alt="Final UI dark row 1" />
@@ -680,10 +602,9 @@ export default function BuyCryptoPage() {
               alt="Final UI dark row 2"
               className="max-w-[698px]"
             />
-          </section>
+          </Section>
 
-          {/* Final UI - Light */}
-          <section className="flex flex-col gap-5 px-4 py-12 sm:px-0">
+          <Section>
             <SubTitle>Light</SubTitle>
             <WideImg src={`${IMG}/final-light-row1.png`} alt="Final UI light row 1" />
             <WideImg
@@ -691,7 +612,7 @@ export default function BuyCryptoPage() {
               alt="Final UI light row 2"
               className="max-w-[703px]"
             />
-          </section>
+          </Section>
         </article>
       </div>
     </div>

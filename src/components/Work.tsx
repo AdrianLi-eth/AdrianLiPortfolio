@@ -55,9 +55,6 @@ function ProjectCard({ project }: ProjectCardProps) {
         <h3 className="mt-2 text-[length:var(--text-title3)] font-bold tracking-tight text-ink">
           {project.title}
         </h3>
-        <p className="mt-1 text-[length:var(--text-body2)] text-ink-dim">
-          {project.role}
-        </p>
       </div>
     </>
   )

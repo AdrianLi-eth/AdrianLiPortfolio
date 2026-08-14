@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react'
 import BackToHome from './BackToHome'
 import {
-  Hr,
+  BodyStack,
   IMG,
   ImgRow,
   NumberedItem,
   P,
-  SectionTitle,
+  PhoneFrameRow,
+  Section,
   SubTitle,
   WideImg,
 } from './tradfi/TradFiShared'
@@ -135,7 +136,7 @@ const COMPETITOR_ROWS = [
 
 function Tag({ children }: { children: string }) {
   return (
-    <span className="inline-flex h-[25px] items-center rounded-full border border-line px-3 text-[12px] text-paper-dim">
+    <span className="inline-flex h-[25px] items-center rounded-full bg-paper px-3 text-[12px] text-paper-dim">
       {children}
     </span>
   )
@@ -151,11 +152,13 @@ function HighlightCard({
   tags?: string[]
 }) {
   return (
-    <div className="flex min-w-0 flex-1 flex-col gap-4 border border-line bg-surface-2 p-8">
-      <p className="text-[20px] font-medium leading-[1.4] text-paper-ink">{title}</p>
-      <div className="text-[15px] leading-[1.7] text-paper-dim">{children}</div>
+    <div className="flex min-w-0 flex-1 flex-col gap-3.5 rounded-2xl bg-surface-2 px-6 py-6 sm:px-8 sm:py-7">
+      <p className="text-[20px] font-bold leading-[1.4] text-paper-ink sm:text-[22px]">
+        {title}
+      </p>
+      <div className="flex flex-col gap-3 text-[15px] leading-[1.75] text-paper-dim">{children}</div>
       {tags && (
-        <div className="mt-auto flex flex-wrap gap-2 pt-2">
+        <div className="mt-auto flex flex-wrap gap-2 pt-1">
           {tags.map((tag) => (
             <Tag key={tag}>{tag}</Tag>
           ))}
@@ -173,14 +176,14 @@ function DataTable({
   rows: string[][]
 }) {
   return (
-    <div className="w-full overflow-x-auto">
-      <table className="w-full min-w-[640px] border-collapse text-left text-[13px] text-paper-dim">
+    <div className="w-full overflow-x-auto rounded-lg">
+      <table className="w-full min-w-[640px] border-collapse text-left text-[14px] text-paper-dim">
         <thead>
           <tr>
             {headers.map((header) => (
               <th
                 key={header}
-                className="border border-line bg-surface-2 px-3 py-2.5 font-medium text-paper-ink"
+                className="border border-line bg-surface-2 px-4 py-3 text-[13px] font-semibold text-paper-ink"
               >
                 {header}
               </th>
@@ -191,7 +194,7 @@ function DataTable({
           {rows.map((row, i) => (
             <tr key={i}>
               {row.map((cell, j) => (
-                <td key={j} className="border border-line px-3 py-2.5 align-top">
+                <td key={j} className="border border-line px-4 py-3 align-top leading-[1.65]">
                   {cell}
                 </td>
               ))}
@@ -209,14 +212,13 @@ export default function TradFiTradingUxPage() {
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
         <BackToHome />
 
-        <article className="flex w-full flex-col gap-16 border border-line bg-paper pb-20 pt-[72px] sm:px-20 sm:pb-20 sm:pt-[72px] [font-family:'Noto_Sans_SC',sans-serif]">
-          <h1 className="px-4 text-[36px] font-medium leading-[1.4] tracking-[-0.5px] text-paper-ink sm:px-0">
+        <article className="flex w-full flex-col gap-4 border border-line bg-paper pb-20 pt-16 sm:px-16 sm:pb-20 sm:pt-16 [font-family:'Noto_Sans_SC',sans-serif]">
+          <h1 className="px-4 pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
             TradFi Trading UX Optimization
           </h1>
 
-          {/* Highlight Cards */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <div className="flex flex-col gap-6 lg:flex-row">
+          <section className="flex flex-col gap-5 px-4 sm:px-0">
+            <div className="flex flex-col gap-5 lg:flex-row">
               <HighlightCard
                 title="What I Did"
                 tags={['Product Research', 'Data Driven', 'UX / UI']}
@@ -257,20 +259,14 @@ export default function TradFiTradingUxPage() {
                 </P>
               </HighlightCard>
             </div>
-          </div>
+          </section>
 
-          {/* Optimization Objective */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Optimization Objective</SectionTitle>
-            <P>
-              Boost conversion across the TradFi commodity and stock futures trading funnels.
-            </P>
-            <Hr />
-          </div>
+          <Section title="Optimization Objective">
+            <P>Boost conversion across the TradFi commodity and stock futures trading funnels.</P>
+          </Section>
 
-          {/* Conversion Pain Points */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Conversion Pain Points</SectionTitle>
+          <Section title="Conversion Pain Points">
+            <BodyStack>
             <NumberedItem index={1}>
               <P>
                 The TradFi page doesn&apos;t build user confidence in the available trading
@@ -304,11 +300,11 @@ export default function TradFiTradingUxPage() {
                 model or trust needed to click. First-impression clarity here is a real lever.
               </P>
             </NumberedItem>
-          </div>
+            </BodyStack>
+          </Section>
 
-          {/* Optimization Direction (1) */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Optimization Direction</SectionTitle>
+          <Section title="Optimization Direction">
+            <BodyStack>
             <NumberedItem index={1}>
               <P>
                 Surface market data directly on the TradFi landing page so users can browse all
@@ -332,31 +328,31 @@ export default function TradFiTradingUxPage() {
                 recognition and trust, lifting click-through rates.
               </P>
             </NumberedItem>
-            <Hr />
-          </div>
+            </BodyStack>
+          </Section>
 
-          {/* Commodity Contract Conversion Paths */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Commodity Contract Conversion Paths</SectionTitle>
-            <P>
-              Commodity contract traffic (precious metals, crude oil, etc.) flows in through six
-              entry points: TradFi Tab, Trading Tab, Search, Homepage Market Cards, Homepage TradFi
-              Module, and Market Page TradFi Module. Regardless of how users arrive at the K-line
-              page, they all pass through the same core funnel: K-line → Click Trade → Trading Page
-              → Place Order.
-            </P>
+          <Section title="Commodity Contract Conversion Paths">
+            <BodyStack>
+              <P>
+                Commodity contract traffic (precious metals, crude oil, etc.) flows in through six
+                entry points: TradFi Tab, Trading Tab, Search, Homepage Market Cards, Homepage TradFi
+                Module, and Market Page TradFi Module. Regardless of how users arrive at the K-line
+                page, they all pass through the same core funnel: K-line → Click Trade → Trading Page
+                → Place Order.
+              </P>
+            </BodyStack>
 
-            <div className="w-full overflow-x-auto">
-              <table className="w-full min-w-[900px] border-collapse text-[12px] text-paper-dim">
+            <div className="w-full overflow-x-auto rounded-lg">
+              <table className="w-full min-w-[900px] border-collapse text-[13px] text-paper-dim">
                 <thead>
                   <tr>
-                    <th className="w-[110px] border border-line bg-surface-2 px-2.5 py-2.5 font-medium text-paper-ink">
+                    <th className="w-[110px] border border-line bg-surface-2 px-3 py-3 text-[13px] font-semibold text-paper-ink">
                       Path
                     </th>
                     {PATH_COLUMNS.map((col) => (
                       <th
                         key={col.label}
-                        className="w-[164px] border border-line bg-surface-2 px-2.5 py-2.5 font-medium text-paper-ink"
+                        className="w-[164px] border border-line bg-surface-2 px-3 py-3 text-[13px] font-semibold text-paper-ink"
                       >
                         {col.label}
                       </th>
@@ -365,25 +361,25 @@ export default function TradFiTradingUxPage() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-line px-2.5 py-2.5 align-top font-medium text-paper-ink">
+                    <td className="border border-line px-3 py-3 align-top font-semibold text-paper-ink">
                       Entry/Path
                     </td>
                     {PATH_COLUMNS.map((col) => (
-                      <td key={col.label} className="border border-line px-2.5 py-2.5 align-top">
-                        <p className="mb-1">{col.entry}</p>
-                        <p className="mb-2 font-medium text-paper-ink">{col.share}</p>
-                        <div className="overflow-hidden bg-surface-2">
+                      <td key={col.label} className="border border-line px-3 py-3 align-top leading-[1.65]">
+                        <p className="mb-2">{col.entry}</p>
+                        <p className="mb-3 font-semibold text-paper-ink">{col.share}</p>
+                        <div className="overflow-hidden rounded-md bg-surface-2">
                           <img src={col.image} alt={col.label} className="h-auto w-full object-cover" />
                         </div>
                       </td>
                     ))}
                   </tr>
                   <tr>
-                    <td className="border border-line px-2.5 py-2.5 align-top font-medium text-paper-ink">
+                    <td className="border border-line px-3 py-3 align-top font-semibold text-paper-ink">
                       Description
                     </td>
                     {PATH_COLUMNS.map((col) => (
-                      <td key={col.label} className="border border-line px-2.5 py-2.5 align-top">
+                      <td key={col.label} className="border border-line px-3 py-3 align-top leading-[1.65]">
                         {col.description}
                       </td>
                     ))}
@@ -392,20 +388,22 @@ export default function TradFiTradingUxPage() {
               </table>
             </div>
 
-            <P>
-              The bottom nav [TradFi] Tab is by far the dominant entry, accounting for 32% of daily
-              UV to the precious metals trading page. All other entries sit in single digits —
-              Trading Tab switching at 7.4% is the only meaningful secondary source.
-            </P>
-            <P>
-              Of users who reach the trading page from the K-line, 55% go on to click the trade
-              button — strong intent once they make the jump.
-            </P>
+            <BodyStack>
+              <P>
+                The bottom nav [TradFi] Tab is by far the dominant entry, accounting for 32% of daily
+                UV to the precious metals trading page. All other entries sit in single digits —
+                Trading Tab switching at 7.4% is the only meaningful secondary source.
+              </P>
+              <P>
+                Of users who reach the trading page from the K-line, 55% go on to click the trade
+                button — strong intent once they make the jump.
+              </P>
+            </BodyStack>
 
-            <div className="flex flex-col gap-4 lg:flex-row">
-              <div className="flex min-w-0 flex-col gap-2 lg:w-[110px]">
-                <p className="text-[13px] font-medium text-paper-ink">Funnel Conversion</p>
-              </div>
+            <div className="flex flex-col gap-4 rounded-xl bg-surface-2 p-5 lg:flex-row lg:items-start">
+              <p className="shrink-0 text-[15px] font-semibold text-paper-ink lg:w-[110px]">
+                Funnel Conversion
+              </p>
               <div className="flex min-w-0 flex-1 flex-col gap-4">
                 <P>
                   End-to-end funnel conversion: 19%
@@ -425,34 +423,36 @@ export default function TradFiTradingUxPage() {
               </div>
             </div>
 
-            <P>
-              Looking at the top traffic entry (bottom nav TradFi) through a UX journey lens, two
-              clear pain points emerge:
-            </P>
-            <NumberedItem index={1}>
+            <BodyStack>
               <P>
-                &quot;I can&apos;t see all the tradable commodity assets at a glance. I have to open
-                the pair switcher or go to the Market tab just to browse what&apos;s
-                available.&quot;
+                Looking at the top traffic entry (bottom nav TradFi) through a UX journey lens, two
+                clear pain points emerge:
               </P>
-            </NumberedItem>
-            <P>
-              Pain point: Users landing via [TradFi] can&apos;t browse available assets directly —
-              they&apos;re forced into the pair-switching panel, which feels unintuitive.
-            </P>
-            <NumberedItem index={2}>
+              <NumberedItem index={1}>
+                <P>
+                  &quot;I can&apos;t see all the tradable commodity assets at a glance. I have to open
+                  the pair switcher or go to the Market tab just to browse what&apos;s
+                  available.&quot;
+                </P>
+              </NumberedItem>
               <P>
-                &quot;I can&apos;t just tap an asset to check its chart and do TA. I have to go
-                through the pair switcher and search — the navigation is confusing and it takes too
-                many steps.&quot;
+                Pain point: Users landing via [TradFi] can&apos;t browse available assets directly —
+                they&apos;re forced into the pair-switching panel, which feels unintuitive.
               </P>
-            </NumberedItem>
-            <P>
-              Pain point: When the default pair isn&apos;t what users want, they have to search
-              inside the switching panel. The search taxonomy has a learning curve (categories vs.
-              keywords), and along the way users get sidetracked by other assets — causing conversion
-              leakage.
-            </P>
+              <NumberedItem index={2}>
+                <P>
+                  &quot;I can&apos;t just tap an asset to check its chart and do TA. I have to go
+                  through the pair switcher and search — the navigation is confusing and it takes too
+                  many steps.&quot;
+                </P>
+              </NumberedItem>
+              <P>
+                Pain point: When the default pair isn&apos;t what users want, they have to search
+                inside the switching panel. The search taxonomy has a learning curve (categories vs.
+                keywords), and along the way users get sidetracked by other assets — causing conversion
+                leakage.
+              </P>
+            </BodyStack>
             <ImgRow
               images={[
                 { src: `${IMG}/pain-1.png`, alt: 'Pain point screenshot 1', className: 'w-[243px]' },
@@ -460,140 +460,166 @@ export default function TradFiTradingUxPage() {
                 { src: `${IMG}/pain-3.png`, alt: 'Pain point screenshot 3', className: 'w-[246px]' },
               ]}
             />
-          </div>
+          </Section>
 
-          {/* Competitor Analysis */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Competitor Analysis</SectionTitle>
-            <NumberedItem index={1}>
-              <P>Navigation structure;</P>
-            </NumberedItem>
-            <NumberedItem index={2}>
-              <P>Order path + page interaction;</P>
-            </NumberedItem>
+          <Section title="Competitor Analysis">
+            <BodyStack>
+              <NumberedItem index={1}>
+                <P>Navigation structure;</P>
+              </NumberedItem>
+              <NumberedItem index={2}>
+                <P>Order path + page interaction;</P>
+              </NumberedItem>
+            </BodyStack>
 
-            <SubTitle>Gate</SubTitle>
-            <P>
-              Navigation: Gate has no standalone [Market] tab — it&apos;s built around trading.
-              Crypto users check prices via the homepage leaderboard and pair switcher. TradFi gets
-              its own dedicated tab with market data front and center.
-            </P>
-            <P>👍 Clean navigation — easy for users to build a mental model of the entry point.</P>
-            <P>👎 Long path to TradFi trading — frustrating for users who want to act fast.</P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/gate-nav-1.png`, alt: 'Gate navigation 1', className: 'w-[251px]' },
-                { src: `${IMG}/gate-nav-2.png`, alt: 'Gate navigation 2', className: 'w-[269px]' },
-                { src: `${IMG}/gate-nav-3.png`, alt: 'Gate navigation 3', className: 'w-[271px]' },
-                { src: `${IMG}/gate-nav-4.png`, alt: 'Gate navigation 4', className: 'w-[278px]' },
-              ]}
-            />
-            <P>
-              The TradFi user path for commodity/stock contracts mirrors BG&apos;s approach:
-            </P>
-            <P>Path 1: TradFi - Perpetual Market - K-line - Trading Page</P>
-            <P>👍 Addresses the need to review TradFi market data before trading</P>
-            <P>👎 1. Too many steps for users who just want to trade quickly.</P>
-            <NumberedItem index={2}>
-              <P>
-                Switching between trading and K-line creates context-jumping; the back button
-                behavior on both pages is ambiguous.
-              </P>
-            </NumberedItem>
-            <WideImg src={`${IMG}/gate-path-1.png`} alt="Gate path 1" />
-            <P>Path 2: Homepage - Stock Leaderboard - K-line - Trading Page</P>
-            <WideImg src={`${IMG}/gate-path-2.png`} alt="Gate path 2" />
-            <P>
-              👍 Users can order directly on the K-line page — shorter path, higher focus, less
-              drop-off.
-            </P>
+            <div className="flex flex-col gap-8 pt-2">
+              <div className="flex flex-col gap-4">
+                <SubTitle>Gate</SubTitle>
+                <BodyStack>
+                  <P>
+                    Navigation: Gate has no standalone [Market] tab — it&apos;s built around trading.
+                    Crypto users check prices via the homepage leaderboard and pair switcher. TradFi gets
+                    its own dedicated tab with market data front and center.
+                  </P>
+                  <P>👍 Clean navigation — easy for users to build a mental model of the entry point.</P>
+                  <P>👎 Long path to TradFi trading — frustrating for users who want to act fast.</P>
+                </BodyStack>
+                <PhoneFrameRow
+                  frames={[
+                    { src: `${IMG}/gate-nav-1.png`, alt: 'Gate navigation 1' },
+                    { src: `${IMG}/gate-nav-2.png`, alt: 'Gate navigation 2' },
+                    { src: `${IMG}/gate-nav-3.png`, alt: 'Gate navigation 3' },
+                    { src: `${IMG}/gate-nav-4.png`, alt: 'Gate navigation 4' },
+                  ]}
+                />
+                <BodyStack>
+                  <P>
+                    The TradFi user path for commodity/stock contracts mirrors BG&apos;s approach:
+                  </P>
+                  <P medium>Path 1: TradFi - Perpetual Market - K-line - Trading Page</P>
+                  <P>👍 Addresses the need to review TradFi market data before trading</P>
+                  <P>👎 1. Too many steps for users who just want to trade quickly.</P>
+                  <NumberedItem index={2}>
+                    <P>
+                      Switching between trading and K-line creates context-jumping; the back button
+                      behavior on both pages is ambiguous.
+                    </P>
+                  </NumberedItem>
+                </BodyStack>
+                <WideImg src={`${IMG}/gate-path-1.png`} alt="Gate path 1" />
+                <BodyStack>
+                  <P medium>Path 2: Homepage - Stock Leaderboard - K-line - Trading Page</P>
+                  <P>
+                    👍 Users can order directly on the K-line page — shorter path, higher focus, less
+                    drop-off.
+                  </P>
+                </BodyStack>
+                <WideImg src={`${IMG}/gate-path-2.png`} alt="Gate path 2" />
+              </div>
 
-            <SubTitle>Binance (primarily crypto trading user path)</SubTitle>
-            <P>
-              Navigation: No dedicated TradFi entry. The trading module doesn&apos;t break out TradFi
-              as its own category — it&apos;s still a crypto-first experience. TradFi shows up as a
-              filter on the Market page and in the futures pair switcher, but without
-              sub-categories.
-            </P>
-            <P>
-              👍 No disruption to primary navigation or existing user habits — near-zero friction.
-            </P>
-            <P>
-              👎 Hard to discover — high cost for users specifically looking to trade TradFi assets.
-            </P>
-            <P>Path 1: Market - TradFi - K-line - Trading Page</P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/binance-path-1.png`, alt: 'Binance path 1', className: 'w-[247px]' },
-                { src: `${IMG}/binance-path-2.png`, alt: 'Binance path 2', className: 'w-[251px]' },
-                { src: `${IMG}/binance-path-3.png`, alt: 'Binance path 3', className: 'w-[244px]' },
-              ]}
-            />
-            <P>Path 2: Futures Trading - Switch Pair - TradFi - Trading Page</P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/binance-path2-1.png`, alt: 'Binance path 2 step 1', className: 'w-[246px]' },
-                { src: `${IMG}/binance-path2-2.png`, alt: 'Binance path 2 step 2', className: 'w-[244px]' },
-              ]}
-            />
+              <div className="flex flex-col gap-4">
+                <SubTitle>Binance (primarily crypto trading user path)</SubTitle>
+                <BodyStack>
+                  <P>
+                    Navigation: No dedicated TradFi entry. The trading module doesn&apos;t break out TradFi
+                    as its own category — it&apos;s still a crypto-first experience. TradFi shows up as a
+                    filter on the Market page and in the futures pair switcher, but without
+                    sub-categories.
+                  </P>
+                  <P>
+                    👍 No disruption to primary navigation or existing user habits — near-zero friction.
+                  </P>
+                  <P>
+                    👎 Hard to discover — high cost for users specifically looking to trade TradFi assets.
+                  </P>
+                  <P medium>Path 1: Market - TradFi - K-line - Trading Page</P>
+                </BodyStack>
+                <ImgRow
+                  images={[
+                    { src: `${IMG}/binance-path-1.png`, alt: 'Binance path 1', className: 'w-[247px]' },
+                    { src: `${IMG}/binance-path-2.png`, alt: 'Binance path 2', className: 'w-[251px]' },
+                    { src: `${IMG}/binance-path-3.png`, alt: 'Binance path 3', className: 'w-[244px]' },
+                  ]}
+                />
+                <BodyStack>
+                  <P medium>Path 2: Futures Trading - Switch Pair - TradFi - Trading Page</P>
+                </BodyStack>
+                <ImgRow
+                  images={[
+                    { src: `${IMG}/binance-path2-1.png`, alt: 'Binance path 2 step 1', className: 'w-[246px]' },
+                    { src: `${IMG}/binance-path2-2.png`, alt: 'Binance path 2 step 2', className: 'w-[244px]' },
+                  ]}
+                />
+              </div>
 
-            <SubTitle>OKX (primarily crypto trading user path)</SubTitle>
-            <P>
-              Navigation: Same as Binance — no dedicated TradFi entry, crypto-first architecture.
-              TradFi appears in the homepage leaderboard and the trading pair switcher, without
-              further sub-categorization.
-            </P>
-            <P>👍 No disruption to existing navigation habits — minimal user impact.</P>
-            <P>👎 Hard to discover — friction for users specifically seeking TradFi assets.</P>
-            <P>Path 1: Homepage TradFi Leaderboard - K-line - Trading Page</P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/okx-path-1.png`, alt: 'OKX path 1', className: 'w-[245px]' },
-                { src: `${IMG}/okx-path-2.png`, alt: 'OKX path 2', className: 'w-[244px]' },
-                { src: `${IMG}/okx-path-3.png`, alt: 'OKX path 3', className: 'w-[244px]' },
-              ]}
-            />
-            <P>Path 2: Trading - Switch Pair TradFi - Trading</P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/okx-path-2.png`, alt: 'OKX path 2 step 1', className: 'w-[244px]' },
-                { src: `${IMG}/okx-path-3.png`, alt: 'OKX path 2 step 2', className: 'w-[247px]' },
-              ]}
-            />
+              <div className="flex flex-col gap-4">
+                <SubTitle>OKX (primarily crypto trading user path)</SubTitle>
+                <BodyStack>
+                  <P>
+                    Navigation: Same as Binance — no dedicated TradFi entry, crypto-first architecture.
+                    TradFi appears in the homepage leaderboard and the trading pair switcher, without
+                    further sub-categorization.
+                  </P>
+                  <P>👍 No disruption to existing navigation habits — minimal user impact.</P>
+                  <P>👎 Hard to discover — friction for users specifically seeking TradFi assets.</P>
+                  <P medium>Path 1: Homepage TradFi Leaderboard - K-line - Trading Page</P>
+                </BodyStack>
+                <ImgRow
+                  images={[
+                    { src: `${IMG}/okx-path-1.png`, alt: 'OKX path 1', className: 'w-[245px]' },
+                    { src: `${IMG}/okx-path-2.png`, alt: 'OKX path 2', className: 'w-[244px]' },
+                    { src: `${IMG}/okx-path-3.png`, alt: 'OKX path 3', className: 'w-[244px]' },
+                  ]}
+                />
+                <BodyStack>
+                  <P medium>Path 2: Trading - Switch Pair TradFi - Trading</P>
+                </BodyStack>
+                <ImgRow
+                  images={[
+                    { src: `${IMG}/okx-path-2.png`, alt: 'OKX path 2 step 1', className: 'w-[244px]' },
+                    { src: `${IMG}/okx-path-3.png`, alt: 'OKX path 2 step 2', className: 'w-[247px]' },
+                  ]}
+                />
+              </div>
 
-            <SubTitle>Bybit</SubTitle>
-            <P>
-              Navigation: TradFi isn&apos;t a standalone nav item, but it appears as a peer-level
-              trading type (alongside Spot, Futures, etc.) within the unified trading module.
-            </P>
-            <NumberedItem index={1}>
-              <P>
-                👍 Simple mental model — one place to trade everything. Users don&apos;t need to
-                decide *what* to trade before figuring out *where* to go.
-              </P>
-            </NumberedItem>
-            <NumberedItem index={2}>
-              <P>
-                Once inside the TradFi section, users immediately see asset market data —
-                satisfying the need for an at-a-glance overview.
-              </P>
-            </NumberedItem>
-            <NumberedItem index={3}>
-              <P>
-                Users can place orders directly on the K-line page — shorter path, higher focus, less
-                drop-off.
-              </P>
-            </NumberedItem>
-            <P>
-              Path 1: Trading - TradFi Trading - K-line - K-line Order (Pending Orders/Positions)
-            </P>
-            <ImgRow
-              images={[
-                { src: `${IMG}/bybit-path-1.png`, alt: 'Bybit path 1', className: 'w-[246px]' },
-                { src: `${IMG}/bybit-path-2.png`, alt: 'Bybit path 2', className: 'w-[246px]' },
-                { src: `${IMG}/bybit-path-3.png`, alt: 'Bybit path 3', className: 'w-[246px]' },
-              ]}
-            />
+              <div className="flex flex-col gap-4">
+                <SubTitle>Bybit</SubTitle>
+                <BodyStack>
+                  <P>
+                    Navigation: TradFi isn&apos;t a standalone nav item, but it appears as a peer-level
+                    trading type (alongside Spot, Futures, etc.) within the unified trading module.
+                  </P>
+                  <NumberedItem index={1}>
+                    <P>
+                      👍 Simple mental model — one place to trade everything. Users don&apos;t need to
+                      decide *what* to trade before figuring out *where* to go.
+                    </P>
+                  </NumberedItem>
+                  <NumberedItem index={2}>
+                    <P>
+                      Once inside the TradFi section, users immediately see asset market data —
+                      satisfying the need for an at-a-glance overview.
+                    </P>
+                  </NumberedItem>
+                  <NumberedItem index={3}>
+                    <P>
+                      Users can place orders directly on the K-line page — shorter path, higher focus, less
+                      drop-off.
+                    </P>
+                  </NumberedItem>
+                  <P medium>
+                    Path 1: Trading - TradFi Trading - K-line - K-line Order (Pending Orders/Positions)
+                  </P>
+                </BodyStack>
+                <ImgRow
+                  images={[
+                    { src: `${IMG}/bybit-path-1.png`, alt: 'Bybit path 1', className: 'w-[246px]' },
+                    { src: `${IMG}/bybit-path-2.png`, alt: 'Bybit path 2', className: 'w-[246px]' },
+                    { src: `${IMG}/bybit-path-3.png`, alt: 'Bybit path 3', className: 'w-[246px]' },
+                  ]}
+                />
+              </div>
+            </div>
 
             <DataTable
               headers={[
@@ -613,31 +639,50 @@ export default function TradFiTradingUxPage() {
                 row.klineOrder,
               ])}
             />
-          </div>
+          </Section>
 
-          {/* Optimization Direction (2) */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Optimization Direction:</SectionTitle>
-            <NumberedItem index={1}>
-              <P>
-                Add a market-data landing view to the TradFi tab — let users see what&apos;s
-                available and get a feel for price action before they commit to a trade.
-              </P>
-            </NumberedItem>
-            <NumberedItem index={2}>
-              <P>Add a quick order window on the K-line page?</P>
-            </NumberedItem>
-            <Hr />
-            <WideImg src={`${IMG}/optimization-onboarding.png`} alt="TradFi onboarding optimization" />
-            <WideImg src={`${IMG}/optimization-final.png`} alt="TradFi trading optimization screens" />
-          </div>
+          <Section title="Optimization Direction">
+            <BodyStack>
+              <NumberedItem index={1}>
+                <P>
+                  Add a market-data landing view to the TradFi tab — let users see what&apos;s
+                  available and get a feel for price action before they commit to a trade.
+                </P>
+              </NumberedItem>
+              <NumberedItem index={2}>
+                <P>Add a quick order window on the K-line page?</P>
+              </NumberedItem>
+            </BodyStack>
+            <div className="flex flex-col gap-3 pt-2">
+              <PhoneFrameRow
+                noBackground
+                nowrap
+                height="h-[533px]"
+                frames={[
+                  { src: `${IMG}/optimization-dir-1.png`, alt: 'TradFi market landing view' },
+                  { src: `${IMG}/optimization-dir-2.png`, alt: 'Gold perpetual trading screen' },
+                  { src: `${IMG}/optimization-dir-3.png`, alt: 'Trading preferences modal' },
+                ]}
+              />
+              <PhoneFrameRow
+                noBackground
+                nowrap
+                height="h-[533px]"
+                frames={[
+                  { src: `${IMG}/optimization-dir-4.png`, alt: 'Lightning order on K-line' },
+                  { src: `${IMG}/optimization-dir-5.png`, alt: 'Quick order window' },
+                  { src: `${IMG}/optimization-dir-6.png`, alt: 'Position management screen' },
+                ]}
+              />
+            </div>
+          </Section>
 
-          {/* Data Sources */}
-          <div className="flex w-full flex-col gap-6 px-4 sm:px-0">
-            <SectionTitle>Data Sources</SectionTitle>
-            <P>Precious Metals &amp; Commodity Contract User and Conversion Path Analysis</P>
-            <P>Stock User Flow Path Analysis</P>
-          </div>
+          <Section title="Data Sources">
+            <BodyStack>
+              <P>Precious Metals &amp; Commodity Contract User and Conversion Path Analysis</P>
+              <P>Stock User Flow Path Analysis</P>
+            </BodyStack>
+          </Section>
         </article>
       </div>
     </div>

@@ -1,4 +1,11 @@
 import BackToHome from './BackToHome'
+import {
+  BodyStack,
+  P,
+  Section,
+  SubTitle,
+  WideImg,
+} from './project/ProjectShared'
 
 const IMG = '/media/simplify-design-principle'
 
@@ -17,7 +24,7 @@ function TableRow({ title, description, images }: TableRowProps) {
         </p>
       </div>
       <div className="min-w-0 p-4">
-        <div className="text-[14px] font-normal leading-6 text-paper-dim [font-family:'Noto_Sans_SC',sans-serif]">
+        <div className="text-[14px] font-normal leading-[1.65] text-paper-dim [font-family:'Noto_Sans_SC',sans-serif]">
           {description}
         </div>
       </div>
@@ -27,7 +34,7 @@ function TableRow({ title, description, images }: TableRowProps) {
 }
 
 function DescParagraph({ children }: { children: React.ReactNode }) {
-  return <p className="mb-0 leading-6 last:mb-0">{children}</p>
+  return <p className="mb-0 leading-[1.65] last:mb-0">{children}</p>
 }
 
 function ImageGroup({
@@ -38,7 +45,7 @@ function ImageGroup({
   className?: string
 }) {
   return (
-    <div className={`flex min-w-0 flex-wrap items-start gap-1 ${className}`}>
+    <div className={`flex min-w-0 flex-wrap items-start gap-3 ${className}`}>
       {children}
     </div>
   )
@@ -56,12 +63,17 @@ function RowImage({
   basis: string
 }) {
   return (
-    <img
-      src={src}
-      alt={alt}
-      className="h-auto min-w-0 object-contain"
-      style={{ maxHeight, flexBasis: basis, maxWidth: basis }}
-    />
+    <div
+      className="overflow-hidden rounded-lg bg-surface-2"
+      style={{ flexBasis: basis, maxWidth: basis }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className="h-auto w-full object-contain"
+        style={{ maxHeight }}
+      />
+    </div>
   )
 }
 
@@ -71,50 +83,39 @@ export default function SimplifyDesignPrinciplePage() {
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
         <BackToHome />
 
-        <article className="flex w-full flex-col gap-12 border border-line bg-paper p-8 sm:gap-[48px] sm:p-16 [font-family:'Noto_Sans_SC',sans-serif]">
-          <h1 className="w-full text-[36px] font-bold leading-[48px] text-paper-ink">
+        <article className="flex w-full flex-col gap-4 border border-line bg-paper pb-20 pt-16 sm:px-16 sm:pb-20 sm:pt-16 [font-family:'Noto_Sans_SC',sans-serif]">
+          <h1 className="px-4 pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
             Simplify Design Principle
           </h1>
 
-          <div className="flex w-full flex-col gap-6">
-            <p className="text-[20px] font-bold leading-8 text-paper-ink">
-              2024 Q1-2 Key User Feedback on Product Experience
-            </p>
-            <div className="relative w-full">
-              <img
-                src={`${IMG}/feedback-overview.png`}
-                alt="User feedback overview word cloud"
-                className="h-auto w-full object-contain"
-              />
-            </div>
-            <p className="text-[15px] font-bold leading-6 text-paper-ink">
-              Top 3 User Feedback Themes:
-            </p>
-            <div className="flex flex-col gap-2 text-[14px] font-normal leading-6 text-paper-dim">
-              <p>
+          <Section>
+            <SubTitle>2024 Q1-2 Key User Feedback on Product Experience</SubTitle>
+            <WideImg
+              src={`${IMG}/feedback-overview.png`}
+              alt="User feedback overview word cloud"
+            />
+            <P medium>Top 3 User Feedback Themes:</P>
+            <BodyStack>
+              <P>
                 1. Complex page layout, unclear information display, inconvenient
                 chart and menu design, etc.
-              </p>
-              <p>
+              </P>
+              <P>
                 2. Excessive content density affecting readability; not
                 beginner-friendly; users want clearer, simpler, and more intuitive
                 interfaces
-              </p>
-              <p>
+              </P>
+              <P>
                 3. Users suggest improving colors and visual effects to enhance
                 contrast, readability, and comfort
-              </p>
-            </div>
-            <p className="text-[18px] font-bold leading-7 text-paper-ink">
+              </P>
+            </BodyStack>
+            <P medium>
               Optimization Direction: Simplicity, Intuitiveness, and Efficiency
-            </p>
-          </div>
+            </P>
+          </Section>
 
-          <p className="w-full text-[28px] font-bold leading-10 text-paper-ink">
-            Where Can We Start
-          </p>
-
-          <div className="w-full">
+          <Section title="Where Can We Start">
             <div className="flex w-full flex-col border border-line">
               <TableRow
                 title="Simplify Interface & Visual Content"
@@ -224,7 +225,7 @@ export default function SimplifyDesignPrinciplePage() {
                   </>
                 }
                 images={
-                  <ImageGroup className="gap-[2px]">
+                  <ImageGroup>
                     <RowImage
                       src={`${IMG}/row2-01.png`}
                       alt="Payment method step 1"
@@ -365,7 +366,7 @@ export default function SimplifyDesignPrinciplePage() {
                   </>
                 }
                 images={
-                  <ImageGroup className="gap-[10px]">
+                  <ImageGroup>
                     <RowImage
                       src={`${IMG}/row6-01.png`}
                       alt="Purchase flow step 1"
@@ -394,7 +395,7 @@ export default function SimplifyDesignPrinciplePage() {
                 }
               />
             </div>
-          </div>
+          </Section>
         </article>
       </div>
     </div>

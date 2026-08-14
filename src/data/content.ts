@@ -58,7 +58,7 @@ export interface CaseStudy {
 }
 
 export const profile: Profile = {
-  name: 'Xiwei Li',
+  name: 'AdrainLi',
   shortName: 'XW',
   roles: ['Visual Designer', 'AI Designer', 'Brand Designer'],
   headline:

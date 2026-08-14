@@ -7,8 +7,10 @@ export type NavigateOptions = {
 }
 
 const RETURN_PROJECT_KEY = 'portfolio:return-project'
+const RETURN_SCROLL_KEY = 'portfolio:return-scroll'
 
 let pendingRestoreSlug: string | null = null
+let pendingRestoreScroll: number | null = null
 
 export function initRouter() {
   if (typeof window === 'undefined') return
@@ -34,16 +36,28 @@ export function projectEntryId(slug: string) {
 
 export function saveReturnProject(slug: string) {
   sessionStorage.setItem(RETURN_PROJECT_KEY, slug)
+  sessionStorage.setItem(RETURN_SCROLL_KEY, String(window.scrollY))
   pendingRestoreSlug = slug
+  pendingRestoreScroll = window.scrollY
 }
 
 export function peekReturnProject(): string | null {
   return pendingRestoreSlug ?? sessionStorage.getItem(RETURN_PROJECT_KEY)
 }
 
+function peekReturnScroll(): number | null {
+  if (pendingRestoreScroll !== null) return pendingRestoreScroll
+  const saved = sessionStorage.getItem(RETURN_SCROLL_KEY)
+  if (saved === null) return null
+  const value = Number(saved)
+  return Number.isFinite(value) ? value : null
+}
+
 export function clearReturnProject() {
   pendingRestoreSlug = null
+  pendingRestoreScroll = null
   sessionStorage.removeItem(RETURN_PROJECT_KEY)
+  sessionStorage.removeItem(RETURN_SCROLL_KEY)
 }
 
 export function scrollWindowToTop() {
@@ -56,7 +70,7 @@ export function scrollToProjectEntry(slug: string, attempt = 0) {
   const el = document.getElementById(projectEntryId(slug))
 
   if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.scrollIntoView({ behavior: 'instant', block: 'center' })
     clearReturnProject()
     return
   }
@@ -67,15 +81,20 @@ export function scrollToProjectEntry(slug: string, attempt = 0) {
   }
 
   clearReturnProject()
-  document.getElementById('work')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  document.getElementById('work')?.scrollIntoView({ behavior: 'instant', block: 'start' })
 }
 
 export function restoreProjectEntry() {
   const slug = peekReturnProject()
   if (!slug) return
 
-  // Prevent showing the previous page's scroll offset while home mounts.
-  scrollWindowToTop()
+  const savedScroll = peekReturnScroll()
+  if (savedScroll !== null) {
+    window.scrollTo({ top: savedScroll, left: 0, behavior: 'instant' })
+    clearReturnProject()
+    return
+  }
+
   scrollToProjectEntry(slug)
 }
 

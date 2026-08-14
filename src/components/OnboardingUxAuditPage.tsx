@@ -1,55 +1,10 @@
 import type { ReactNode } from 'react'
 
 import BackToHome from './BackToHome'
+import { P, Section, SubTitle } from './project/ProjectShared'
 
 const IMG = '/media/onboarding-ux-audit'
 const FONT = "[font-family:'Noto_Sans_SC',sans-serif]"
-
-function H1({ children }: { children: ReactNode }) {
-  return (
-    <h1 className={`pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink ${FONT}`}>
-      {children}
-    </h1>
-  )
-}
-
-function H2({ children }: { children: ReactNode }) {
-  return (
-    <h2 className={`text-[26px] font-bold leading-[1.4] text-paper-ink ${FONT}`}>{children}</h2>
-  )
-}
-
-function H3({ children }: { children: ReactNode }) {
-  return (
-    <h3 className={`text-[19px] font-bold leading-[1.5] text-paper-ink ${FONT}`}>{children}</h3>
-  )
-}
-
-function SubH({ children }: { children: ReactNode }) {
-  return (
-    <p className={`text-[19px] font-bold leading-[1.5] text-paper-ink ${FONT}`}>{children}</p>
-  )
-}
-
-function P({
-  children,
-  medium,
-  small,
-}: {
-  children: ReactNode
-  medium?: boolean
-  small?: boolean
-}) {
-  return (
-    <p
-      className={`leading-[1.75] ${FONT} ${
-        small ? 'text-[12px] leading-[1.6]' : 'text-[15px]'
-      } ${medium ? 'font-semibold text-paper-ink' : 'font-normal text-paper-dim'}`}
-    >
-      {children}
-    </p>
-  )
-}
 
 function OrangeP({ children }: { children: ReactNode }) {
   return (
@@ -88,7 +43,7 @@ const PHONE_FRAMES = {
 
 type PhoneSize = keyof typeof PHONE_FRAMES
 
-function WideImg({
+function ConstrainedImg({
   src,
   alt,
   className = '',
@@ -100,7 +55,7 @@ function WideImg({
   maxH?: string
 }) {
   return (
-    <div className={`max-w-full overflow-hidden bg-surface-2 ${className}`}>
+    <div className={`max-w-full overflow-hidden rounded-lg bg-surface-2 ${className}`}>
       <img
         src={src}
         alt={alt}
@@ -112,12 +67,7 @@ function WideImg({
 
 function DesktopImg({ src, alt, className = '' }: { src: string; alt: string; className?: string }) {
   return (
-    <WideImg
-      src={src}
-      alt={alt}
-      className={className}
-      maxH="max-h-[520px]"
-    />
+    <ConstrainedImg src={src} alt={alt} className={className} maxH="max-h-[520px]" />
   )
 }
 
@@ -137,10 +87,33 @@ function Phone({
   const frame = PHONE_FRAMES[size]
   return (
     <div className={`flex shrink-0 flex-col gap-1 ${frame} ${className}`}>
-      <div className="h-full w-full overflow-hidden bg-surface-2">
+      <div className="h-full w-full overflow-hidden rounded-lg bg-surface-2">
         <img src={src} alt={alt} className="h-full w-full object-contain object-top" />
       </div>
       {label !== undefined && <Label>{label}</Label>}
+    </div>
+  )
+}
+
+function PhoneFrameRowLabeled({
+  items,
+  height = 'h-[480px]',
+}: {
+  items: { src: string; alt: string; label: string }[]
+  height?: string
+}) {
+  return (
+    <div className="flex flex-nowrap items-start gap-3 overflow-x-auto">
+      {items.map((item) => (
+        <div key={item.src} className="flex shrink-0 flex-col gap-1">
+          <img
+            src={item.src}
+            alt={item.alt}
+            className={`${height} w-auto shrink-0 rounded-lg bg-surface-2`}
+          />
+          <Label>{item.label}</Label>
+        </div>
+      ))}
     </div>
   )
 }
@@ -187,7 +160,7 @@ function InsightTable({
         <div className={`w-[406px] shrink-0 space-y-2 p-4 ${TABLE_BODY}`}>
           {insights}
           {insightImage && (
-            <WideImg
+            <ConstrainedImg
               src={insightImage.src}
               alt={insightImage.alt}
               className="max-w-[240px]"
@@ -198,7 +171,7 @@ function InsightTable({
         <div className={`min-w-0 flex-1 space-y-2 p-4 ${TABLE_BODY}`}>
           {suggestions}
           {suggestionImage && (
-            <WideImg
+            <ConstrainedImg
               src={suggestionImage.src}
               alt={suggestionImage.alt}
               className="max-w-[360px]"
@@ -230,7 +203,7 @@ function InsightTableEqual({
         <div className={`flex-1 space-y-2 p-4 ${TABLE_BODY}`}>
           {insights}
           {insightImage && (
-            <WideImg
+            <ConstrainedImg
               src={insightImage.src}
               alt={insightImage.alt}
               className="max-w-[360px]"
@@ -245,7 +218,7 @@ function InsightTableEqual({
 }
 
 function Highlight({ children }: { children: ReactNode }) {
-  return <SubH>{children}</SubH>
+  return <SubTitle>{children}</SubTitle>
 }
 
 export default function OnboardingUxAuditPage() {
@@ -255,24 +228,24 @@ export default function OnboardingUxAuditPage() {
         <BackToHome />
 
         <article className={`flex w-full flex-col gap-4 border border-line bg-paper pb-20 pt-16 sm:px-16 sm:pb-20 sm:pt-16 ${FONT}`}>
-          <H1>Registration, Login, Fiat &amp; KYC — Product Experience Audit</H1>
+          <h1 className="px-4 pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
+            Registration, Login, Fiat &amp; KYC — Product Experience Audit
+          </h1>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>1. Objective</H2>
+          <Section title="1. Objective">
             <P>
               Address inconsistencies in the fiat transaction experience, improve usability and
               efficiency, and ultimately drive higher conversion.
             </P>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>2. Problem Overview</H2>
+          <Section title="2. Problem Overview" className="gap-5">
             <OrangeP>
               [Visual Consistency] The visual language across product lines isn&apos;t fully unified
               — this can confuse users and weaken brand perception. Our design direction: clean,
               flat, and efficient.
             </OrangeP>
-            <SubH>Design Approach</SubH>
+            <SubTitle>Design Approach</SubTitle>
             <BulletP>
               {`•  Remove shadows and card-style containers, reduce visual layers, eliminate noise — make pages cleaner and more efficient`}
             </BulletP>
@@ -280,25 +253,23 @@ export default function OnboardingUxAuditPage() {
               [Usability] Pages are overloaded with information and features. Complex layouts raise
               the barrier for users and increase the cost of using our product.
             </OrangeP>
-            <SubH>Design Approach</SubH>
+            <SubTitle>Design Approach</SubTitle>
             <BulletP>
               {`•  Visually prioritize core functions; categorize and rank information to avoid stacking. Spotlight primary tasks, de-emphasize secondary details — help users stay focused`}
             </BulletP>
             <BulletP>
               {`•  Minimize dense interactions on a single page. For complex tasks, use smart defaults to reduce steps and improve usability`}
             </BulletP>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>3. Q2 2024 — Product UI/UX User Feedback</H2>
-            <WideImg src={`${IMG}/q2-feedback.png`} alt="Q2 2024 user feedback" maxH="max-h-[280px]" />
-          </section>
+          <Section title="3. Q2 2024 — Product UI/UX User Feedback">
+            <ConstrainedImg src={`${IMG}/q2-feedback.png`} alt="Q2 2024 user feedback" maxH="max-h-[280px]" />
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>4. UI Consistency Across Business Lines</H2>
+          <Section title="4. UI Consistency Across Business Lines" className="gap-5">
 
             <div className="flex flex-col gap-5">
-              <H3>Checkout</H3>
+              <SubTitle>Checkout</SubTitle>
               <PhoneRow>
                 <Phone size="md" src={`${IMG}/checkout-01-card-buy.png`} alt="Card buy" label="Card buy" />
                 <Phone size="md" src={`${IMG}/checkout-02-quick-buy.png`} alt="Quick buy" label="Quick buy" />
@@ -377,23 +348,23 @@ export default function OnboardingUxAuditPage() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Payment Method Selection</H3>
-              <PhoneRow>
-                <Phone size="lg" src={`${IMG}/payment-01-card-buy.png`} alt="Card buy" label="Card buy" />
-                <Phone
-                  size="lg"
-                  src={`${IMG}/payment-02-have-card-card-buy.png`}
-                  alt="Have card(Card buy)"
-                  label="Have card(Card buy)"
-                />
-                <Phone size="lg" src={`${IMG}/payment-03-quick-buy.png`} alt="Quick buy" label="Quick buy" />
-                <Phone
-                  size="lg"
-                  src={`${IMG}/payment-04-have-card-quick-buy.png`}
-                  alt="Have card(Quick buy)"
-                  label="Have card(Quick buy)"
-                />
-              </PhoneRow>
+              <SubTitle>Payment Method Selection</SubTitle>
+              <PhoneFrameRowLabeled
+                items={[
+                  { src: `${IMG}/payment-01-card-buy.png`, alt: 'Card buy', label: 'Card buy' },
+                  {
+                    src: `${IMG}/payment-02-have-card-card-buy.png`,
+                    alt: 'Have card(Card buy)',
+                    label: 'Have card(Card buy)',
+                  },
+                  { src: `${IMG}/payment-03-quick-buy.png`, alt: 'Quick buy', label: 'Quick buy' },
+                  {
+                    src: `${IMG}/payment-04-have-card-quick-buy.png`,
+                    alt: 'Have card(Quick buy)',
+                    label: 'Have card(Quick buy)',
+                  },
+                ]}
+              />
               <div className="w-full overflow-x-auto border border-line">
                 <div className="flex min-w-[1040px]">
                   <AuditCell title="Visual Consistency" className="w-[396px] shrink-0">
@@ -421,7 +392,7 @@ export default function OnboardingUxAuditPage() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Order Confirmation</H3>
+              <SubTitle>Order Confirmation</SubTitle>
               <PhoneRow>
                 <Phone
                   size="lg"
@@ -462,7 +433,7 @@ export default function OnboardingUxAuditPage() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Order Complete</H3>
+              <SubTitle>Order Complete</SubTitle>
               <PhoneRow>
                 <Phone
                   size="md"
@@ -507,24 +478,24 @@ export default function OnboardingUxAuditPage() {
             </div>
 
             <div className="flex flex-col gap-5">
-              <H3>Transaction History</H3>
-              <PhoneRow>
-                <Phone
-                  size="lg"
-                  src={`${IMG}/history-01-quick-buy.png`}
-                  alt="Quick buy"
-                  label="Quick buy"
-                />
-                <Phone size="lg" src={`${IMG}/history-02-card-buy.png`} alt="Card buy" label="Card buy" />
-                <Phone
-                  size="lg"
-                  src={`${IMG}/history-03-cash-conversion.png`}
-                  alt="Cash conversion"
-                  label="Cash conversion"
-                />
-              </PhoneRow>
+              <SubTitle>Transaction History</SubTitle>
+              <PhoneFrameRowLabeled
+                items={[
+                  {
+                    src: `${IMG}/history-01-quick-buy.png`,
+                    alt: 'Quick buy',
+                    label: 'Quick buy',
+                  },
+                  { src: `${IMG}/history-02-card-buy.png`, alt: 'Card buy', label: 'Card buy' },
+                  {
+                    src: `${IMG}/history-03-cash-conversion.png`,
+                    alt: 'Cash conversion',
+                    label: 'Cash conversion',
+                  },
+                ]}
+              />
               <div className={`border border-line p-4 ${TABLE_BODY}`}>
-                <SubH>Recommendations:</SubH>
+                <SubTitle>Recommendations:</SubTitle>
                 <p>1. Simplify the page — reduce visual layers</p>
                 <p>
                   2. Optimize page structure, unify the visual reading path, and lighten cognitive
@@ -532,10 +503,9 @@ export default function OnboardingUxAuditPage() {
                 </p>
               </div>
             </div>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>5. Bank Deposit</H2>
+          <Section title="5. Bank Deposit">
             <PhoneRow>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                 <Phone
@@ -550,10 +520,9 @@ export default function OnboardingUxAuditPage() {
               <Phone size="xl" src={`${IMG}/bank-09.png`} alt="Bank deposit flow" />
               <Phone size="md" src={`${IMG}/order-complete-04-bank-deposit.png`} alt="Bank deposit" />
             </div>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>6. Registration &amp; Login</H2>
+          <Section title="6. Registration &amp; Login">
             <Quote>
               &quot;Wow, my favorite footballer Messi endorses this — feels trustworthy! And a 6,200
               USDT welcome bonus? Amazing!&quot;
@@ -610,10 +579,9 @@ export default function OnboardingUxAuditPage() {
               1. After registration, guide users to identity verification. Show friendly prompts
               about permissions they&apos;ll unlock along the way
             </P>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>7. KYC</H2>
+          <Section title="7. KYC">
             <Quote>&quot;So much content here — let me take a closer look at what&apos;s needed&quot;</Quote>
             <DesktopImg src={`${IMG}/kyc-01.png`} alt="KYC overview" />
             <InsightTable
@@ -663,10 +631,9 @@ export default function OnboardingUxAuditPage() {
             <DesktopImg src={`${IMG}/kyc-07.png`} alt="Verification pending" />
             <Highlight>Recommendation</Highlight>
             <P>1. Take users to the assets page and guide them through security settings</P>
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>8. Buying Crypto</H2>
+          <Section title="8. Buying Crypto">
             <Quote>
               &quot;Verification approved! Time to buy some crypto. Lots of options here — credit card
               sounds good, let me try that&quot;
@@ -774,11 +741,10 @@ export default function OnboardingUxAuditPage() {
                 </>
               }
             />
-          </section>
+          </Section>
 
-          <section className="flex flex-col gap-5 pb-8">
-            <H2>9. App Home Screen</H2>
-            <H3>Home</H3>
+          <Section title="9. App Home Screen" className="gap-5">
+            <SubTitle>Home</SubTitle>
             <PhoneRow>
               <Phone size="app" src={`${IMG}/home-01.png`} alt="Home 1" />
               <Phone size="app" src={`${IMG}/home-02.png`} alt="Home 2" />
@@ -802,7 +768,7 @@ export default function OnboardingUxAuditPage() {
               pulling conversion data for this section — from a simplification and efficiency
               standpoint, these could be de-emphasized to keep users focused on signing up.
             </P>
-            <SubH>UX Issues &amp; Recommendations:</SubH>
+            <SubTitle>UX Issues &amp; Recommendations:</SubTitle>
             <P>
               1. Improve home screen campaign illustrations so imagery and copy tell a coherent story
             </P>
@@ -812,7 +778,7 @@ export default function OnboardingUxAuditPage() {
               structure, and overall brand coherence. Consider separating labels from icons
             </P>
 
-            <H3>Registration / Login</H3>
+            <SubTitle>Registration / Login</SubTitle>
             <div className="flex flex-wrap gap-4">
               <Phone size="xl" src={`${IMG}/reg-login-app-01.png`} alt="Registration app" />
               <Phone size="xl" src={`${IMG}/reg-login-app-02.png`} alt="Login app" />
@@ -830,13 +796,13 @@ export default function OnboardingUxAuditPage() {
               2. The registration page uses more than 5 font styles (size/color/weight), making it
               look cluttered and inconsistent
             </P>
-            <SubH>UX Issues &amp; Recommendations:</SubH>
+            <SubTitle>UX Issues &amp; Recommendations:</SubTitle>
             <P>
               1. Validate accounts on the registration page — if already registered, prompt users to
               log in instead
             </P>
             <P>2. Simplify the page to improve usability and efficiency</P>
-          </section>
+          </Section>
         </article>
       </div>
     </div>
