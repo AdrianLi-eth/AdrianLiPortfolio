@@ -1,0 +1,28 @@
+{
+  "name": "adrian-li-portfolio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:fresh": "bash scripts/dev-fresh.sh",
+    "open:site": "bash scripts/open-preview.sh",
+    "open:project": "bash scripts/open-preview.sh",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^1.31.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^4.5.2",
+    "typescript": "^7.0.2",
+    "vite": "^6.3.5"
+  }
+}

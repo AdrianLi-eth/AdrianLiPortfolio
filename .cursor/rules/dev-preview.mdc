@@ -1,0 +1,18 @@
+---
+description: Always preview the latest portfolio build on a fresh dev server
+alwaysApply: true
+---
+
+# Dev Preview (Always Latest)
+
+When the user asks to open/preview the site in a browser, or after finishing frontend/routing work:
+
+1. **Never** open `localhost:5174`, `5175`, etc. The canonical URL is **http://127.0.0.1:5173/**
+2. **Always** run one of these before opening the browser:
+   - Home: `npm run open:site`
+   - Project page: `npm run open:project -- <slug>` (e.g. `buy-crypto-binance`)
+3. Do **not** manually run `vite` in the background unless `npm run dev:fresh` fails.
+4. `npm run dev:fresh` kills stale servers on port 5173 and starts a new one with `--strictPort` (no silent port switch).
+5. After adding routes/pages, verify the slug exists in `src/App.tsx` before opening `#/project/<slug>`.
+
+If the user sees "Project not found", check: stale dev server, wrong port, or missing route — rerun `npm run open:project -- <slug>`.
