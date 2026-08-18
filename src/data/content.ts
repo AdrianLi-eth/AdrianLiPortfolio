@@ -127,7 +127,7 @@ export const projects: Project[] = [
   {
     index: '02',
     slug: 'buy-crypto-binance',
-    title: 'Buy Crypto - Binance',
+    title: 'Binance-OCBS Redesign',
     role: 'Design Lead · Global Payments',
     tag: 'PAYMENTS',
     year: '2023',
@@ -136,7 +136,7 @@ export const projects: Project[] = [
   {
     index: '03',
     slug: 'rtoken-trading-ux-audit',
-    title: 'rToken Trading UX Audit',
+    title: 'Bitget Market Design',
     role: 'Product Experience · rToken Trading Flow',
     tag: 'FINTECH',
     year: '2025',
@@ -145,7 +145,7 @@ export const projects: Project[] = [
   {
     index: '04',
     slug: 'tradfi-trading-ux-optimization',
-    title: 'TradFi Trading UX Optimization',
+    title: 'Bitget TradFi UX Optimization',
     role: 'Product Experience · TradFi Trading',
     tag: 'FINTECH',
     year: '2025',
@@ -163,7 +163,7 @@ export const projects: Project[] = [
   {
     index: '06',
     slug: 'spot-trading-first-trade-conversion',
-    title: 'Spot Trading First Trade Convertion',
+    title: 'Bitget Spot Trade UX Optimization',
     role: 'Product Experience · Spot Trading',
     tag: 'FINTECH',
     year: '2024',
