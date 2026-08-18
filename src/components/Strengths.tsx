@@ -15,7 +15,7 @@ export default function Strengths() {
           data-reveal
           className="mb-20 flex items-end justify-between"
         >
-          <h2 className="text-3xl tracking-tight text-ink sm:text-5xl">
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
             Core Competencies &amp; Skills
           </h2>
           <span className="text-sm text-ink-faint">

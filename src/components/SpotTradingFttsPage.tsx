@@ -1,7 +1,11 @@
 import BackToHome from './BackToHome'
 import {
   BodyStack,
-  HighlightCard,
+  CaseIntro,
+  IntroHeading,
+  IntroImpactItem,
+  IntroMetrics,
+  IntroRoleTags,
   NumberedItem,
   P,
   Section,
@@ -10,6 +14,8 @@ import {
 } from './project/ProjectShared'
 
 const IMG = '/media/spot-trading-ftts'
+
+const ROLE_TAGS = ['Product Research', 'UX Research', 'Data Driven', 'UX / UI'] as const
 
 const EXECUTION_PLAN = [
   {
@@ -78,30 +84,37 @@ export default function SpotTradingFttsPage() {
             How to Improve First-Time Trade Spot (FTTS) Conversion
           </h1>
 
-          <section className="flex flex-col gap-5 px-4 sm:px-0">
-            <div className="flex flex-col gap-5 lg:flex-row">
-              <HighlightCard
-                title="What I Did"
-                tags={['Product Research', 'UX Research', 'Data Driven', 'UX / UI']}
-              >
-                <ul className="list-disc space-y-0 pl-5">
-                  <li>
-                    Analyzed FTTS (First-Time Spot Trade) volume trends and identified key growth
-                    drivers
-                  </li>
-                  <li>Mapped 3 core conversion scenarios</li>
-                  <li>Competitor Benchmarked analysis</li>
-                  <li>Designed and prioritized an execution plan</li>
-                </ul>
-              </HighlightCard>
-              <HighlightCard title="Result">
-                <ol className="list-decimal space-y-0 pl-5">
-                  <li>UV of spot trading increased by 7.2%.</li>
-                  <li>FTTS conversion rate increased by 3.8%.</li>
-                </ol>
-              </HighlightCard>
+          <CaseIntro>
+            <div className="flex flex-col gap-2">
+              <IntroHeading>My role</IntroHeading>
+              <IntroRoleTags tags={[...ROLE_TAGS]} />
             </div>
-          </section>
+
+            <div className="flex flex-col gap-6">
+              <IntroHeading>Impact</IntroHeading>
+              <div className="flex flex-col gap-6">
+                <IntroImpactItem title="Analyzed FTTS volume trends and growth drivers">
+                  Reviewed first-time spot trade volume trends to identify what was driving growth and
+                  where users were dropping off in the conversion funnel.
+                </IntroImpactItem>
+                <IntroImpactItem title="Mapped three core conversion scenarios">
+                  Mapped user paths across three core FTTS scenarios to isolate friction before
+                  recommending targeted experience changes.
+                </IntroImpactItem>
+                <IntroImpactItem title="Designed a prioritized execution plan">
+                  Benchmarked competitors and translated findings into a sequenced execution plan with
+                  clear design and product priorities across deposit, transfer, and reward flows.
+                </IntroImpactItem>
+              </div>
+            </div>
+
+            <IntroMetrics
+              metrics={[
+                { value: '+7.2%', label: 'Spot trading UV increase' },
+                { value: '+3.8%', label: 'FTTS conversion rate increase' },
+              ]}
+            />
+          </CaseIntro>
 
           <Section title="Objective">
             <P>

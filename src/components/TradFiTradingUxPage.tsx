@@ -1,5 +1,11 @@
-import type { ReactNode } from 'react'
 import BackToHome from './BackToHome'
+import {
+  CaseIntro,
+  IntroHeading,
+  IntroImpactItem,
+  IntroMetrics,
+  IntroRoleTags,
+} from './project/ProjectShared'
 import {
   BodyStack,
   IMG,
@@ -11,6 +17,8 @@ import {
   SubTitle,
   WideImg,
 } from './tradfi/TradFiShared'
+
+const ROLE_TAGS = ['Product Research', 'Data Driven', 'UX / UI'] as const
 
 const PATH_COLUMNS = [
   {
@@ -134,40 +142,6 @@ const COMPETITOR_ROWS = [
   },
 ]
 
-function Tag({ children }: { children: string }) {
-  return (
-    <span className="inline-flex h-[25px] items-center rounded-full bg-paper px-3 text-[12px] text-paper-dim">
-      {children}
-    </span>
-  )
-}
-
-function HighlightCard({
-  title,
-  children,
-  tags,
-}: {
-  title: string
-  children: ReactNode
-  tags?: string[]
-}) {
-  return (
-    <div className="flex min-w-0 flex-1 flex-col gap-3.5 rounded-2xl bg-surface-2 px-6 py-6 sm:px-8 sm:py-7">
-      <p className="text-[20px] font-bold leading-[1.4] text-paper-ink sm:text-[22px]">
-        {title}
-      </p>
-      <div className="flex flex-col gap-3 text-[15px] leading-[1.75] text-paper-dim">{children}</div>
-      {tags && (
-        <div className="mt-auto flex flex-wrap gap-2 pt-1">
-          {tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}
-
 function DataTable({
   headers,
   rows,
@@ -217,55 +191,51 @@ export default function TradFiTradingUxPage() {
             TradFi Trading UX Optimization
           </h1>
 
-          <section className="flex flex-col gap-5 px-4 sm:px-0">
-            <div className="flex flex-col gap-5 lg:flex-row">
-              <HighlightCard
-                title="What I Did"
-                tags={['Product Research', 'Data Driven', 'UX / UI']}
-              >
-                <P>
-                  Through user data analysis, identified the top 3 transaction conversion entry
-                  points and user journey scenarios. Conducted experience map analysis for each
-                  scenario to pinpoint friction points. Performed UX/UI competitive analysis on
-                  several core competitors for corresponding scenarios, and proposed optimization
-                  solutions.
-                </P>
-              </HighlightCard>
-              <HighlightCard title="Challenge">
-                <P>
-                  1. Understand existing users&apos; trading habits on the platform (Crypto and
-                  TradFi)
-                </P>
-                <P>
-                  2. Balance redesign costs with improving business metrics (stock and commodity
-                  contract trading conversion)
-                </P>
-                <P medium>Strategies:</P>
-                <P>
-                  1. Through data platform event tracking analysis and collaboration with the data
-                  analytics department, obtain key trading entry traffic contribution and funnel
-                  conversion data across different entry points to analyze user behavior and order
-                  placement experience.
-                </P>
-                <P>
-                  2. Prioritize + version control — start with MVP (small changes, high-impact
-                  action items)
-                </P>
-              </HighlightCard>
-              <HighlightCard title="Result">
-                <P>
-                  K-line page to trade button click-through conversion increased by 8.3%. TradFi
-                  bottom navigation trade entry overall funnel conversion increased by 28.7%.
-                </P>
-              </HighlightCard>
+          <CaseIntro>
+            <div className="flex flex-col gap-2">
+              <IntroHeading>My role</IntroHeading>
+              <IntroRoleTags tags={[...ROLE_TAGS]} />
             </div>
-          </section>
+
+            <div className="flex flex-col gap-6">
+              <IntroHeading>Impact</IntroHeading>
+              <div className="flex flex-col gap-6">
+                <IntroImpactItem title="Mapped the highest-value trading entry paths">
+                  Through user data analysis, identified the top 3 transaction conversion entry
+                  points and ran experience map analysis on each journey to pinpoint friction
+                  before proposing optimizations.
+                </IntroImpactItem>
+                <IntroImpactItem title="Prioritized MVP scope for measurable lift">
+                  Balanced redesign cost against stock and commodity contract conversion goals by
+                  partnering with analytics on funnel data and sequencing small, high-impact changes
+                  through clear version control.
+                </IntroImpactItem>
+                <IntroImpactItem title="Validated UX direction through competitive benchmarking">
+                  Performed UX/UI competitive analysis on core rivals for each scenario to ground
+                  optimization decisions before high-fidelity design.
+                </IntroImpactItem>
+              </div>
+            </div>
+
+            <IntroMetrics
+              metrics={[
+                {
+                  value: '+8.3%',
+                  label: 'K-line page to trade button click-through conversion rate',
+                },
+                {
+                  value: '+28.7%',
+                  label: 'TradFi bottom nav trade entry overall funnel conversion rate',
+                },
+              ]}
+            />
+          </CaseIntro>
 
           <Section title="Optimization Objective">
             <P>Boost conversion across the TradFi commodity and stock futures trading funnels.</P>
           </Section>
 
-          <Section title="Conversion Pain Points">
+          <Section title="Key Breakpoint from Conversion">
             <BodyStack>
             <NumberedItem index={1}>
               <P>
@@ -331,7 +301,7 @@ export default function TradFiTradingUxPage() {
             </BodyStack>
           </Section>
 
-          <Section title="Commodity Contract Conversion Paths">
+          <Section title="Commodity Trade Conversion Paths">
             <BodyStack>
               <P>
                 Commodity contract traffic (precious metals, crude oil, etc.) flows in through six

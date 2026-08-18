@@ -2,7 +2,13 @@ import type { ReactNode } from 'react'
 
 import BackToHome from './BackToHome'
 import {
-  HighlightCard,
+  BeforeAfterCompare,
+  CaseIntro,
+  FinalUiGallery,
+  IntroHeading,
+  IntroImpactItem,
+  IntroMetrics,
+  IntroRoleTags,
   NumberedItem,
   P,
   Section,
@@ -11,6 +17,31 @@ import {
 } from './project/ProjectShared'
 
 const IMG = '/media/buy-crypto'
+
+const ROLE_TAGS = ['Product Research', 'UX Research', 'Data Driven', 'UX / UI'] as const
+
+const UI_PREVIEW_ROWS = [
+  {
+    before: {
+      src: `${IMG}/old-enter-amount.png`,
+      alt: 'Before: enter amount screen',
+    },
+    after: {
+      src: `${IMG}/new-enter-amount.png`,
+      alt: 'After: enter amount screen',
+    },
+  },
+  {
+    before: {
+      src: `${IMG}/old-payment.png`,
+      alt: 'Before: select payment method screen',
+    },
+    after: {
+      src: `${IMG}/new-payment.png`,
+      alt: 'After: pay with bottom sheet',
+    },
+  },
+] as const
 
 function Bullet({ children }: { children: ReactNode }) {
   return (
@@ -123,57 +154,59 @@ export default function BuyCryptoPage() {
             Binance - Buy Crypto 2.0
           </h1>
 
-          {/* Highlight Cards */}
-          <section className="flex flex-col gap-5 px-4 sm:px-0">
-            <div className="flex flex-col gap-5 lg:flex-row">
-              <HighlightCard
-                title="What I Did"
-                tags={['Product Research', 'UX Research', 'Data Driven', 'UX / UI']}
-              >
-                <ul className="list-disc space-y-0 pl-5">
-                  <li>Collected and analysis user feedback.</li>
-                  <li>
-                    Ran competitor benchmarking (OKX, Binance, Bybit, Coinbase, Kraken) and UX
-                    research
-                  </li>
-                  <li>
-                    Analyzed click heatmaps on the Enter Amount page to understand real usage
-                    patterns
-                  </li>
-                  <li>
-                    Delivered high-fidelity design, UX documentation, and QA validation before launch
-                  </li>
-                </ul>
-              </HighlightCard>
-              <HighlightCard title="Challenge">
-                <ul className="mb-2 list-disc pl-5">
-                  <li>
-                    Massive scope: 20+ fiat buy-crypto channels spanning 350+ pages, requiring
-                    cross-team alignment across Product, Design System and UIKit development
-                  </li>
-                  <li>
-                    Existing UI had heavy visual hierarchy, too many CTAs and inconsistent font
-                    styles, making the core task unclear to users
-                  </li>
-                </ul>
-                <p className="mb-2">Strategies:</p>
-                <ol className="list-decimal pl-5">
-                  <li>
-                    Prioritize + version control — start with MVP (small changes, high-impact action
-                    items)
-                  </li>
-                  <li>Define project SOP</li>
-                </ol>
-              </HighlightCard>
-              <HighlightCard title="Result">
-                <ol className="list-decimal space-y-0 pl-5">
-                  <li>Page dwell time increased by 70%.</li>
-                  <li>Stock module click rate reached 10.2%, up 75.8%.</li>
-                  <li>Market-to-stock funnel conversion improved by 7.2%.</li>
-                </ol>
-              </HighlightCard>
+          <CaseIntro>
+            <div className="flex flex-col gap-2">
+              <IntroHeading>My role</IntroHeading>
+              <IntroRoleTags tags={[...ROLE_TAGS]} />
             </div>
-          </section>
+
+            <div className="flex flex-col gap-6">
+              <IntroHeading>Impact</IntroHeading>
+              <div className="flex flex-col gap-6">
+                <IntroImpactItem title="Redirected the project scope">
+                  Prioritized MVP across 20+ fiat buy-crypto channels spanning 350+ pages, aligning
+                  Product, Design System, and UIKit teams through a clear version-control SOP.
+                </IntroImpactItem>
+                <IntroImpactItem title="Clarified the core task flow">
+                  Stripped back heavy visual hierarchy, redundant CTAs, and inconsistent typography
+                  so users could complete the buy-crypto flow with less friction.
+                </IntroImpactItem>
+                <IntroImpactItem title="Validated decisions with data">
+                  Collected user feedback, ran competitor benchmarking (OKX, Binance, Bybit,
+                  Coinbase, Kraken), and analyzed Enter Amount page heatmaps to guide
+                  high-fidelity design and QA.
+                </IntroImpactItem>
+              </div>
+            </div>
+
+            <IntroMetrics
+              metrics={[
+                {
+                  value: '+48.34%',
+                  label: 'Step 1→3 conversion lift vs. old design',
+                },
+                {
+                  value: '+3.8%',
+                  label: 'User CSAT increase post-launch',
+                },
+                {
+                  value: '−0.6%',
+                  label: 'Product defect rate reduction',
+                },
+              ]}
+            />
+          </CaseIntro>
+
+          <Section className="min-w-0 gap-5">
+            <div className="flex min-w-0 flex-col gap-5">
+              <h2 className="text-[32px] font-bold leading-[1.3] text-paper-ink">UI</h2>
+              <p className="text-[12px] font-normal leading-[1.6] text-paper-dim">
+                There are more final delivered UI pages design at the end, here only display major
+                changes UI.
+              </p>
+              <BeforeAfterCompare rows={[...UI_PREVIEW_ROWS]} />
+            </div>
+          </Section>
 
           <Section title="Design Process">
             <div className="flex flex-wrap items-center gap-2">
@@ -593,25 +626,8 @@ export default function BuyCryptoPage() {
             <WideImg src={`${IMG}/data-metrics.png`} alt="Data metrics" />
           </Section>
 
-          <Section className="gap-5 bg-[#1d222a]">
-            <p className="text-[24px] font-bold text-white">Final UI</p>
-            <p className="text-[16px] font-bold text-white">Dark</p>
-            <WideImg src={`${IMG}/final-dark-row1.png`} alt="Final UI dark row 1" />
-            <WideImg
-              src={`${IMG}/final-dark-row2.png`}
-              alt="Final UI dark row 2"
-              className="max-w-[698px]"
-            />
-          </Section>
-
-          <Section>
-            <SubTitle>Light</SubTitle>
-            <WideImg src={`${IMG}/final-light-row1.png`} alt="Final UI light row 1" />
-            <WideImg
-              src={`${IMG}/final-light-row2.png`}
-              alt="Final UI light row 2"
-              className="max-w-[703px]"
-            />
+          <Section className="!gap-0 !px-0">
+            <FinalUiGallery basePath={IMG} />
           </Section>
         </article>
       </div>

@@ -25,7 +25,7 @@ export function Section({
 
 export function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <h2 className={`text-[26px] font-bold leading-[1.4] text-paper-ink ${FONT}`}>
+    <h2 className={`text-[26px] font-bold uppercase leading-[1.4] text-paper-ink ${FONT}`}>
       {children}
     </h2>
   )

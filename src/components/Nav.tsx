@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from '../context/RouterContext'
-import { navLinks, profile } from '../data/content'
+import { navLinks } from '../data/content'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -34,24 +34,23 @@ export default function Nav() {
     document.getElementById('top')?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const isProject = route.page === 'project'
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
+        scrolled || isProject
           ? 'border-b border-line bg-bg/80 backdrop-blur-md'
           : 'bg-transparent'
-      }`}
+      } ${isProject ? 'border-b-0' : ''}`}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between px-6 py-5 sm:px-10">
         <a
           href="#top"
           onClick={goHome}
-          className="flex flex-col leading-tight"
+          className="text-sm font-normal text-ink"
         >
-          <span className="font-bold tracking-tight text-ink">{profile.name}</span>
-          <span className="text-xs uppercase tracking-[0.2em] text-ink-faint">
-            Portfolio {year}
-          </span>
+          PORTFOLIO {year}
         </a>
 
         <nav className="hidden items-center gap-8 sm:flex">
@@ -60,7 +59,7 @@ export default function Nav() {
               key={link.id}
               href={`#${link.id}`}
               onClick={scrollTo(link.id)}
-              className="text-sm text-ink-dim transition-colors hover:text-ink"
+              className="text-sm font-normal text-ink/65 transition-colors hover:text-ink"
             >
               {link.label}
             </a>
@@ -70,7 +69,7 @@ export default function Nav() {
         <a
           href="#contact"
           onClick={scrollTo('contact')}
-          className="rounded-lg bg-surface-2 px-4 py-2 text-sm font-medium text-ink transition-opacity hover:opacity-85"
+          className="text-sm font-normal text-ink/65 transition-colors hover:text-ink"
         >
           Contact
         </a>

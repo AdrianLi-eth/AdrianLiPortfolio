@@ -1,7 +1,11 @@
 import BackToHome from './BackToHome'
 import {
   BodyStack,
-  HighlightCard,
+  CaseIntro,
+  IntroHeading,
+  IntroImpactItem,
+  IntroMetrics,
+  IntroRoleTags,
   NumberedItem,
   P,
   Section,
@@ -10,6 +14,8 @@ import {
 } from './project/ProjectShared'
 
 const IMG = '/media/rtoken-trading-ux'
+
+const ROLE_TAGS = ['UX Research', 'Product Research', 'Data Driven', 'UX / UI'] as const
 
 const TODO_ROWS = [
   { priority: 'P0', task: 'Remove the above-the-fold anchor navigation' },
@@ -44,42 +50,39 @@ export default function RTokenTradingUxPage() {
             rToken Trading Funnel — UX Audit
           </h1>
 
-          <section className="flex flex-col gap-5 px-4 sm:px-0">
-            <div className="flex flex-col gap-5 lg:flex-row">
-              <HighlightCard
-                title="What I Did"
-                tags={['UX Research', 'Product Research', 'Data Driven', 'UX / UI']}
-              >
-                <BodyStack>
-                  <P>
-                    Through user data analysis, evaluated the rationality of module distribution and
-                    proportions on the homepage. Made targeted adjustments based on business objectives
-                    to ensure first-screen efficiency.
-                  </P>
-                  <P>
-                    Conducted experience map analysis for each scenario to pinpoint friction points.
-                  </P>
-                  <P>
-                    Performed UX/UI competitive analysis on several core competitors for corresponding
-                    scenarios, and proposed optimization solutions.
-                  </P>
-                </BodyStack>
-              </HighlightCard>
-              <HighlightCard title="Result">
-                <BodyStack>
-                  <NumberedItem n={1}>
-                    <P>Page dwell time increased by 70%.</P>
-                  </NumberedItem>
-                  <NumberedItem n={2}>
-                    <P>Stock module click rate reached 10.2%, up 75.8%.</P>
-                  </NumberedItem>
-                  <NumberedItem n={3}>
-                    <P>Market-to-stock funnel conversion improved by 7.2%.</P>
-                  </NumberedItem>
-                </BodyStack>
-              </HighlightCard>
+          <CaseIntro>
+            <div className="flex flex-col gap-2">
+              <IntroHeading>My role</IntroHeading>
+              <IntroRoleTags tags={[...ROLE_TAGS]} />
             </div>
-          </section>
+
+            <div className="flex flex-col gap-6">
+              <IntroHeading>Impact</IntroHeading>
+              <div className="flex flex-col gap-6">
+                <IntroImpactItem title="Audited homepage module distribution for first-screen efficiency">
+                  Through user data analysis, evaluated module distribution and proportions on the
+                  homepage and made targeted adjustments aligned with business objectives to protect
+                  first-screen efficiency.
+                </IntroImpactItem>
+                <IntroImpactItem title="Mapped friction across key trading journeys">
+                  Conducted experience map analysis for each scenario to pinpoint where users drop off
+                  in the rToken trading funnel.
+                </IntroImpactItem>
+                <IntroImpactItem title="Grounded recommendations in competitive benchmarking">
+                  Performed UX/UI competitive analysis on core rivals for each scenario to propose
+                  optimization solutions before design execution.
+                </IntroImpactItem>
+              </div>
+            </div>
+
+            <IntroMetrics
+              metrics={[
+                { value: '+70%', label: 'Page dwell time increase' },
+                { value: '+75.8%', label: 'Stock module click rate lift' },
+                { value: '+7.2%', label: 'Market-to-stock funnel conversion improvement' },
+              ]}
+            />
+          </CaseIntro>
 
           <Section title="1. Objective">
             <P>

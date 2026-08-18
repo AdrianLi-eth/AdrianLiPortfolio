@@ -32,7 +32,7 @@ export default function CaseStudyPage({ study }: CaseStudyPageProps) {
               }`}
             >
               <h2
-                className={`text-[26px] font-bold leading-[1.4] ${
+                className={`text-[26px] font-bold uppercase leading-[1.4] ${
                   section.dark ? 'text-white' : 'text-paper-ink'
                 }`}
               >

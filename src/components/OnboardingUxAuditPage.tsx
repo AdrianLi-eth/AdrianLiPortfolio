@@ -6,23 +6,63 @@ import { P, Section, SubTitle } from './project/ProjectShared'
 const IMG = '/media/onboarding-ux-audit'
 const FONT = "[font-family:'Noto_Sans_SC',sans-serif]"
 
-function OrangeP({ children }: { children: ReactNode }) {
+function ProblemOverviewItem({
+  title,
+  problem,
+  approaches,
+}: {
+  title: string
+  problem: string
+  approaches: string[]
+}) {
   return (
-    <p className={`text-[15px] leading-[1.75] text-[#f80] ${FONT}`}>{children}</p>
+    <li className={`text-[15px] leading-[1.75] text-paper-dim ${FONT}`}>
+      <p>
+        <span className="font-bold text-paper-ink">{title}</span> {problem}
+      </p>
+      <div className="mt-3">
+        {approaches.length === 1 ? (
+          <p>
+            <span className="font-bold text-paper-ink">Design Approach :</span> {approaches[0]}
+          </p>
+        ) : (
+          <>
+            <p className="font-bold text-paper-ink">Design Approach :</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5">
+              {approaches.map((approach) => (
+                <li key={approach}>{approach}</li>
+              ))}
+            </ul>
+          </>
+        )}
+      </div>
+    </li>
   )
 }
+
+const PROBLEM_OVERVIEW_ITEMS = [
+  {
+    title: 'Visual Consistency',
+    problem:
+      "The visual language across product lines isn't fully unified — this can confuse users and weaken brand perception. Our design direction: clean, flat, and efficient.",
+    approaches: [
+      'Remove shadows and card-style containers, reduce visual layers, eliminate noise — make pages cleaner and more efficient',
+    ],
+  },
+  {
+    title: 'Usability',
+    problem:
+      'Pages are overloaded with information and features. Complex layouts raise the barrier for users and increase the cost of using our product.',
+    approaches: [
+      'Visually prioritize core functions; categorize and rank information to avoid stacking. Spotlight primary tasks, de-emphasize secondary details — help users stay focused',
+      'Minimize dense interactions on a single page. For complex tasks, use smart defaults to reduce steps and improve usability',
+    ],
+  },
+] as const
 
 function Quote({ children }: { children: ReactNode }) {
   return (
     <p className={`text-[15px] leading-[1.75] text-paper-dim ${FONT}`}>{children}</p>
-  )
-}
-
-function BulletP({ children }: { children: ReactNode }) {
-  return (
-    <p className={`whitespace-pre-wrap text-[15px] leading-[1.75] text-paper-dim ${FONT}`}>
-      {children}
-    </p>
   )
 }
 
@@ -240,26 +280,16 @@ export default function OnboardingUxAuditPage() {
           </Section>
 
           <Section title="2. Problem Overview" className="gap-5">
-            <OrangeP>
-              [Visual Consistency] The visual language across product lines isn&apos;t fully unified
-              — this can confuse users and weaken brand perception. Our design direction: clean,
-              flat, and efficient.
-            </OrangeP>
-            <SubTitle>Design Approach</SubTitle>
-            <BulletP>
-              {`•  Remove shadows and card-style containers, reduce visual layers, eliminate noise — make pages cleaner and more efficient`}
-            </BulletP>
-            <OrangeP>
-              [Usability] Pages are overloaded with information and features. Complex layouts raise
-              the barrier for users and increase the cost of using our product.
-            </OrangeP>
-            <SubTitle>Design Approach</SubTitle>
-            <BulletP>
-              {`•  Visually prioritize core functions; categorize and rank information to avoid stacking. Spotlight primary tasks, de-emphasize secondary details — help users stay focused`}
-            </BulletP>
-            <BulletP>
-              {`•  Minimize dense interactions on a single page. For complex tasks, use smart defaults to reduce steps and improve usability`}
-            </BulletP>
+            <ul className={`list-disc space-y-8 pl-5 ${FONT}`}>
+              {PROBLEM_OVERVIEW_ITEMS.map((item) => (
+                <ProblemOverviewItem
+                  key={item.title}
+                  title={item.title}
+                  problem={item.problem}
+                  approaches={[...item.approaches]}
+                />
+              ))}
+            </ul>
           </Section>
 
           <Section title="3. Q2 2024 — Product UI/UX User Feedback">

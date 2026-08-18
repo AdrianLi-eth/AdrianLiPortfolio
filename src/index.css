@@ -37,6 +37,8 @@
   --radius-12x: 24px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --header-height: 3.75rem;
 }
 
 *,
@@ -137,6 +139,43 @@ body {
 
 .status-dot {
   animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+.hero-name-outline {
+  --hero-name-stroke: rgba(255, 255, 255, 0.2);
+  color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-shadow:
+    1px 0 0 var(--hero-name-stroke),
+    -1px 0 0 var(--hero-name-stroke),
+    0 1px 0 var(--hero-name-stroke),
+    0 -1px 0 var(--hero-name-stroke),
+    1px 1px 0 var(--hero-name-stroke),
+    -1px -1px 0 var(--hero-name-stroke),
+    1px -1px 0 var(--hero-name-stroke),
+    -1px 1px 0 var(--hero-name-stroke);
+}
+
+@media (min-width: 640px) {
+  .hero-name-outline {
+    text-shadow:
+      1px 0 0 var(--hero-name-stroke),
+      -1px 0 0 var(--hero-name-stroke),
+      0 1px 0 var(--hero-name-stroke),
+      0 -1px 0 var(--hero-name-stroke),
+      1px 1px 0 var(--hero-name-stroke),
+      -1px -1px 0 var(--hero-name-stroke),
+      1px -1px 0 var(--hero-name-stroke),
+      -1px 1px 0 var(--hero-name-stroke),
+      2px 0 0 var(--hero-name-stroke),
+      -2px 0 0 var(--hero-name-stroke),
+      0 2px 0 var(--hero-name-stroke),
+      0 -2px 0 var(--hero-name-stroke),
+      1.5px 1.5px 0 var(--hero-name-stroke),
+      -1.5px -1.5px 0 var(--hero-name-stroke),
+      1.5px -1.5px 0 var(--hero-name-stroke),
+      -1.5px 1.5px 0 var(--hero-name-stroke);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

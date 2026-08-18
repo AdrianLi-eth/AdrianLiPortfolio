@@ -2,6 +2,7 @@ export interface Profile {
   name: string
   shortName: string
   roles: string[]
+  tagline: string
   headline: string
   statement: string
   summary: string
@@ -10,7 +11,7 @@ export interface Profile {
 
 export interface Contact {
   email: string
-  phone: string
+  whatsapp: string
   linkedin: string
   linkedinHandle: string
   website: string
@@ -58,31 +59,32 @@ export interface CaseStudy {
 }
 
 export const profile: Profile = {
-  name: 'AdrainLi',
+  name: 'XIWEI.LI',
   shortName: 'XW',
   roles: ['Visual Designer', 'AI Designer', 'Brand Designer'],
-  headline:
-    'Building visual order for global payments and financial infrastructure.',
+  tagline:
+    'Global payments and trading product design expert—driving user growth through scalable financial infrastructure and exceptional product experiences.',
+  headline: 'Design Lead / Design Expert',
   statement:
-    'A decade of design practice translating dense financial logic into a language that is clear, restrained and built to scale.',
+    'Product Design Leader Driving Measurable Business Growth',
   summary:
-    'I work through an AI-assisted design process — from first concept to shipped interface, held to a single standard of judgement. My work spans global payments, fintech and on-chain trading systems.',
+    'Anchored in commercial outcomes, I deliver exceptional user experiences and maximize end-to-end design impact through high-performing teams and cross-functional partnership.',
   location: 'Singapore',
 }
 
 export const contact: Contact = {
-  email: 'hello@xiweili.design',
-  phone: '+65 8123 4567',
+  email: 'lixiwei3110@gmail.com',
+  whatsapp: '+65 8515 8675',
   linkedin: 'https://linkedin.com/in/xiweili',
   linkedinHandle: 'xiweili',
   website: 'xiweili.design',
 }
 
 export const stats: Stat[] = [
-  { value: '10+', label: 'Years of practice' },
-  { value: '$120M+', label: 'Revenue influenced' },
-  { value: '17%+', label: 'MAU growth delivered' },
-  { value: '45+', label: 'Designers benchmarked' },
+  { value: '10+', label: 'Years of design experience' },
+  { value: '100+', label: 'Projects shipped' },
+  { value: '95%+', label: 'OKR/KPI completion rates' },
+  { value: '20+', label: 'Design methodology shared' },
 ]
 
 export const experience: ExperienceItem[] = [
@@ -156,7 +158,7 @@ export const projects: Project[] = [
     role: 'Product Experience · Design Principles',
     tag: 'UX STRATEGY',
     year: '2024',
-    image: '/media/simplify-design-principle/feedback-overview.png',
+    image: '/media/simplify-design-principle/cover.png',
   },
   {
     index: '06',

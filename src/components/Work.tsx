@@ -21,46 +21,48 @@ function ProjectCard({ project }: ProjectCardProps) {
 
   const inner = (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface">
+      <div className="relative aspect-[4/3] overflow-hidden bg-white/[0.02]">
         {isPlaceholder && (
-          <>
-            <div className="grid-paper absolute inset-0 opacity-20" />
-            <div className="absolute inset-0 bg-gradient-to-br from-surface to-surface-2" />
-          </>
+          <div className="grid-paper absolute inset-0 opacity-10" />
         )}
         {project.image && (
           <img
             src={project.image}
             alt={project.title}
-            className="absolute inset-0 z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="absolute inset-0 z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             loading={project.index === '01' ? 'eager' : 'lazy'}
             fetchPriority={project.index === '01' ? 'high' : undefined}
           />
         )}
         {isPlaceholder && (
-          <span className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-xs uppercase tracking-[0.2em] text-ink-faint">
+          <span className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-xs text-ink-faint">
             {project.tag}
           </span>
         )}
       </div>
 
-      <div className="relative mt-5">
-        <ArrowUpRight
-          size={18}
-          className="absolute right-0 top-0 text-ink-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
-        />
-        <p className="text-xs uppercase tracking-[0.2em] text-ink-faint">
-          {project.index} — {project.year}
-        </p>
-        <h3 className="mt-2 text-[length:var(--text-title3)] font-bold tracking-tight text-ink">
-          {project.title}
-        </h3>
+      <div className="flex items-start justify-between gap-4 border-t border-line p-5 sm:p-6">
+        <div className="min-w-0">
+          <p className="text-sm text-ink-dim">
+            {project.index} · {project.year}
+          </p>
+          <h3 className="mt-1.5 text-base font-semibold leading-snug text-ink sm:text-lg">
+            {project.title}
+          </h3>
+        </div>
+        {hasCaseStudy ? (
+          <ArrowUpRight
+            size={16}
+            className="mt-0.5 shrink-0 text-ink-faint transition-colors group-hover:text-ink"
+            aria-hidden
+          />
+        ) : null}
       </div>
     </>
   )
 
   const className =
-    'group block scroll-mt-28 transition-transform duration-300 hover:-translate-y-1'
+    'group block scroll-mt-28 overflow-hidden rounded-2xl border border-line bg-white/[0.03] transition-colors duration-300 hover:border-line-strong'
 
   if (hasCaseStudy) {
     return (
@@ -94,17 +96,17 @@ export default function Work({ projectCount }: WorkProps) {
       <div className="mx-auto max-w-[1700px] px-6 sm:px-10">
         <div
           data-reveal
-          className="mb-20 flex items-end justify-between"
+          className="mb-16 flex items-end justify-between"
         >
-          <h2 className="text-3xl tracking-tight text-ink sm:text-5xl">
-            Selected Work
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
+            Case study
           </h2>
           <span className="text-sm text-ink-faint">
-            ({String(projectCount).padStart(2, '0')})
+            {String(projectCount).padStart(2, '0')}
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.index} project={project} />
           ))}
