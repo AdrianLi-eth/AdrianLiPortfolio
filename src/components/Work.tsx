@@ -4,49 +4,43 @@ import { projects, type Project } from '../data/content'
 import { useRevealSection } from '../hooks/useReveal'
 import { projectEntryId } from '../lib/router'
 
-interface ProjectCardProps {
-  project: Project
-}
-
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project }: { project: Project }) {
   const { navigate } = useRouter()
   const hasCaseStudy = project.slug !== null
-  const isPlaceholder = !project.image || project.image.endsWith('.svg')
 
-  const handleOpen = (e: React.MouseEvent) => {
+  const handleOpen = (event: React.MouseEvent) => {
     if (!project.slug) return
-    e.preventDefault()
+    event.preventDefault()
     navigate({ page: 'project', slug: project.slug })
   }
 
+  const cardClass =
+    'group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-transparent transition-colors duration-300 hover:border-line-strong'
+
   const inner = (
     <>
-      <div className="relative aspect-[4/3] overflow-hidden bg-white/[0.02]">
-        {isPlaceholder && (
-          <div className="grid-paper absolute inset-0 opacity-10" />
-        )}
-        {project.image && (
+      <div className="relative aspect-[4/3] overflow-hidden border-b border-line">
+        {project.image ? (
           <img
             src={project.image}
             alt={project.title}
-            className="absolute inset-0 z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-90"
             loading={project.index === '01' ? 'eager' : 'lazy'}
             fetchPriority={project.index === '01' ? 'high' : undefined}
           />
-        )}
-        {isPlaceholder && (
-          <span className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-xs text-ink-faint">
+        ) : (
+          <div className="flex h-full items-center justify-center text-xs text-ink-faint">
             {project.tag}
-          </span>
+          </div>
         )}
       </div>
 
-      <div className="flex items-start justify-between gap-4 border-t border-line p-5 sm:p-6">
-        <div className="min-w-0">
+      <div className="flex flex-1 items-start justify-between gap-4 p-5 sm:p-6">
+        <div className="min-w-0 space-y-2">
           <p className="text-sm text-ink-dim">
             {project.index} · {project.year}
           </p>
-          <h3 className="mt-1.5 text-base font-semibold leading-snug text-ink sm:text-lg">
+          <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
             {project.title}
           </h3>
         </div>
@@ -61,23 +55,20 @@ function ProjectCard({ project }: ProjectCardProps) {
     </>
   )
 
-  const className =
-    'group block scroll-mt-28 overflow-hidden rounded-2xl border border-line bg-white/[0.03] transition-colors duration-300 hover:border-line-strong'
-
   if (hasCaseStudy) {
     return (
       <a
         id={projectEntryId(project.slug!)}
         href={`#/project/${project.slug}`}
         onClick={handleOpen}
-        className={className}
+        className={cardClass}
       >
         {inner}
       </a>
     )
   }
 
-  return <div className={className}>{inner}</div>
+  return <div className={cardClass}>{inner}</div>
 }
 
 interface WorkProps {
@@ -106,9 +97,12 @@ export default function Work({ projectCount }: WorkProps) {
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div
+          data-reveal
+          className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
+        >
           {projects.map((project) => (
-            <ProjectCard key={project.index} project={project} />
+            <ProjectCard key={project.slug ?? project.index} project={project} />
           ))}
         </div>
       </div>
