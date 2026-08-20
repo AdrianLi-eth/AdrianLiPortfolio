@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/index.css"
+        ],
+        "createdAt": "2026-08-19T13:50:20.139Z",
+        "reason": "Agent: incumbent hero grid-paper texture is committed portfolio identity, not a new generated overlay"
+      },
+      {
+        "rule": "glass-morphism",
+        "value": "backdrop-blur-md",
+        "files": [
+          "src/components/Nav.tsx"
+        ],
+        "createdAt": "2026-08-19T13:51:16.945Z",
+        "reason": "Agent: incumbent sticky header blur is a functional overlay over moving hero video, not decorative glass"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "src/components/Hero.tsx"
+        ],
+        "createdAt": "2026-08-19T13:51:24.407Z",
+        "reason": "Agent: hero reuses the incumbent grid-paper overlay already present on the landing page"
+      }
+    ]
+  }
+}

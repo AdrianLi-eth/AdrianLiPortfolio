@@ -1,5 +1,5 @@
 import { ArrowRight } from 'lucide-react'
-import { useEffect, useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import DriftWall from './DriftWall'
 import { profile, projects } from '../data/content'
 
@@ -11,8 +11,6 @@ const nameClass =
   'text-[clamp(3.5rem,13vw,9rem)] font-bold leading-[0.95] tracking-[-0.02em]'
 
 export default function Hero() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
   const driftWallItems = useMemo(() => {
     const base = projects
       .filter((project) => project.image)
@@ -30,24 +28,6 @@ export default function Hero() {
     return items.slice(0, 9)
   }, [])
 
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const apply = () => {
-      if (motion.matches) {
-        video.pause()
-        return
-      }
-      void video.play().catch(() => undefined)
-    }
-
-    apply()
-    motion.addEventListener('change', apply)
-    return () => motion.removeEventListener('change', apply)
-  }, [])
-
   const scrollToWork = (event: React.MouseEvent) => {
     event.preventDefault()
     document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })
@@ -59,19 +39,7 @@ export default function Hero() {
       className="relative min-h-[100dvh] overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <video
-          ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover opacity-10"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        >
-          <source src="/media/hero.mp4" type="video/mp4" />
-        </video>
-        <div className="grid-paper absolute inset-0 opacity-15" />
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-bg" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-bg/90" />
       </div>
 
       <div className="relative mx-auto grid min-h-[100dvh] w-full max-w-[1700px] grid-cols-1 items-center gap-10 px-6 py-28 sm:px-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-6 lg:py-0">

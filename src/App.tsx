@@ -13,6 +13,7 @@ import BuyCryptoPage from './components/BuyCryptoPage'
 import SpotTradingFttsPage from './components/SpotTradingFttsPage'
 import OnboardingUxAuditPage from './components/OnboardingUxAuditPage'
 import ScrollToTopFab from './components/ScrollToTopFab'
+import PageBackground from './components/PageBackground'
 import { RouterProvider, useRouter } from './context/RouterContext'
 import { caseStudies, projects } from './data/content'
 import { useRestoreProjectEntry } from './hooks/useRestoreProjectEntry'
@@ -105,13 +106,16 @@ function AppRoutes() {
 export default function App() {
   return (
     <RouterProvider>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-block focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-ink-inverse"
-      >
-        Skip to content
-      </a>
-      <AppRoutes />
+      <PageBackground />
+      <div className="relative z-[1]">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-block focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-ink-inverse"
+        >
+          Skip to content
+        </a>
+        <AppRoutes />
+      </div>
     </RouterProvider>
   )
 }
