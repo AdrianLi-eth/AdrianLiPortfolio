@@ -91,17 +91,17 @@ export default function Work({ projectCount }: WorkProps) {
     <section
       id="work"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="py-28 sm:py-36"
+      className="scroll-mt-24 py-28 sm:py-36"
     >
       <div className="mx-auto max-w-[1700px] px-6 sm:px-10">
         <div
           data-reveal
-          className="mb-16 flex items-end justify-between"
+          className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
             Case study
           </h2>
-          <span className="text-sm text-ink-faint">
+          <span className="text-sm tabular-nums text-ink-dim">
             {String(projectCount).padStart(2, '0')}
           </span>
         </div>

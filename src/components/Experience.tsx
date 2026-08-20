@@ -29,18 +29,15 @@ export default function Experience() {
     <section
       id="experience"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="py-28 sm:py-36"
+      className="scroll-mt-24 py-28 sm:py-36"
     >
       <div className="mx-auto max-w-[1700px] px-6 sm:px-10">
-        <div
+        <h2
           data-reveal
-          className="mb-20 flex items-end justify-between"
+          className="mb-16 text-3xl font-bold uppercase tracking-tight text-ink sm:mb-20 sm:text-5xl"
         >
-          <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            Experience
-          </h2>
-          <span className="text-sm text-ink-faint">01</span>
-        </div>
+          Experience
+        </h2>
 
         <div
           data-reveal
@@ -50,7 +47,7 @@ export default function Experience() {
           <div className="relative aspect-[4/5] min-h-[360px] overflow-hidden rounded-2xl border border-line bg-white/[0.02] lg:aspect-auto lg:min-h-full">
             <img
               src="/media/portrait.png"
-              alt={profile.name}
+              alt="Portrait of Xiwei Li"
               className="pointer-events-none absolute bottom-0 left-0 h-7/8 w-full max-w-none object-contain object-left-bottom grayscale"
             />
           </div>
@@ -69,14 +66,14 @@ export default function Experience() {
                   href={`https://wa.me/${contact.whatsapp.replace(/\D/g, '')}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-2 text-sm text-ink-dim transition-colors hover:text-ink"
+                  className="group flex min-h-11 items-center gap-2 rounded-sm text-sm text-ink-dim transition-colors hover:text-ink"
                 >
                   <WhatsAppIcon size={16} />
                   {contact.whatsapp}
                 </a>
                 <a
                   href={`mailto:${contact.email}`}
-                  className="group flex items-center gap-2 text-sm text-ink-dim transition-colors hover:text-ink"
+                  className="group flex min-h-11 items-center gap-2 rounded-sm text-sm text-ink-dim transition-colors hover:text-ink"
                 >
                   <Mail size={16} />
                   {contact.email}

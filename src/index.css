@@ -50,12 +50,15 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-strong) var(--color-bg);
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-ink);
+  caret-color: var(--color-accent);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -63,6 +66,19 @@ body {
 ::selection {
   background: var(--color-accent);
   color: var(--color-ink-inverse);
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+a {
+  text-underline-offset: 0.18em;
 }
 
 /* Grid paper texture */

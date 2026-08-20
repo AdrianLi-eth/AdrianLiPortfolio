@@ -24,35 +24,35 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef as React.RefObject<HTMLElement>}
-      className="flex min-h-[100dvh] flex-col justify-center py-28 sm:py-36"
+      className="flex min-h-[100dvh] scroll-mt-24 flex-col justify-center py-28 sm:py-36"
     >
       <div className="mx-auto w-full max-w-[1700px] px-6 sm:px-10">
-        <div data-reveal className="mb-12 flex items-center gap-3">
-          <span className="status-dot h-2 w-2 rounded-full bg-accent" />
-          <span className="text-sm text-ink-dim">
-            Open to new opportunities
-          </span>
-        </div>
-
         <h2
           data-reveal
-          className="font-display text-[10vw] font-bold leading-[0.95] tracking-tight text-ink sm:text-[6rem] lg:text-[7rem]"
+          className="font-display text-[clamp(2.75rem,11vw,6rem)] font-bold leading-[0.95] tracking-tight text-ink"
         >
           Let&rsquo;s build
           <br />
           something.
         </h2>
 
-        <div data-reveal className="mt-16 flex flex-col gap-6">
+        <div data-reveal className="mt-8 flex items-center gap-3">
+          <span className="status-dot h-2 w-2 rounded-full bg-accent" />
+          <span className="text-sm text-ink-dim">
+            Open to new opportunities
+          </span>
+        </div>
+
+        <div data-reveal className="mt-16 flex flex-col gap-0">
           {links.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="group flex items-center justify-between border-b border-line py-4"
+              className="group flex min-h-14 items-center justify-between border-b border-line py-4 transition-colors hover:border-line-strong"
             >
-              <span className="text-sm uppercase tracking-[0.2em] text-ink-faint">
+              <span className="text-sm uppercase tracking-[0.2em] text-ink-dim">
                 {link.label}
               </span>
               <span className="flex items-center gap-2 text-[length:var(--text-title3)] text-ink transition-opacity group-hover:opacity-70">
@@ -68,7 +68,7 @@ export default function Contact() {
 
         <footer
           data-reveal
-          className="mt-24 flex items-center justify-between text-sm text-ink-faint"
+          className="mt-24 flex items-center justify-between text-sm text-ink-dim"
         >
           <span>
             &copy; {year} {profile.name}

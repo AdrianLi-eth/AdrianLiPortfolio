@@ -30,7 +30,7 @@ function ProjectLayout({
   return (
     <>
       <Nav />
-      {children}
+      <main id="main">{children}</main>
       <ScrollToTopFab />
     </>
   )
@@ -40,7 +40,7 @@ function HomePage() {
   useRestoreProjectEntry()
 
   return (
-    <main>
+    <main id="main">
       <Hero />
       <Experience />
       <Work projectCount={projects.length} />
@@ -74,14 +74,14 @@ function AppRoutes() {
     if (!study) {
       return (
         <ProjectLayout slug={route.slug}>
-          <main className="flex min-h-screen items-center justify-center px-6 py-32">
+          <div className="flex min-h-screen items-center justify-center px-6 py-32">
             <div className="text-center">
               <p className="text-lg text-ink">Project not found.</p>
               <a href="#/" className="mt-4 inline-block text-sm text-ink-dim hover:text-ink">
                 &larr; Back to Home
               </a>
             </div>
-          </main>
+          </div>
         </ProjectLayout>
       )
     }
@@ -97,6 +97,7 @@ function AppRoutes() {
     <>
       <Nav />
       <HomePage />
+      <ScrollToTopFab />
     </>
   )
 }
@@ -104,6 +105,12 @@ function AppRoutes() {
 export default function App() {
   return (
     <RouterProvider>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-block focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-ink-inverse"
+      >
+        Skip to content
+      </a>
       <AppRoutes />
     </RouterProvider>
   )

@@ -32,7 +32,7 @@ export default function StatCard({
       } ${variantClasses[variant]}`}
     >
       <p
-        className={`font-bold leading-none tracking-tight ${
+        className={`font-bold leading-none tracking-tight tabular-nums ${
           compact
             ? 'text-[length:var(--text-title2)] sm:text-[length:var(--text-h4)]'
             : 'text-[length:var(--text-h1)]'

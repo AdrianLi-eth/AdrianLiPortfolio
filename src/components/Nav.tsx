@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { useRouter } from '../context/RouterContext'
 import { navLinks } from '../data/content'
 
+const navItemClass =
+  'whitespace-nowrap rounded-sm py-1 text-sm font-normal text-ink-dim transition-colors hover:text-ink'
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const { route, navigate } = useRouter()
@@ -44,35 +47,37 @@ export default function Nav() {
           : 'bg-transparent'
       } ${isProject ? 'border-b-0' : ''}`}
     >
-      <div className="mx-auto flex max-w-[1700px] items-center justify-between px-6 py-5 sm:px-10">
+      <div className="mx-auto flex max-w-[1700px] items-center justify-between gap-4 px-6 py-4 sm:px-10 sm:py-5">
         <a
           href="#top"
           onClick={goHome}
-          className="text-sm font-normal text-ink"
+          className="shrink-0 rounded-sm text-sm font-normal text-ink"
         >
           PORTFOLIO {year}
         </a>
 
-        <nav className="hidden items-center gap-8 sm:flex">
+        <nav
+          aria-label="Primary"
+          className="flex min-w-0 items-center justify-end gap-4 overflow-x-auto sm:gap-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {navLinks.map((link) => (
             <a
               key={link.id}
               href={`#${link.id}`}
               onClick={scrollTo(link.id)}
-              className="text-sm font-normal text-ink/65 transition-colors hover:text-ink"
+              className={navItemClass}
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            onClick={scrollTo('contact')}
+            className={navItemClass}
+          >
+            Contact
+          </a>
         </nav>
-
-        <a
-          href="#contact"
-          onClick={scrollTo('contact')}
-          className="text-sm font-normal text-ink/65 transition-colors hover:text-ink"
-        >
-          Contact
-        </a>
       </div>
     </header>
   )
