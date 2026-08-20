@@ -10,9 +10,9 @@ interface StatCardProps {
 }
 
 const variantClasses: Record<CardVariant, string> = {
-  surface: 'border border-line bg-white/[0.03] text-ink',
-  accent: 'border border-accent/30 bg-accent/[0.1] text-accent',
-  block: 'border border-line-strong bg-white/[0.06] text-ink',
+  surface: 'border border-line text-ink',
+  accent: 'border border-accent/30 text-accent',
+  block: 'border border-line-strong text-ink',
 }
 
 export default function StatCard({
@@ -27,7 +27,7 @@ export default function StatCard({
   return (
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
-      className={`rounded-2xl transition-colors duration-300 hover:border-line-strong ${
+      className={`hover-lift rounded-2xl transition-[transform,border-color] duration-300 hover:border-line-strong ${
         compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8'
       } ${variantClasses[variant]}`}
     >

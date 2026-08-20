@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[100dvh] overflow-hidden"
+      className="relative min-h-[100dvh] overflow-hidden bg-bg"
     >
       <div className="pointer-events-none absolute inset-0" aria-hidden>
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-bg/90" />
@@ -63,7 +63,7 @@ export default function Hero() {
           <a
             href="#work"
             onClick={scrollToWork}
-            className="anim-fade-up group mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-block px-6 py-3 text-sm font-bold text-ink-inverse transition-opacity hover:opacity-85"
+            className="anim-fade-up btn-primary group mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-block px-6 py-3 text-sm font-bold text-ink-inverse"
             style={{ animationDelay: '320ms' }}
           >
             View Projects

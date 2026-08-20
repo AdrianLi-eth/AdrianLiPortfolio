@@ -23,13 +23,18 @@ export default function Strengths() {
           </span>
         </div>
 
-        <div data-reveal className="flex flex-col gap-10">
-          {strengths.map((group) => (
-            <div key={group.title}>
-              <h3 className="text-[length:var(--text-title3)] font-bold tracking-tight text-ink">
+        <div data-reveal-stagger className="flex flex-col gap-10">
+          {strengths.map((group, i) => (
+            <div
+              key={group.title}
+              data-reveal-item
+              className="group border-b border-line pb-10 transition-colors duration-300 last:border-b-0 last:pb-0 hover:border-line-strong"
+              style={{ '--reveal-i': i } as React.CSSProperties}
+            >
+              <h3 className="text-[length:var(--text-title3)] font-bold tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-1">
                 {group.title}
               </h3>
-              <p className="mt-2 text-[length:var(--text-body1)] leading-relaxed text-ink-dim">
+              <p className="mt-2 text-[length:var(--text-body1)] leading-relaxed text-ink-dim transition-colors duration-300 group-hover:text-ink-faint">
                 {group.skills.join(', ')}
               </p>
             </div>

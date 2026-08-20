@@ -3,7 +3,7 @@ import { useRouter } from '../context/RouterContext'
 import { navLinks } from '../data/content'
 
 const navItemClass =
-  'whitespace-nowrap rounded-sm py-1 text-sm font-normal text-ink-dim transition-colors hover:text-ink'
+  'nav-link whitespace-nowrap rounded-sm py-1 text-sm font-normal text-ink-dim transition-colors hover:text-ink'
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
@@ -51,7 +51,7 @@ export default function Nav() {
         <a
           href="#top"
           onClick={goHome}
-          className="shrink-0 rounded-sm text-sm font-normal text-ink"
+          className="shrink-0 rounded-sm text-sm font-normal text-ink transition-opacity hover:opacity-80"
         >
           PORTFOLIO {year}
         </a>

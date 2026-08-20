@@ -113,6 +113,110 @@ a {
   transform: none;
 }
 
+/* Staggered scroll reveal */
+[data-reveal-stagger] > [data-reveal-item] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s var(--ease-out),
+    transform 0.7s var(--ease-out);
+  transition-delay: calc(var(--reveal-i, 0) * 70ms);
+}
+
+[data-reveal-stagger].is-visible > [data-reveal-item] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Route / page enter */
+.page-enter {
+  animation: page-enter 0.55s var(--ease-out) both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Interactive hovers */
+.hover-lift {
+  transition:
+    transform 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s var(--ease-out);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.link-row {
+  transition:
+    padding 0.35s var(--ease-out),
+    border-color 0.35s var(--ease-out),
+    background-color 0.35s var(--ease-out);
+}
+
+.link-row:hover {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.btn-primary {
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
+    opacity 0.35s var(--ease-out);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(239, 237, 233, 0.14);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.image-zoom {
+  transition: transform 0.6s var(--ease-out);
+}
+
+.group:hover .image-zoom {
+  transform: scale(1.04);
+}
+
 /* Hero entrance */
 .anim-fade-up {
   opacity: 0;
@@ -207,6 +311,37 @@ a {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  [data-reveal-stagger] > [data-reveal-item] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .page-enter {
+    animation: none;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+
+  .link-row:hover {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: transparent;
+  }
+
+  .btn-primary:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .group:hover .image-zoom {
+    transform: none;
   }
 
   .anim-fade-up {

@@ -11,7 +11,7 @@ export function useRevealSection() {
       '(prefers-reduced-motion: reduce)',
     ).matches
 
-    const elements = root.querySelectorAll<HTMLElement>('[data-reveal]')
+    const elements = root.querySelectorAll<HTMLElement>('[data-reveal], [data-reveal-stagger]')
 
     if (reducedMotion) {
       elements.forEach((el) => el.classList.add('is-visible'))

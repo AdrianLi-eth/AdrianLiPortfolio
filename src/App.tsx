@@ -53,6 +53,7 @@ function HomePage() {
 
 function AppRoutes() {
   const { route } = useRouter()
+  const routeKey = route.page === 'project' ? `project-${route.slug}` : 'home'
 
   if (route.page === 'project') {
     const projectPages: Record<string, React.ReactNode> = {
@@ -68,38 +69,46 @@ function AppRoutes() {
 
     const page = projectPages[route.slug]
     if (page) {
-      return <ProjectLayout slug={route.slug}>{page}</ProjectLayout>
+      return (
+        <div key={routeKey} className="page-enter">
+          <ProjectLayout slug={route.slug}>{page}</ProjectLayout>
+        </div>
+      )
     }
 
     const study = caseStudies[route.slug]
     if (!study) {
       return (
-        <ProjectLayout slug={route.slug}>
-          <div className="flex min-h-screen items-center justify-center px-6 py-32">
-            <div className="text-center">
-              <p className="text-lg text-ink">Project not found.</p>
-              <a href="#/" className="mt-4 inline-block text-sm text-ink-dim hover:text-ink">
-                &larr; Back to Home
-              </a>
+        <div key={routeKey} className="page-enter">
+          <ProjectLayout slug={route.slug}>
+            <div className="flex min-h-screen items-center justify-center px-6 py-32">
+              <div className="text-center">
+                <p className="text-lg text-ink">Project not found.</p>
+                <a href="#/" className="mt-4 inline-block text-sm text-ink-dim hover:text-ink">
+                  &larr; Back to Home
+                </a>
+              </div>
             </div>
-          </div>
-        </ProjectLayout>
+          </ProjectLayout>
+        </div>
       )
     }
 
     return (
-      <ProjectLayout slug={route.slug}>
-        <CaseStudyPage study={study} />
-      </ProjectLayout>
+      <div key={routeKey} className="page-enter">
+        <ProjectLayout slug={route.slug}>
+          <CaseStudyPage study={study} />
+        </ProjectLayout>
+      </div>
     )
   }
 
   return (
-    <>
+    <div key={routeKey} className="page-enter">
       <Nav />
       <HomePage />
       <ScrollToTopFab />
-    </>
+    </div>
   )
 }
 

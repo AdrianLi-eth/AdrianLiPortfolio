@@ -75,7 +75,7 @@ export const profile: Profile = {
 export const contact: Contact = {
   email: 'lixiwei3110@gmail.com',
   whatsapp: '+65 8515 8675',
-  linkedin: 'https://linkedin.com/in/xiweili',
+  linkedin: 'https://www.linkedin.com/in/adrian-li-a9b39576',
   linkedinHandle: 'xiweili',
   website: 'xiweili.design',
 }

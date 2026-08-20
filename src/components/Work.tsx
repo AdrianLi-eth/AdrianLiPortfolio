@@ -15,7 +15,7 @@ function ProjectCard({ project }: { project: Project }) {
   }
 
   const cardClass =
-    'group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-transparent transition-colors duration-300 hover:border-line-strong'
+    'group hover-lift flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-transparent transition-colors duration-300 hover:border-line-strong'
 
   const inner = (
     <>
@@ -24,7 +24,7 @@ function ProjectCard({ project }: { project: Project }) {
           <img
             src={project.image}
             alt={project.title}
-            className="h-full w-full object-cover transition-opacity duration-300 group-hover:opacity-90"
+            className="image-zoom h-full w-full object-cover"
             loading={project.index === '01' ? 'eager' : 'lazy'}
             fetchPriority={project.index === '01' ? 'high' : undefined}
           />
@@ -40,14 +40,14 @@ function ProjectCard({ project }: { project: Project }) {
           <p className="text-sm text-ink-dim">
             {project.index} · {project.year}
           </p>
-          <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink sm:text-xl">
+          <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-1 sm:text-xl">
             {project.title}
           </h3>
         </div>
         {hasCaseStudy ? (
           <ArrowUpRight
             size={16}
-            className="mt-0.5 shrink-0 text-ink-faint transition-colors group-hover:text-ink"
+            className="mt-0.5 shrink-0 text-ink-faint transition-[transform,color] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
             aria-hidden
           />
         ) : null}
@@ -98,11 +98,17 @@ export default function Work({ projectCount }: WorkProps) {
         </div>
 
         <div
-          data-reveal
+          data-reveal-stagger
           className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {projects.map((project) => (
-            <ProjectCard key={project.slug ?? project.index} project={project} />
+          {projects.map((project, i) => (
+            <div
+              key={project.slug ?? project.index}
+              data-reveal-item
+              style={{ '--reveal-i': i } as React.CSSProperties}
+            >
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </div>

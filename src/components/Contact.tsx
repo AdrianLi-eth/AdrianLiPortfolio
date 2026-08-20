@@ -50,12 +50,12 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
-              className="group flex min-h-14 items-center justify-between border-b border-line py-4 transition-colors hover:border-line-strong"
+              className="link-row group flex min-h-14 items-center justify-between border-b border-line py-4 transition-colors hover:border-line-strong"
             >
-              <span className="text-sm uppercase tracking-[0.2em] text-ink-dim">
+              <span className="text-sm uppercase tracking-[0.2em] text-ink-dim transition-colors duration-300 group-hover:text-ink">
                 {link.label}
               </span>
-              <span className="flex items-center gap-2 text-[length:var(--text-title3)] text-ink transition-opacity group-hover:opacity-70">
+              <span className="flex items-center gap-2 text-[length:var(--text-title3)] text-ink transition-[transform,opacity] duration-300 group-hover:opacity-80">
                 {link.value}
                 <ArrowUpRight
                   size={18}
