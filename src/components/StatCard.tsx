@@ -28,7 +28,7 @@ export default function StatCard({
     <div
       ref={ref as React.RefObject<HTMLDivElement>}
       className={`hover-lift rounded-2xl transition-[transform,border-color] duration-300 hover:border-line-strong ${
-        compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8'
+        compact ? 'flex h-full min-h-[7.125rem] flex-col p-4 sm:min-h-[7.5rem] sm:p-5' : 'p-6 sm:p-8'
       } ${variantClasses[variant]}`}
     >
       <p
@@ -40,7 +40,11 @@ export default function StatCard({
       >
         {display}
       </p>
-      <p className="mt-2 text-[length:var(--text-body2)] text-current opacity-70 sm:mt-3">
+      <p
+        className={`mt-1.5 text-[length:var(--text-body2)] leading-snug text-current opacity-70 sm:mt-2 ${
+          compact ? 'min-h-[2.1em] flex-1' : ''
+        }`}
+      >
         {label}
       </p>
     </div>

@@ -1,12 +1,6 @@
 import { Mail } from 'lucide-react'
-import {
-  contact,
-  getCardVariant,
-  profile,
-  stats,
-} from '../data/content'
+import { contact, experience, profile } from '../data/content'
 import { useRevealSection } from '../hooks/useReveal'
-import StatCard from './StatCard'
 
 function WhatsAppIcon({ size = 16, className }: { size?: number; className?: string }) {
   return (
@@ -33,18 +27,22 @@ export default function Experience() {
       className="scroll-mt-24 py-28 sm:py-36"
     >
       <div className="mx-auto max-w-[1700px] px-6 sm:px-10">
-        <h2
+        <div
           data-reveal
-          className="mb-16 text-3xl font-bold uppercase tracking-tight text-ink sm:mb-20 sm:text-5xl"
+          className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
-          Experience
-        </h2>
+          <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
+            About
+          </h2>
+          <span className="text-sm tabular-nums text-ink-dim">
+            {String(experience.length).padStart(2, '0')}
+          </span>
+        </div>
 
         <div
           data-reveal
           className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,3fr)] lg:items-stretch"
         >
-          {/* Portrait card */}
           <div className="group relative aspect-[4/5] min-h-[360px] overflow-hidden rounded-2xl border border-line transition-colors duration-300 hover:border-line-strong lg:aspect-auto lg:min-h-full">
             <img
               src="/media/portrait.png"
@@ -53,15 +51,21 @@ export default function Experience() {
             />
           </div>
 
-          {/* Statement + stats */}
           <div className="flex min-h-0 flex-col gap-5">
             <div className="hover-lift flex flex-1 flex-col justify-center rounded-2xl border border-line p-8 sm:p-10 lg:p-12">
               <p className="text-[length:var(--text-title2)] font-bold leading-snug tracking-tight text-ink sm:text-[length:var(--text-h4)]">
                 {profile.statement}
               </p>
-              <p className="mt-6 text-[length:var(--text-body1)] leading-relaxed text-ink-dim">
-                {profile.summary}
-              </p>
+              <div className="mt-6 space-y-4">
+                {profile.about.map((paragraph) => (
+                  <p
+                    key={paragraph.slice(0, 32)}
+                    className="text-[length:var(--text-body1)] leading-relaxed text-ink-dim"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
               <div className="mt-8 flex flex-wrap gap-6">
                 <a
                   href={`https://wa.me/${contact.whatsapp.replace(/\D/g, '')}`}
@@ -81,26 +85,36 @@ export default function Experience() {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div
-              data-reveal-stagger
-              className="grid shrink-0 grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
-            >
-              {stats.map((stat, i) => (
-                <div
-                  key={stat.label}
-                  data-reveal-item
-                  style={{ '--reveal-i': i } as React.CSSProperties}
-                >
-                  <StatCard
-                    value={stat.value}
-                    label={stat.label}
-                    variant={getCardVariant(i)}
-                    compact
-                  />
+        <div data-reveal className="mt-16 border-t border-line pt-12 sm:mt-20 sm:pt-16">
+          <h3 className="mb-8 text-sm font-semibold uppercase tracking-[0.2em] text-ink-faint">
+            Experience
+          </h3>
+          <div data-reveal-stagger className="flex flex-col">
+            {experience.map((item, i) => (
+              <div
+                key={`${item.company}-${item.period}`}
+                data-reveal-item
+                className="group flex flex-col gap-2 border-b border-line py-6 transition-colors duration-300 last:border-b-0 hover:border-line-strong sm:flex-row sm:items-start sm:justify-between sm:gap-8"
+                style={{ '--reveal-i': i } as React.CSSProperties}
+              >
+                <div className="min-w-0">
+                  <p className="text-base font-semibold text-ink transition-transform duration-300 group-hover:translate-x-1 sm:text-lg">
+                    {item.role}
+                  </p>
+                  <p className="mt-1 text-sm text-ink-dim">{item.company}</p>
                 </div>
-              ))}
-            </div>
+                <div className="flex shrink-0 flex-wrap items-center gap-3 text-sm text-ink-faint sm:justify-end">
+                  <span className="tabular-nums">{item.period}</span>
+                  <span aria-hidden className="hidden sm:inline">
+                    ·
+                  </span>
+                  <span>{item.location}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

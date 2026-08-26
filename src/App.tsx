@@ -1,5 +1,6 @@
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import ImpactBar from './components/ImpactBar'
 import Experience from './components/Experience'
 import Work from './components/Work'
 import Strengths from './components/Strengths'
@@ -43,6 +44,7 @@ function HomePage() {
   return (
     <main id="main">
       <Hero />
+      <ImpactBar />
       <Experience />
       <Work projectCount={projects.length} />
       <Strengths />

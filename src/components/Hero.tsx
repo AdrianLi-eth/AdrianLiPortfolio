@@ -3,7 +3,6 @@ import { useMemo } from 'react'
 import DriftWall from './DriftWall'
 import { profile, projects } from '../data/content'
 
-const metaText = 'text-sm font-normal leading-relaxed text-ink-dim'
 const nameParts = profile.name.split('.')
 const namePrimary = nameParts[0] ?? profile.name
 const nameSecondary = nameParts[1] ?? ''
@@ -46,6 +45,7 @@ export default function Hero() {
         <div className="min-w-0">
           <h1
             className={`anim-fade-up flex flex-wrap items-baseline ${nameClass}`}
+            style={{ animationDelay: '100ms' }}
           >
             <span className="hero-name-outline">{namePrimary}</span>
             {nameSecondary ? (
@@ -54,24 +54,35 @@ export default function Hero() {
           </h1>
 
           <p
-            className={`anim-fade-up mt-6 max-w-2xl ${metaText}`}
+            className="anim-fade-up mt-6 text-base uppercase text-ink sm:text-lg"
             style={{ animationDelay: '180ms' }}
+          >
+            {profile.domain}
+          </p>
+
+          <p
+            className="anim-fade-up mt-5 max-w-2xl text-sm font-normal leading-relaxed text-ink-dim"
+            style={{ animationDelay: '260ms' }}
           >
             {profile.tagline}
           </p>
 
-          <a
-            href="#work"
-            onClick={scrollToWork}
-            className="anim-fade-up btn-primary group mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-block px-6 py-3 text-sm font-bold text-ink-inverse"
-            style={{ animationDelay: '320ms' }}
+          <div
+            className="anim-fade-up mt-8 flex flex-wrap items-center gap-3"
+            style={{ animationDelay: '340ms' }}
           >
-            View Projects
-            <ArrowRight
-              size={16}
-              className="transition-transform group-hover:translate-x-1"
-            />
-          </a>
+            <a
+              href="#work"
+              onClick={scrollToWork}
+              className="btn-primary group inline-flex min-h-11 items-center gap-2 rounded-lg bg-block px-6 py-3 text-sm font-bold text-ink-inverse"
+            >
+              View Selected Work
+              <ArrowRight
+                size={16}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </a>
+          </div>
         </div>
 
         <div

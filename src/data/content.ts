@@ -2,10 +2,13 @@ export interface Profile {
   name: string
   shortName: string
   roles: string[]
-  tagline: string
   headline: string
-  statement: string
+  domain: string
+  tagline: string
   summary: string
+  focus: string
+  statement: string
+  about: string[]
   location: string
 }
 
@@ -41,7 +44,7 @@ export interface Project {
 
 export interface Strength {
   title: string
-  skills: string[]
+  description: string
 }
 
 export interface DocSection {
@@ -61,14 +64,27 @@ export interface CaseStudy {
 export const profile: Profile = {
   name: 'XIWEI.LI',
   shortName: 'XW',
-  roles: ['Visual Designer', 'AI Designer', 'Brand Designer'],
+  roles: [
+    'Product Design Lead',
+    'Payments',
+    'Money Movement & Digital Assets',
+  ],
+  headline: 'Product Design Lead',
+  domain: 'Payments · Money Movement · Digital Assets',
   tagline:
-    'Global payments and trading product design expert—driving user growth through scalable financial infrastructure and exceptional product experiences.',
-  headline: 'Design Lead / Design Expert',
-  statement:
-    'Product Design Leader Driving Measurable Business Growth',
+    'Product Design Lead with 12+ years in payments, money movement, and digital assets—designing trustworthy experiences for complex financial systems.',
   summary:
-    'Anchored in commercial outcomes, I deliver exceptional user experiences and maximize end-to-end design impact through high-performing teams and cross-functional partnership.',
+    '5+ years designing money movement and payment experiences across global financial markets.',
+  focus:
+    'Currently focused on the next generation of stablecoin payments and financial infrastructure.',
+  statement:
+    'Designing clear, trustworthy experiences for complex financial systems.',
+  about: [
+    "I'm a Product Design Lead with 12+ years of experience designing complex financial products across payments, money movement, digital assets and trading.",
+    "Over the past 5+ years, I've focused on fiat on/off-ramp, payment gateways, deposit and withdrawal, P2P and cross-border financial workflows. I've also led design for complex crypto trading products and mentored 40+ designers across multiple business units.",
+    'My strength is turning complex financial systems into clear, trustworthy and scalable product experiences — connecting user needs, business goals, operational constraints and regulatory requirements.',
+    "Today, I'm particularly interested in stablecoin payments, global money movement and financial infrastructure.",
+  ],
   location: 'Singapore',
 }
 
@@ -81,145 +97,135 @@ export const contact: Contact = {
 }
 
 export const stats: Stat[] = [
-  { value: '10+', label: 'Years of design experience' },
-  { value: '100+', label: 'Projects shipped' },
-  { value: '95%+', label: 'OKR/KPI completion rates' },
-  { value: '20+', label: 'Design methodology shared' },
+  { value: '12+', label: 'Years Product Design' },
+  { value: '7+', label: 'Years Digital Assets' },
+  { value: '5+', label: 'Years Payments / Money Movement' },
+  { value: '95%+', label: 'OKR completion rates' },
+  { value: '40+', label: 'Designer mentored' },
+  { value: '30+', label: 'Projects shipped' },
 ]
 
 export const experience: ExperienceItem[] = [
   {
-    role: 'Design Expert, Core Trading',
+    role: 'Design Expert, Copy Trading & Bot Trading',
     company: 'Bitget',
-    period: '2024 —',
+    period: '2024 — Present',
     location: 'Singapore',
   },
   {
-    role: 'Design Lead, Fiat',
+    role: 'Design Lead (Fiat)',
     company: 'Binance',
-    period: '2019 — 24',
+    period: '2019 — 2024',
     location: 'Singapore',
   },
   {
     role: 'Senior UX Designer',
     company: 'LexisNexis',
-    period: '2017 — 19',
-    location: 'Singapore',
+    period: '2017 — 2019',
+    location: 'Shanghai, China',
   },
   {
     role: 'UX / UI Designer',
     company: 'The Active Network',
-    period: '2014 — 16',
-    location: 'Singapore',
+    period: '2014 — 2016',
+    location: 'Chengdu, China',
   },
 ]
 
 export const projects: Project[] = [
   {
     index: '01',
-    slug: 'tradfi-trading-ux-optimization',
-    title: 'Bitget TradFi UX Optimization',
-    role: 'Product Experience · TradFi Trading',
-    tag: 'FINTECH',
-    year: '2025',
-    image: '/media/tradfi-trading-ux/cover.png',
-  },
-  {
-    index: '02',
     slug: 'buy-crypto-binance',
     title: 'Binance-OCBS Redesign',
-    role: 'Design Lead · Global Payments',
+    role: 'Global Money Movement · Fiat On/Off-Ramp',
     tag: 'PAYMENTS',
     year: '2023',
     image: '/media/buy-crypto/cover.png',
   },
   {
-    index: '03',
-    slug: 'spot-trading-first-trade-conversion',
-    title: 'Bitget Spot Trade UX Optimization',
-    role: 'Product Experience · Spot Trading',
-    tag: 'FINTECH',
-    year: '2024',
-    image: '/media/spot-trading-ftts/cover.png',
-  },
-  {
-    index: '04',
-    slug: 'bitget-onboarding-ux-audit',
-    title: 'Bitget App+Web User Onboarding UX audit',
-    role: 'Product Experience · Fiat Onboarding',
-    tag: 'UX AUDIT',
-    year: '2024',
-    image: '/media/onboarding-ux-audit/cover.png',
-  },
-  {
-    index: '05',
-    slug: 'simplify-design-principle',
-    title: 'Simplify Design Principle',
-    role: 'Product Experience · Design Principles',
-    tag: 'UX STRATEGY',
-    year: '2024',
-    image: '/media/simplify-design-principle/cover.png',
-  },
-  {
-    index: '06',
+    index: '02',
     slug: 'copy-bot-ux-optimization',
     title: 'Copy+Bot UX Optimization',
-    role: 'Product Experience · Copy Trading & Bots',
+    role: 'Trust & Decision Making · Financial Marketplace',
     tag: 'FINTECH',
     year: '2025',
     image: '/media/copy-bot-ux/cover.png',
   },
   {
-    index: '07',
+    index: '03',
+    slug: 'bitget-onboarding-ux-audit',
+    title: 'Bitget App+Web User Onboarding UX audit',
+    role: 'Financial Operations · Onboarding & Compliance',
+    tag: 'UX AUDIT',
+    year: '2024',
+    image: '/media/onboarding-ux-audit/cover.png',
+  },
+  {
+    index: '04',
+    slug: 'spot-trading-first-trade-conversion',
+    title: 'Bitget Spot Trade UX Optimization',
+    role: 'Digital Asset Trading · Spot',
+    tag: 'FINTECH',
+    year: '2024',
+    image: '/media/spot-trading-ftts/cover.png',
+  },
+  {
+    index: '05',
+    slug: 'tradfi-trading-ux-optimization',
+    title: 'Bitget TradFi UX Optimization',
+    role: 'Digital Asset Trading · TradFi',
+    tag: 'FINTECH',
+    year: '2025',
+    image: '/media/tradfi-trading-ux/cover.png',
+  },
+  {
+    index: '06',
     slug: 'rtoken-trading-ux-audit',
     title: 'Bitget Market Design',
-    role: 'Product Experience · rToken Trading Flow',
+    role: 'Digital Asset Trading · rToken',
     tag: 'FINTECH',
     year: '2025',
     image: '/media/rtoken-trading-ux/cover.png',
+  },
+  {
+    index: '07',
+    slug: 'simplify-design-principle',
+    title: 'Simplify Design Principle',
+    role: 'Design Strategy · Product Principles',
+    tag: 'UX STRATEGY',
+    year: '2024',
+    image: '/media/simplify-design-principle/cover.png',
   },
 ]
 
 export const strengths: Strength[] = [
   {
-    title: 'Visual Design',
-    skills: [
-      'Typography',
-      'Hierarchy',
-      'Layout systems',
-      'Iconography',
-      'Design tokens',
-      'Responsive UI',
-    ],
+    title: 'Financial Product Expertise',
+    description: '12+ years across complex financial products.',
   },
   {
-    title: 'AI Design',
-    skills: [
-      'Cursor',
-      'Figma AI',
-      'Generative workflows',
-      'Prompt engineering',
-      'AI-assisted prototyping',
-    ],
+    title: 'Payments & Money Movement',
+    description:
+      '5+ years across fiat on/off-ramp, deposit/withdrawal, P2P and payment gateways.',
   },
   {
-    title: 'Brand Systems',
-    skills: [
-      'Brand identity',
-      'Visual language',
-      'Design guidelines',
-      'Cross-platform consistency',
-    ],
+    title: 'Digital Assets',
+    description: '7+ years across crypto exchange and trading products.',
   },
   {
     title: 'Design Leadership',
-    skills: [
-      'Team leadership',
-      'Design reviews',
-      'Stakeholder alignment',
-      'Design ops',
-      'Mentorship',
-    ],
+    description:
+      'Led teams and mentored 40+ designers across multiple business units.',
+  },
+  {
+    title: 'Systems Thinking',
+    description:
+      'Product architecture · Complex workflows · Decision-making · Design systems',
+  },
+  {
+    title: 'AI-enabled Design Workflows',
+    description:
+      'Figma AI, Cursor, and rapid prototyping to increase design leverage — not as identity, but as capability.',
   },
 ]
 
@@ -287,14 +293,16 @@ export const caseStudies: Record<string, CaseStudy> = {
 }
 
 export const navLinks = [
-  { id: 'experience', label: 'Experience' },
+  { id: 'experience', label: 'About' },
   { id: 'work', label: 'Work' },
-  { id: 'strength', label: 'Skills' },
+  { id: 'strength', label: 'Expertise' },
 ]
+
+export const resumeUrl = '/media/Adrian_CV.jpg'
 
 export type CardVariant = 'surface' | 'accent' | 'block'
 
 export function getCardVariant(index: number): CardVariant {
-  const variants: CardVariant[] = ['surface', 'accent', 'surface', 'block']
-  return variants[index % 4]
+  const variants: CardVariant[] = ['surface', 'accent', 'surface', 'block', 'surface']
+  return variants[index % variants.length]
 }

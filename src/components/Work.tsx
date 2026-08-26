@@ -90,7 +90,7 @@ export default function Work({ projectCount }: WorkProps) {
           className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            Case study
+            Selected Work
           </h2>
           <span className="text-sm tabular-nums text-ink-dim">
             {String(projectCount).padStart(2, '0')}

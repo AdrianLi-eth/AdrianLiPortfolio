@@ -16,7 +16,7 @@ export default function Strengths() {
           className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            Core Competencies &amp; Skills
+            What I Bring
           </h2>
           <span className="text-sm tabular-nums text-ink-dim">
             {String(strengths.length).padStart(2, '0')}
@@ -35,7 +35,7 @@ export default function Strengths() {
                 {group.title}
               </h3>
               <p className="mt-2 text-[length:var(--text-body1)] leading-relaxed text-ink-dim transition-colors duration-300 group-hover:text-ink-faint">
-                {group.skills.join(', ')}
+                {group.description}
               </p>
             </div>
           ))}
