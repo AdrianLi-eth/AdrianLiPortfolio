@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react'
 
-import BackToHome from './BackToHome'
 import {
   BodyStack,
   Caption,
@@ -80,10 +79,8 @@ function TextImageSplit({
 
 export default function CopyBotUxPage() {
   return (
-    <div className="min-h-screen bg-bg py-28 sm:py-36">
+    <div className="min-h-screen bg-bg pb-28 sm:pb-36">
       <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6">
-        <BackToHome />
-
         <article className="flex w-full flex-col gap-4 border border-line bg-paper pb-20 pt-16 sm:px-16 sm:pb-20 sm:pt-16 [font-family:'Noto_Sans_SC',sans-serif]">
           <h1 className="px-4 pb-4 text-[36px] font-bold leading-[1.4] text-paper-ink sm:px-0">
             Copy+Bot UX Optimization

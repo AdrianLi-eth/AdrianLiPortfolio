@@ -45,7 +45,7 @@ export default function Nav() {
         scrolled || isProject
           ? 'border-b border-line bg-bg/80 backdrop-blur-md'
           : 'bg-transparent'
-      } ${isProject ? 'border-b-0' : ''}`}
+      }`}
     >
       <div className="mx-auto flex max-w-[1700px] items-center justify-between gap-4 px-6 py-4 sm:px-10 sm:py-5">
         <a
@@ -79,6 +79,20 @@ export default function Nav() {
           </a>
         </nav>
       </div>
+
+      {isProject ? (
+        <div className="border-t border-line">
+          <div className="mx-auto flex max-w-[1200px] items-center px-4 py-2.5 sm:px-6">
+            <button
+              type="button"
+              onClick={() => navigate({ page: 'home' })}
+              className="inline-block text-sm text-ink-dim transition-colors hover:text-ink"
+            >
+              &larr; Back to Home
+            </button>
+          </div>
+        </div>
+      ) : null}
     </header>
   )
 }

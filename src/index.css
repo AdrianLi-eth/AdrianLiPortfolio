@@ -39,6 +39,8 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   --header-height: 3.75rem;
+  --project-back-bar-height: 2.75rem;
+  --project-top-offset: calc(var(--header-height) + var(--project-back-bar-height));
 }
 
 *,
