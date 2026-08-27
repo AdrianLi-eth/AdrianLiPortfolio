@@ -4,6 +4,7 @@ import ImpactBar from './components/ImpactBar'
 import Experience from './components/Experience'
 import Work from './components/Work'
 import Strengths from './components/Strengths'
+import Thinking from './components/Thinking'
 import Contact from './components/Contact'
 import CaseStudyPage from './components/CaseStudyPage'
 import ScrollToTopFab from './components/ScrollToTopFab'
@@ -51,6 +52,7 @@ function HomePage() {
       <ImpactBar />
       <Experience />
       <Work projectCount={projects.length} />
+      <Thinking />
       <Strengths />
       <Contact />
     </main>

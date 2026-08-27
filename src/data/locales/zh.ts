@@ -66,6 +66,7 @@ export const zhContent: SiteContent = {
       index: '01',
       slug: 'buy-crypto-binance',
       title: 'Binance 买币体验改版',
+      displayTitle: '规模化全球资金流转设计',
       role: '全球资金流转 · 法币出入金',
       tag: '支付',
       year: '2023',
@@ -75,6 +76,7 @@ export const zhContent: SiteContent = {
       index: '02',
       slug: 'copy-bot-ux-optimization',
       title: '跟单 + 机器人交易体验优化',
+      displayTitle: '金融市场中的信任与决策设计',
       role: '信任与决策 · 金融市场',
       tag: '金融科技',
       year: '2025',
@@ -84,6 +86,7 @@ export const zhContent: SiteContent = {
       index: '03',
       slug: 'bitget-onboarding-ux-audit',
       title: 'Bitget App+Web 用户引导体验审计',
+      displayTitle: '金融运营与合规系统设计',
       role: '金融运营 · 引导与合规',
       tag: '体验审计',
       year: '2024',
@@ -124,6 +127,33 @@ export const zhContent: SiteContent = {
       tag: '体验策略',
       year: '2024',
       image: '/media/simplify-design-principle/cover.png',
+    },
+  ],
+  thinking: [
+    {
+      title: '跟单交易中的信任设计',
+      summary:
+        '信息层级、风险信号与业绩稳定性如何影响金融市场中的决策信心。',
+    },
+    {
+      title: '金融产品应如何传达风险',
+      summary:
+        '在用户面临高波动、高风险的金融决策时，平衡透明度与可理解性。',
+    },
+    {
+      title: '跨越法币与稳定币轨道的资金流转设计',
+      summary:
+        '当支付基础设施从传统法币演进至稳定币网络时，什么会变、什么不变。',
+    },
+    {
+      title: '从交易 UX 到金融系统',
+      summary:
+        '为何 Staff 级产品设计需要超越界面，思考流程、角色与运营约束。',
+    },
+    {
+      title: 'AI 作为设计杠杆层',
+      summary:
+        '以 AI 辅助研究与原型提升设计产出——作为能力，而非身份标签。',
     },
   ],
   strengths: [
@@ -218,6 +248,7 @@ export const zhContent: SiteContent = {
   navLinks: [
     { id: 'experience', label: '关于' },
     { id: 'work', label: '作品' },
+    { id: 'thinking', label: '思考' },
     { id: 'strength', label: '专长' },
   ],
   ui: {
@@ -230,6 +261,7 @@ export const zhContent: SiteContent = {
     about: '关于',
     selectedWork: '精选作品',
     whatIBring: '我的优势',
+    thinking: '思考',
     experience: '工作经历',
     portraitAlt: '李曦伟肖像照',
     projectNotFound: '未找到该项目。',

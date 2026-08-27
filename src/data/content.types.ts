@@ -36,10 +36,16 @@ export interface Project {
   index: string
   slug: string | null
   title: string
+  displayTitle?: string
   role: string
   tag: string
   year: string
   image: string
+}
+
+export interface ThinkingItem {
+  title: string
+  summary: string
 }
 
 export interface Strength {
@@ -77,6 +83,7 @@ export interface UiStrings {
   selectedWork: string
   whatIBring: string
   experience: string
+  thinking: string
   portraitAlt: string
   projectNotFound: string
   contactHeadlineLine1: string
@@ -93,6 +100,7 @@ export interface SiteContent {
   stats: Stat[]
   experience: ExperienceItem[]
   projects: Project[]
+  thinking: ThinkingItem[]
   strengths: Strength[]
   caseStudies: Record<string, CaseStudy>
   navLinks: NavLink[]

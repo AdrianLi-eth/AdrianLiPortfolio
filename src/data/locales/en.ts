@@ -73,6 +73,7 @@ export const enContent: SiteContent = {
       index: '01',
       slug: 'buy-crypto-binance',
       title: 'Binance-OCBS Redesign',
+      displayTitle: 'Designing Global Money Movement at Scale',
       role: 'Global Money Movement · Fiat On/Off-Ramp',
       tag: 'PAYMENTS',
       year: '2023',
@@ -82,6 +83,7 @@ export const enContent: SiteContent = {
       index: '02',
       slug: 'copy-bot-ux-optimization',
       title: 'Copy+Bot UX Optimization',
+      displayTitle: 'Trust & Decision-Making in a Financial Marketplace',
       role: 'Trust & Decision Making · Financial Marketplace',
       tag: 'FINTECH',
       year: '2025',
@@ -91,6 +93,7 @@ export const enContent: SiteContent = {
       index: '03',
       slug: 'bitget-onboarding-ux-audit',
       title: 'Bitget App+Web User Onboarding UX audit',
+      displayTitle: 'Financial Operations & Compliance Systems',
       role: 'Financial Operations · Onboarding & Compliance',
       tag: 'UX AUDIT',
       year: '2024',
@@ -131,6 +134,33 @@ export const enContent: SiteContent = {
       tag: 'UX STRATEGY',
       year: '2024',
       image: '/media/simplify-design-principle/cover.png',
+    },
+  ],
+  thinking: [
+    {
+      title: 'Designing Trust in Copy Trading',
+      summary:
+        'How information hierarchy, risk signals, and performance stability shape decision confidence in financial marketplaces.',
+    },
+    {
+      title: 'How Financial Products Should Communicate Risk',
+      summary:
+        'Balancing transparency with comprehension when users face volatile, high-stakes financial decisions.',
+    },
+    {
+      title: 'Designing Money Movement Across Fiat & Stablecoin Rails',
+      summary:
+        'What changes — and what stays the same — when payment infrastructure evolves from traditional fiat to stablecoin networks.',
+    },
+    {
+      title: 'From Transaction UX to Financial Systems',
+      summary:
+        'Why Staff-level product design requires thinking beyond screens to workflows, roles, and operational constraints.',
+    },
+    {
+      title: 'AI as a Design Leverage Layer',
+      summary:
+        'Using AI-assisted research and prototyping to increase design throughput — as capability, not identity.',
     },
   ],
   strengths: [
@@ -228,6 +258,7 @@ export const enContent: SiteContent = {
   navLinks: [
     { id: 'experience', label: 'About' },
     { id: 'work', label: 'Work' },
+    { id: 'thinking', label: 'Thinking' },
     { id: 'strength', label: 'Expertise' },
   ],
   ui: {
@@ -240,6 +271,7 @@ export const enContent: SiteContent = {
     about: 'About',
     selectedWork: 'Selected Work',
     whatIBring: 'What I Bring',
+    thinking: 'Thinking',
     experience: 'Experience',
     portraitAlt: 'Portrait of Xiwei Li',
     projectNotFound: 'Project not found.',

@@ -8,6 +8,7 @@ import { projectEntryId } from '../lib/router'
 function ProjectCard({ project }: { project: Project }) {
   const { navigate } = useRouter()
   const hasCaseStudy = project.slug !== null
+  const cardTitle = project.displayTitle ?? project.title
 
   const handleOpen = (event: React.MouseEvent) => {
     if (!project.slug) return
@@ -24,7 +25,7 @@ function ProjectCard({ project }: { project: Project }) {
         {project.image ? (
           <img
             src={project.image}
-            alt={project.title}
+            alt={cardTitle}
             className="image-zoom h-full w-full object-cover"
             loading={project.index === '01' ? 'eager' : 'lazy'}
             fetchPriority={project.index === '01' ? 'high' : undefined}
@@ -42,8 +43,11 @@ function ProjectCard({ project }: { project: Project }) {
             {project.index} · {project.year}
           </p>
           <h3 className="text-lg font-semibold leading-snug tracking-tight text-ink transition-transform duration-300 group-hover:translate-x-1 sm:text-xl">
-            {project.title}
+            {cardTitle}
           </h3>
+          {project.displayTitle ? (
+            <p className="text-sm text-ink-dim">{project.title}</p>
+          ) : null}
         </div>
         {hasCaseStudy ? (
           <ArrowUpRight
