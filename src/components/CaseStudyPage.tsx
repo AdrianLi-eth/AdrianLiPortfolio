@@ -1,4 +1,4 @@
-import type { CaseStudy } from '../data/content'
+import type { CaseStudy } from '../data/content.types'
 
 interface CaseStudyPageProps {
   study: CaseStudy

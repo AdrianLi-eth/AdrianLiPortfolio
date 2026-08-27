@@ -1,15 +1,16 @@
 import { ArrowRight } from 'lucide-react'
 import { useMemo } from 'react'
+import { useContent } from '../context/LocaleContext'
 import DriftWall from './DriftWall'
-import { profile, projects } from '../data/content'
 
-const nameParts = profile.name.split('.')
-const namePrimary = nameParts[0] ?? profile.name
-const nameSecondary = nameParts[1] ?? ''
 const nameClass =
   'text-[clamp(3.5rem,13vw,9rem)] font-bold leading-[0.95] tracking-[-0.02em]'
 
 export default function Hero() {
+  const { profile, projects, ui } = useContent()
+  const nameParts = profile.name.split('.')
+  const namePrimary = nameParts[0] ?? profile.name
+  const nameSecondary = nameParts[1] ?? ''
   const driftWallItems = useMemo(() => {
     const base = projects
       .filter((project) => project.image)
@@ -76,7 +77,7 @@ export default function Hero() {
               onClick={scrollToWork}
               className="btn-primary group inline-flex min-h-11 items-center gap-2 rounded-lg bg-block px-6 py-3 text-sm font-bold text-ink-inverse"
             >
-              View Selected Work
+              {ui.viewSelectedWork}
               <ArrowRight
                 size={16}
                 className="transition-transform group-hover:translate-x-1"

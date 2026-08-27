@@ -6,17 +6,11 @@ import Work from './components/Work'
 import Strengths from './components/Strengths'
 import Contact from './components/Contact'
 import CaseStudyPage from './components/CaseStudyPage'
-import SimplifyDesignPrinciplePage from './components/SimplifyDesignPrinciplePage'
-import CopyBotUxPage from './components/CopyBotUxPage'
-import TradFiTradingUxPage from './components/TradFiTradingUxPage'
-import RTokenTradingUxPage from './components/RTokenTradingUxPage'
-import BuyCryptoPage from './components/BuyCryptoPage'
-import SpotTradingFttsPage from './components/SpotTradingFttsPage'
-import OnboardingUxAuditPage from './components/OnboardingUxAuditPage'
 import ScrollToTopFab from './components/ScrollToTopFab'
 import PageBackground from './components/PageBackground'
+import { LocaleProvider, useContent, useLocale, useUi } from './context/LocaleContext'
 import { RouterProvider, useRouter } from './context/RouterContext'
-import { caseStudies, projects } from './data/content'
+import { getProjectPage } from './data/projectPages'
 import { useRestoreProjectEntry } from './hooks/useRestoreProjectEntry'
 import { useScrollToTopOnMount } from './hooks/useScrollToTopOnMount'
 
@@ -39,8 +33,17 @@ function ProjectLayout({
   )
 }
 
+function LocalizedProjectPage({ slug }: { slug: string }) {
+  const { locale } = useLocale()
+  const Page = getProjectPage(slug, locale)
+
+  if (!Page) return null
+  return <Page />
+}
+
 function HomePage() {
   useRestoreProjectEntry()
+  const { projects } = useContent()
 
   return (
     <main id="main">
@@ -56,27 +59,22 @@ function HomePage() {
 
 function AppRoutes() {
   const { route } = useRouter()
+  const { locale } = useLocale()
+  const { caseStudies } = useContent()
+  const ui = useUi()
   const routeKey = route.page === 'project' ? `project-${route.slug}` : 'home'
 
   if (route.page === 'project') {
-    const projectPages: Record<string, React.ReactNode> = {
-      'copy-bot-ux-optimization': <CopyBotUxPage />,
-      'buy-crypto-binance': <BuyCryptoPage />,
-      'buy-crypto': <BuyCryptoPage />,
-      'simplify-design-principle': <SimplifyDesignPrinciplePage />,
-      'tradfi-trading-ux-optimization': <TradFiTradingUxPage />,
-      'rtoken-trading-ux-audit': <RTokenTradingUxPage />,
-      'spot-trading-first-trade-conversion': <SpotTradingFttsPage />,
-      'bitget-onboarding-ux-audit': <OnboardingUxAuditPage />,
-    }
+    const Page = getProjectPage(route.slug, 'en') || getProjectPage(route.slug, 'zh')
 
-    const page = projectPages[route.slug]
-    if (page) {
+    if (Page) {
       return (
         <>
           <Nav />
-          <div key={routeKey} className="page-enter">
-            <ProjectLayout slug={route.slug}>{page}</ProjectLayout>
+          <div key={`${routeKey}-${locale}`} className="page-enter">
+            <ProjectLayout slug={route.slug}>
+              <LocalizedProjectPage slug={route.slug} />
+            </ProjectLayout>
           </div>
         </>
       )
@@ -91,9 +89,9 @@ function AppRoutes() {
             <ProjectLayout slug={route.slug}>
               <div className="flex min-h-screen items-center justify-center px-6 py-32">
                 <div className="text-center">
-                  <p className="text-lg text-ink">Project not found.</p>
+                  <p className="text-lg text-ink">{ui.projectNotFound}</p>
                   <a href="#/" className="mt-4 inline-block text-sm text-ink-dim hover:text-ink">
-                    &larr; Back to Home
+                    &larr; {ui.backToHome}
                   </a>
                 </div>
               </div>
@@ -106,7 +104,7 @@ function AppRoutes() {
     return (
       <>
         <Nav />
-        <div key={routeKey} className="page-enter">
+        <div key={`${routeKey}-${locale}`} className="page-enter">
           <ProjectLayout slug={route.slug}>
             <CaseStudyPage study={study} />
           </ProjectLayout>
@@ -116,7 +114,7 @@ function AppRoutes() {
   }
 
   return (
-    <div key={routeKey} className="page-enter">
+    <div key={`${routeKey}-${locale}`} className="page-enter">
       <Nav />
       <HomePage />
       <ScrollToTopFab />
@@ -124,19 +122,28 @@ function AppRoutes() {
   )
 }
 
+function SkipLink() {
+  const ui = useUi()
+  return (
+    <a
+      href="#main"
+      className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-block focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-ink-inverse"
+    >
+      {ui.skipToContent}
+    </a>
+  )
+}
+
 export default function App() {
   return (
     <RouterProvider>
-      <PageBackground />
-      <div className="relative z-[1]">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-block focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-ink-inverse"
-        >
-          Skip to content
-        </a>
-        <AppRoutes />
-      </div>
+      <LocaleProvider>
+        <PageBackground />
+        <div className="relative z-[1]">
+          <SkipLink />
+          <AppRoutes />
+        </div>
+      </LocaleProvider>
     </RouterProvider>
   )
 }

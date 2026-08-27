@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import { useRouter } from '../context/RouterContext'
-import { projects, type Project } from '../data/content'
+import { useContent } from '../context/LocaleContext'
+import type { Project } from '../data/content.types'
 import { useRevealSection } from '../hooks/useReveal'
 import { projectEntryId } from '../lib/router'
 
@@ -77,6 +78,7 @@ interface WorkProps {
 
 export default function Work({ projectCount }: WorkProps) {
   const sectionRef = useRevealSection()
+  const { projects, ui } = useContent()
 
   return (
     <section
@@ -90,7 +92,7 @@ export default function Work({ projectCount }: WorkProps) {
           className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            Selected Work
+            {ui.selectedWork}
           </h2>
           <span className="text-sm tabular-nums text-ink-dim">
             {String(projectCount).padStart(2, '0')}

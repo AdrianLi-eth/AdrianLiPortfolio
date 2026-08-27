@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
+import LanguageToggle from './LanguageToggle'
 import { useRouter } from '../context/RouterContext'
-import { navLinks } from '../data/content'
+import { useContent } from '../context/LocaleContext'
 
 const navItemClass =
   'nav-link whitespace-nowrap rounded-sm py-1 text-sm font-normal text-ink-dim transition-colors hover:text-ink'
@@ -8,6 +9,7 @@ const navItemClass =
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false)
   const { route, navigate } = useRouter()
+  const { ui, navLinks } = useContent()
   const year = new Date().getFullYear()
 
   useEffect(() => {
@@ -53,12 +55,12 @@ export default function Nav() {
           onClick={goHome}
           className="shrink-0 rounded-sm text-sm font-normal text-ink transition-opacity hover:opacity-80"
         >
-          PORTFOLIO {year}
+          {ui.portfolio} {year}
         </a>
 
         <nav
           aria-label="Primary"
-          className="flex min-w-0 items-center justify-end gap-4 overflow-x-auto sm:gap-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex min-w-0 items-center justify-end gap-3 overflow-x-auto sm:gap-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {navLinks.map((link) => (
             <a
@@ -75,8 +77,9 @@ export default function Nav() {
             onClick={scrollTo('contact')}
             className={navItemClass}
           >
-            Contact
+            {ui.contact}
           </a>
+          <LanguageToggle />
         </nav>
       </div>
 
@@ -88,7 +91,7 @@ export default function Nav() {
               onClick={() => navigate({ page: 'home' })}
               className="inline-block text-sm text-ink-dim transition-colors hover:text-ink"
             >
-              &larr; Back to Home
+              &larr; {ui.backToHome}
             </button>
           </div>
         </div>

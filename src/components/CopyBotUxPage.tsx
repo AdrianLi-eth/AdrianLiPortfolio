@@ -376,17 +376,20 @@ export default function CopyBotUxPage() {
           </Section>
 
           <Section title="User AI Strategy Conversion Path Analysis">
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
-              <div className="flex min-w-0 flex-1 flex-col gap-3">
-                <PhoneFrameRow
-                  frames={[
-                    { src: `${IMG}/path-okx-step-1.png`, alt: 'OKX conversion step 1' },
-                    { src: `${IMG}/path-okx-step-2.png`, alt: 'OKX conversion step 2' },
-                    { src: `${IMG}/path-okx-step-3.png`, alt: 'OKX conversion step 3' },
-                  ]}
-                />
+            <div className="flex flex-col gap-8">
+              <div className="min-w-0">
+                <div className="overflow-x-auto pb-2 [-webkit-overflow-scrolling:touch]">
+                  <PhoneFrameRow
+                    frames={[
+                      { src: `${IMG}/path-okx-step-1.png`, alt: 'OKX conversion step 1' },
+                      { src: `${IMG}/path-okx-step-2.png`, alt: 'OKX conversion step 2' },
+                      { src: `${IMG}/path-okx-step-3.png`, alt: 'OKX conversion step 3' },
+                    ]}
+                  />
+                </div>
                 <Caption>OKX</Caption>
               </div>
+
               <BodyStack>
                 <P medium>OKX: 3 steps</P>
                 <P medium>BN: 2 steps</P>
@@ -404,15 +407,16 @@ export default function CopyBotUxPage() {
                 </P>
                 <P>2. Shorten the user&apos;s order conversion path.</P>
               </BodyStack>
-            </div>
 
-            <div className="flex flex-col gap-4 pt-2">
-              <WideImg src={`${IMG}/path-bn.png`} alt="BN conversion path" className="max-w-[435px]" />
-              <Caption>BN</Caption>
-            </div>
-            <div className="flex flex-col gap-4">
-              <WideImg src={`${IMG}/path-bg.png`} alt="BG conversion path" className="max-w-[600px]" />
-              <Caption>BG</Caption>
+              <div className="flex flex-col gap-3">
+                <WideImg src={`${IMG}/path-bn.png`} alt="BN conversion path" className="max-w-[435px]" />
+                <Caption>BN</Caption>
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <WideImg src={`${IMG}/path-bg.png`} alt="BG conversion path" className="max-w-[600px]" />
+                <Caption>BG</Caption>
+              </div>
             </div>
           </Section>
         </article>

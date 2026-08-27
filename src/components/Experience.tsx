@@ -1,5 +1,5 @@
 import { Mail } from 'lucide-react'
-import { contact, experience, profile } from '../data/content'
+import { useContent } from '../context/LocaleContext'
 import { useRevealSection } from '../hooks/useReveal'
 
 function WhatsAppIcon({ size = 16, className }: { size?: number; className?: string }) {
@@ -19,6 +19,7 @@ function WhatsAppIcon({ size = 16, className }: { size?: number; className?: str
 
 export default function Experience() {
   const sectionRef = useRevealSection()
+  const { contact, experience, profile, ui } = useContent()
 
   return (
     <section
@@ -32,7 +33,7 @@ export default function Experience() {
           className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            About
+            {ui.about}
           </h2>
           <span className="text-sm tabular-nums text-ink-dim">
             {String(experience.length).padStart(2, '0')}
@@ -46,7 +47,7 @@ export default function Experience() {
           <div className="group relative aspect-[4/5] min-h-[360px] overflow-hidden rounded-2xl border border-line transition-colors duration-300 hover:border-line-strong lg:aspect-auto lg:min-h-full">
             <img
               src="/media/portrait.png"
-              alt="Portrait of Xiwei Li"
+              alt={ui.portraitAlt}
               className="pointer-events-none absolute bottom-0 left-0 h-7/8 w-full max-w-none object-contain object-left-bottom grayscale transition-[filter,transform] duration-700 ease-out group-hover:scale-[1.02] group-hover:grayscale-0"
             />
           </div>
@@ -90,7 +91,7 @@ export default function Experience() {
 
         <div data-reveal className="mt-16 border-t border-line pt-12 sm:mt-20 sm:pt-16">
           <h3 className="mb-8 text-sm font-semibold uppercase tracking-[0.2em] text-ink-faint">
-            Experience
+            {ui.experience}
           </h3>
           <div data-reveal-stagger className="flex flex-col">
             {experience.map((item, i) => (

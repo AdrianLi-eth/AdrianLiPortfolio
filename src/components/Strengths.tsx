@@ -1,8 +1,9 @@
-import { strengths } from '../data/content'
+import { useContent } from '../context/LocaleContext'
 import { useRevealSection } from '../hooks/useReveal'
 
 export default function Strengths() {
   const sectionRef = useRevealSection()
+  const { strengths, ui } = useContent()
 
   return (
     <section
@@ -16,7 +17,7 @@ export default function Strengths() {
           className="mb-16 flex flex-wrap items-end justify-between gap-3 sm:mb-20"
         >
           <h2 className="text-3xl font-bold uppercase tracking-tight text-ink sm:text-5xl">
-            What I Bring
+            {ui.whatIBring}
           </h2>
           <span className="text-sm tabular-nums text-ink-dim">
             {String(strengths.length).padStart(2, '0')}

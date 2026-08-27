@@ -1,24 +1,26 @@
 import { ArrowUpRight } from 'lucide-react'
-import { contact, profile } from '../data/content'
+import { useContent, useLocale } from '../context/LocaleContext'
 import { useRevealSection } from '../hooks/useReveal'
-
-const links = [
-  { label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
-  {
-    label: 'LinkedIn',
-    value: contact.linkedinHandle,
-    href: contact.linkedin,
-  },
-  {
-    label: 'Portfolio',
-    value: contact.website,
-    href: `https://${contact.website}`,
-  },
-]
 
 export default function Contact() {
   const sectionRef = useRevealSection()
+  const { locale } = useLocale()
+  const { contact, profile, ui } = useContent()
   const year = new Date().getFullYear()
+
+  const links = [
+    { label: 'Email', value: contact.email, href: `mailto:${contact.email}` },
+    {
+      label: 'LinkedIn',
+      value: contact.linkedinHandle,
+      href: contact.linkedin,
+    },
+    {
+      label: locale === 'zh' ? '作品集' : 'Portfolio',
+      value: contact.website,
+      href: `https://${contact.website}`,
+    },
+  ]
 
   return (
     <section
@@ -31,15 +33,15 @@ export default function Contact() {
           data-reveal
           className="font-display text-[clamp(2.75rem,11vw,6rem)] font-bold leading-[0.95] tracking-tight text-ink"
         >
-          Let&rsquo;s build
+          {ui.contactHeadlineLine1}
           <br />
-          something.
+          {ui.contactHeadlineLine2}
         </h2>
 
         <div data-reveal className="mt-8 flex items-center gap-3">
           <span className="status-dot h-2 w-2 rounded-full bg-accent" />
           <span className="text-sm text-ink-dim">
-            Open to new opportunities
+            {ui.openToOpportunities}
           </span>
         </div>
 

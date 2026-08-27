@@ -1,9 +1,11 @@
-import { getCardVariant, stats } from '../data/content'
+import { useContent } from '../context/LocaleContext'
+import { getCardVariant } from '../data/content'
 import { useRevealSection } from '../hooks/useReveal'
 import StatCard from './StatCard'
 
 export default function ImpactBar() {
   const sectionRef = useRevealSection()
+  const { stats } = useContent()
 
   return (
     <section
