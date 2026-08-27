@@ -37,13 +37,13 @@ export const zhContent: SiteContent = {
   ],
   experience: [
     {
-      role: '设计专家 · 跟单与机器人交易',
+      role: '设计专家 · 核心交易',
       company: 'Bitget',
       period: '2024 — 至今',
       location: '新加坡',
     },
     {
-      role: '设计负责人（法币）',
+      role: '设计负责人，法币',
       company: 'Binance',
       period: '2019 — 2024',
       location: '新加坡',
@@ -226,7 +226,7 @@ export const zhContent: SiteContent = {
     backToHome: '返回首页',
     backToTop: '回到顶部',
     skipToContent: '跳至主要内容',
-    viewSelectedWork: '查看精选作品',
+    viewSelectedWork: '查看作品',
     about: '关于',
     selectedWork: '精选作品',
     whatIBring: '我的优势',

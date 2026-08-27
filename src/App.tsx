@@ -114,11 +114,13 @@ function AppRoutes() {
   }
 
   return (
-    <div key={`${routeKey}-${locale}`} className="page-enter">
+    <>
       <Nav />
-      <HomePage />
-      <ScrollToTopFab />
-    </div>
+      <div key={`${routeKey}-${locale}`} className="page-enter">
+        <HomePage />
+        <ScrollToTopFab />
+      </div>
+    </>
   )
 }
 

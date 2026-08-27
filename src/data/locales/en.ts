@@ -44,13 +44,13 @@ export const enContent: SiteContent = {
   ],
   experience: [
     {
-      role: 'Design Expert, Copy Trading & Bot Trading',
+      role: 'Design Expert, Core Trading',
       company: 'Bitget',
       period: '2024 — Present',
       location: 'Singapore',
     },
     {
-      role: 'Design Lead (Fiat)',
+      role: 'Design Lead, Fiat',
       company: 'Binance',
       period: '2019 — 2024',
       location: 'Singapore',
@@ -236,7 +236,7 @@ export const enContent: SiteContent = {
     backToHome: 'Back to Home',
     backToTop: 'Back to top',
     skipToContent: 'Skip to content',
-    viewSelectedWork: 'View Selected Work',
+    viewSelectedWork: 'View Work',
     about: 'About',
     selectedWork: 'Selected Work',
     whatIBring: 'What I Bring',
