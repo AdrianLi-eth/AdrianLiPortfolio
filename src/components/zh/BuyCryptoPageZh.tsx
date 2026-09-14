@@ -17,7 +17,7 @@ import {
 
 const IMG = '/media/buy-crypto'
 
-const ROLE_TAGS = ['产品研究', '用户体验研究', '数据驱动', '用户体验 / 界面设计'] as const
+const ROLE_TAGS = ['UX 研究员', 'UI / UX 设计师'] as const
 
 const UI_PREVIEW_ROWS = [
   {
@@ -152,44 +152,56 @@ export default function BuyCryptoPageZh() {
           </h1>
 
           <CaseIntro>
-            <div className="flex flex-col gap-2">
-              <IntroHeading>我的角色</IntroHeading>
-              <IntroRoleTags tags={[...ROLE_TAGS]} />
-            </div>
-
             <div className="flex flex-col gap-6">
-              <IntroHeading>成果</IntroHeading>
+              <IntroHeading>Overview</IntroHeading>
               <div className="flex flex-col gap-6">
-                <IntroImpactItem title="重新定义项目范围">
-                  在 20+ 个法币买币渠道、350+ 页面中优先落地 MVP，通过清晰的版本管控 SOP，
-                  对齐产品、设计系统与 UIKit 团队。
+                <IntroImpactItem title="目标">
+                  解决用户不知道如何下单、不敢下单的问题，从而提升下单转化率。
                 </IntroImpactItem>
-                <IntroImpactItem title="厘清核心任务流程">
-                  去除过重的视觉层级、冗余 CTA 与不统一的字体规范，降低用户完成买币流程的摩擦。
-                </IntroImpactItem>
-                <IntroImpactItem title="以数据验证设计决策">
-                  收集用户反馈，开展竞品对标（OKX、Binance、Bybit、Coinbase、Kraken），
-                  并分析输入金额页热力图，指导高保真设计与 QA。
-                </IntroImpactItem>
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
+                    我的角色
+                  </p>
+                  <IntroRoleTags tags={[...ROLE_TAGS]} />
+                </div>
+                <div className="flex flex-col gap-1.5 [font-family:'Noto_Sans_SC',sans-serif]">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink">挑战</p>
+                  <div className="flex flex-col gap-1">
+                    <NumberedItem n={1}>
+                      <p className="text-[15px] font-normal leading-[1.75] text-paper-dim">
+                        项目范围：20+ 个支付渠道，涉及 350+ 页面。
+                      </p>
+                    </NumberedItem>
+                    <NumberedItem n={2}>
+                      <p className="text-[15px] font-normal leading-[1.75] text-paper-dim">
+                        跨团队协作（产品、开发、设计系统团队、UIKit 开发）。
+                      </p>
+                    </NumberedItem>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
+                    Impact
+                  </p>
+                  <IntroMetrics
+                    metrics={[
+                      {
+                        value: '+48.34%',
+                        label: '步骤 1→3 转化率提升',
+                      },
+                      {
+                        value: '+3.8%',
+                        label: '用户 CSAT 提升',
+                      },
+                      {
+                        value: '−0.6%',
+                        label: '产品设计缺陷率下降',
+                      },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
-
-            <IntroMetrics
-              metrics={[
-                {
-                  value: '+48.34%',
-                  label: '相较旧版，步骤 1→3 转化率提升',
-                },
-                {
-                  value: '+3.8%',
-                  label: '上线后用户满意度（CSAT）提升',
-                },
-                {
-                  value: '−0.6%',
-                  label: '产品缺陷率下降',
-                },
-              ]}
-            />
           </CaseIntro>
 
           <Section className="min-w-0 gap-5">
@@ -231,7 +243,7 @@ export default function BuyCryptoPageZh() {
             </div>
             <P small>
               我将这些反馈带入与产品、业务团队的讨论，按价值与影响优先级排序用户问题，
-              确定下一版本要解决的问题。
+              确定下一版本要解决的问题。最后决定这次的改版主要 focus 在产品的体验部分，根据用户反馈集中在不知道如何下单、不敢下单这两个问题。
             </P>
             <WideImg src={`${IMG}/user-feedback.png`} alt="用户反馈分类" />
           </Section>

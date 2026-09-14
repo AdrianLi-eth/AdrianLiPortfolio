@@ -17,7 +17,7 @@ import {
 
 const IMG = '/media/buy-crypto'
 
-const ROLE_TAGS = ['Product Research', 'UX Research', 'Data Driven', 'UX / UI'] as const
+const ROLE_TAGS = ['UX Researcher', 'UI / UX Designer'] as const
 
 const UI_PREVIEW_ROWS = [
   {
@@ -152,46 +152,57 @@ export default function BuyCryptoPage() {
           </h1>
 
           <CaseIntro>
-            <div className="flex flex-col gap-2">
-              <IntroHeading>My role</IntroHeading>
-              <IntroRoleTags tags={[...ROLE_TAGS]} />
-            </div>
-
             <div className="flex flex-col gap-6">
-              <IntroHeading>Impact</IntroHeading>
+              <IntroHeading>Overview</IntroHeading>
               <div className="flex flex-col gap-6">
-                <IntroImpactItem title="Redirected the project scope">
-                  Prioritized MVP across 20+ fiat buy-crypto channels spanning 350+ pages, aligning
-                  Product, Design System, and UIKit teams through a clear version-control SOP.
+                <IntroImpactItem title="Goal">
+                  Resolve issues where users don&apos;t know how to place orders or are hesitant to
+                  do so, thereby improving order conversion rate.
                 </IntroImpactItem>
-                <IntroImpactItem title="Clarified the core task flow">
-                  Stripped back heavy visual hierarchy, redundant CTAs, and inconsistent typography
-                  so users could complete the buy-crypto flow with less friction.
-                </IntroImpactItem>
-                <IntroImpactItem title="Validated decisions with data">
-                  Collected user feedback, ran competitor benchmarking (OKX, Binance, Bybit,
-                  Coinbase, Kraken), and analyzed Enter Amount page heatmaps to guide
-                  high-fidelity design and QA.
-                </IntroImpactItem>
+                <div className="flex flex-col gap-1.5">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
+                    My role
+                  </p>
+                  <IntroRoleTags tags={[...ROLE_TAGS]} />
+                </div>
+                <div className="flex flex-col gap-1.5 [font-family:'Noto_Sans_SC',sans-serif]">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink">Challenges</p>
+                  <div className="flex flex-col gap-1">
+                    <NumberedItem n={1}>
+                      <p className="text-[15px] font-normal leading-[1.75] text-paper-dim">
+                        Project scope. 20+ payment channels, involves 350+ pages.
+                      </p>
+                    </NumberedItem>
+                    <NumberedItem n={2}>
+                      <p className="text-[15px] font-normal leading-[1.75] text-paper-dim">
+                        Cross team collaboration (Product, Developer, DS team, UIKit developer).
+                      </p>
+                    </NumberedItem>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-6">
+                  <p className="text-[15px] font-bold leading-[1.6] text-paper-ink [font-family:'Noto_Sans_SC',sans-serif]">
+                    Impact
+                  </p>
+                  <IntroMetrics
+                    metrics={[
+                      {
+                        value: '+48.34%',
+                        label: 'Step1 -> 3 conversion rate increases',
+                      },
+                      {
+                        value: '+3.8%',
+                        label: 'User CSAT increases',
+                      },
+                      {
+                        value: '−0.6%',
+                        label: 'Product design defect rate reduction',
+                      },
+                    ]}
+                  />
+                </div>
               </div>
             </div>
-
-            <IntroMetrics
-              metrics={[
-                {
-                  value: '+48.34%',
-                  label: 'Step 1→3 conversion lift vs. old design',
-                },
-                {
-                  value: '+3.8%',
-                  label: 'User CSAT increase post-launch',
-                },
-                {
-                  value: '−0.6%',
-                  label: 'Product defect rate reduction',
-                },
-              ]}
-            />
           </CaseIntro>
 
           <Section className="min-w-0 gap-5">
@@ -236,7 +247,9 @@ export default function BuyCryptoPage() {
             <P small>
               I toke these feedbacks into discussion with product and business team to prioritise
               user issue to determine what are we going to solve in next release based on the
-              value and impacts.
+              value and impacts. Ultimately, we decided this redesign would primarily focus on
+              product experience. Based on user feedback, we centered on two issues: not knowing
+              how to place orders and being hesitant to place orders.
             </P>
             <WideImg src={`${IMG}/user-feedback.png`} alt="User feedback categories" />
           </Section>
