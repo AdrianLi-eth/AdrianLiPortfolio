@@ -190,9 +190,9 @@ export function FinalUiGallery({
   const finalUiPath = `${basePath}/final-ui`
 
   const darkRow1 = [
-    { src: `${finalUiPath}/dark-enter-amount.png`, alt: 'Dark — enter amount' },
+    { src: '/media/After.png', alt: 'Dark — enter amount' },
     { src: `${finalUiPath}/dark-currency-list.png`, alt: 'Dark — currency list' },
-    { src: `${finalUiPath}/dark-pay-with.png`, alt: 'Dark — pay with' },
+    { src: '/media/NewPayment.png', alt: 'Dark — pay with' },
   ]
 
   const darkRow2 = [
@@ -202,9 +202,9 @@ export function FinalUiGallery({
   ]
 
   const lightRow1 = [
-    { src: `${finalUiPath}/light-enter-amount.png`, alt: 'Light — enter amount' },
+    { src: '/media/EnterAmount_L.png', alt: 'Light — enter amount' },
     { src: `${finalUiPath}/light-currency-list.png`, alt: 'Light — currency list' },
-    { src: `${finalUiPath}/light-pay-with.png`, alt: 'Light — pay with' },
+    { src: '/media/Payment_L.png', alt: 'Light — pay with' },
   ]
 
   const lightRow2 = [
