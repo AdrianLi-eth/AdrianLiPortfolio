@@ -216,7 +216,7 @@ export function FinalUiGallery({
   return (
     <div className={`flex min-w-0 flex-col gap-12 ${FONT}`}>
       <div className="flex flex-col gap-5">
-        <p className="text-[24px] font-bold leading-[1.4] text-paper-ink">Final UI</p>
+        <SectionTitle>Final UI</SectionTitle>
         <p className="text-[16px] font-bold leading-[1.55] text-paper-ink">Dark</p>
         <div className="flex flex-col gap-8">
           <FinalUiPhoneRow frames={darkRow1} />
@@ -315,11 +315,43 @@ export function IntroImpactItem({
 
 export function IntroMetrics({
   metrics,
+  variant = 'default',
+  className = '',
 }: {
   metrics: { value: string; label: string }[]
+  variant?: 'default' | 'cards'
+  className?: string
 }) {
+  if (variant === 'cards') {
+    return (
+      <div
+        className={`rounded-xl border border-line px-5 py-5 sm:px-7 sm:py-7 ${FONT} ${className}`}
+      >
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-0">
+          {metrics.map((metric, i) => (
+            <div
+              key={metric.label}
+              className={`flex flex-col gap-2 ${
+                i > 0
+                  ? 'border-t border-line pt-6 sm:border-t-0 sm:border-l sm:pt-0 sm:pl-8'
+                  : 'sm:pr-8'
+              }`}
+            >
+              <p className="bg-gradient-to-r from-accent to-[#6ecfc8] bg-clip-text text-[34px] font-bold leading-[1.1] text-transparent sm:text-[40px]">
+                {metric.value}
+              </p>
+              <p className="text-[13px] font-normal leading-[1.55] text-paper-dim sm:text-[15px]">
+                {metric.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className={`flex flex-col gap-8 sm:flex-row sm:gap-0 ${FONT}`}>
+    <div className={`flex flex-col gap-8 sm:flex-row sm:gap-0 ${FONT} ${className}`}>
       {metrics.map((metric, i) => (
         <div
           key={metric.label}
