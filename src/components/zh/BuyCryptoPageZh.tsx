@@ -169,7 +169,6 @@ export default function BuyCryptoPageZh() {
                   • 跨团队协作（产品、开发、设计系统团队、UIKit 开发）。
                 </IntroImpactItem>
                 <IntroMetrics
-                  variant="cards"
                   className="mt-8"
                   metrics={[
                     {

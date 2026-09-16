@@ -170,7 +170,6 @@ export default function BuyCryptoPage() {
                   • Cross team collaboration (Product, Developer, DS team, UIKit developer).
                 </IntroImpactItem>
                 <IntroMetrics
-                  variant="cards"
                   className="mt-8"
                   metrics={[
                     {
