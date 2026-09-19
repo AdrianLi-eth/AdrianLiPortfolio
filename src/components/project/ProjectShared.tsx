@@ -184,40 +184,62 @@ function FinalUiPhoneRow({
 
 export function FinalUiGallery({
   basePath,
+  title = 'Final UI',
+  darkLabel = 'Dark',
+  lightLabel = 'Light',
+  screenAlts = {
+    enterAmount: 'enter amount',
+    currencyList: 'currency list',
+    payWith: 'pay with',
+    addCard: 'add card',
+    confirmOrder: 'confirm order',
+    success: 'success',
+  },
 }: {
   basePath: string
+  title?: string
+  darkLabel?: string
+  lightLabel?: string
+  screenAlts?: {
+    enterAmount: string
+    currencyList: string
+    payWith: string
+    addCard: string
+    confirmOrder: string
+    success: string
+  }
 }) {
   const finalUiPath = `${basePath}/final-ui`
 
   const darkRow1 = [
-    { src: '/media/After.png', alt: 'Dark — enter amount' },
-    { src: `${finalUiPath}/dark-currency-list.png`, alt: 'Dark — currency list' },
-    { src: '/media/NewPayment.png', alt: 'Dark — pay with' },
+    { src: '/media/After.png', alt: `${darkLabel} — ${screenAlts.enterAmount}` },
+    { src: `${finalUiPath}/dark-currency-list.png`, alt: `${darkLabel} — ${screenAlts.currencyList}` },
+    { src: '/media/NewPayment.png', alt: `${darkLabel} — ${screenAlts.payWith}` },
   ]
 
   const darkRow2 = [
-    { src: `${finalUiPath}/dark-add-card.png`, alt: 'Dark — add card' },
-    { src: `${finalUiPath}/dark-confirm-order.png`, alt: 'Dark — confirm order' },
-    { src: `${finalUiPath}/dark-success.png`, alt: 'Dark — success' },
+    { src: `${finalUiPath}/dark-add-card.png`, alt: `${darkLabel} — ${screenAlts.addCard}` },
+    { src: `${finalUiPath}/dark-confirm-order.png`, alt: `${darkLabel} — ${screenAlts.confirmOrder}` },
+    { src: `${finalUiPath}/dark-success.png`, alt: `${darkLabel} — ${screenAlts.success}` },
   ]
 
   const lightRow1 = [
-    { src: '/media/EnterAmount_L.png', alt: 'Light — enter amount' },
-    { src: `${finalUiPath}/light-currency-list.png`, alt: 'Light — currency list' },
-    { src: '/media/Payment_L.png', alt: 'Light — pay with' },
+    { src: '/media/EnterAmount_L.png', alt: `${lightLabel} — ${screenAlts.enterAmount}` },
+    { src: `${finalUiPath}/light-currency-list.png`, alt: `${lightLabel} — ${screenAlts.currencyList}` },
+    { src: '/media/Payment_L.png', alt: `${lightLabel} — ${screenAlts.payWith}` },
   ]
 
   const lightRow2 = [
-    { src: `${finalUiPath}/light-add-card.png`, alt: 'Light — add card' },
-    { src: `${finalUiPath}/light-confirm-order.png`, alt: 'Light — confirm order' },
-    { src: `${finalUiPath}/light-success.png`, alt: 'Light — success' },
+    { src: `${finalUiPath}/light-add-card.png`, alt: `${lightLabel} — ${screenAlts.addCard}` },
+    { src: `${finalUiPath}/light-confirm-order.png`, alt: `${lightLabel} — ${screenAlts.confirmOrder}` },
+    { src: `${finalUiPath}/light-success.png`, alt: `${lightLabel} — ${screenAlts.success}` },
   ]
 
   return (
     <div className={`flex min-w-0 flex-col gap-12 ${FONT}`}>
       <div className="flex flex-col gap-5">
-        <SectionTitle>Final UI</SectionTitle>
-        <p className="text-[16px] font-bold leading-[1.55] text-paper-ink">Dark</p>
+        <SectionTitle>{title}</SectionTitle>
+        <p className="text-[16px] font-bold leading-[1.55] text-paper-ink">{darkLabel}</p>
         <div className="flex flex-col gap-8">
           <FinalUiPhoneRow frames={darkRow1} />
           <FinalUiPhoneRow frames={darkRow2} />
@@ -225,7 +247,7 @@ export function FinalUiGallery({
       </div>
 
       <div className="flex flex-col gap-5">
-        <p className="text-[16px] font-bold leading-[1.55] text-paper-ink">Light</p>
+        <p className="text-[16px] font-bold leading-[1.55] text-paper-ink">{lightLabel}</p>
         <div className="flex flex-col gap-8">
           <FinalUiPhoneRow frames={lightRow1} />
           <FinalUiPhoneRow frames={lightRow2} />

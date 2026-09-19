@@ -36,29 +36,29 @@ function BrandLabel({ children }: { children: string }) {
 function EnterAmountOptimized() {
   return (
     <div className="flex w-full min-w-0 flex-col gap-6 lg:flex-row lg:items-start">
-      <BeforeAfterPhone label="Before" src="/media/Before.png" alt="改版前：输入金额" />
+      <BeforeAfterPhone label="改版前" src="/media/Before.png" alt="改版前：输入金额" />
       <div className="flex min-w-0 flex-1 flex-col gap-4 pt-6 [font-family:'Noto_Sans_SC',sans-serif]">
-        <p className="text-[14px] font-bold text-paper-ink">Optimized</p>
+        <p className="text-[14px] font-bold text-paper-ink">优化点</p>
         <div className="flex flex-col gap-1.5">
-          <p className="text-[12px] font-semibold text-paper-ink">Simplify interface:</p>
-          <Bullet>Reduce UI hierarchy by reducing colour, font types.</Bullet>
-          <Bullet>Highlight the amount number to make visual focused.</Bullet>
+          <p className="text-[12px] font-semibold text-paper-ink">简化界面：</p>
+          <Bullet>通过减少色彩与字体种类，降低 UI 层级。</Bullet>
+          <Bullet>突出金额数字，让视觉更聚焦。</Bullet>
         </div>
         <div className="flex flex-col gap-1.5">
-          <p className="text-[12px] font-semibold text-paper-ink">UX optimization:</p>
-          <Bullet>Move the CTA to the position that is easier to reach.</Bullet>
-          <Bullet>Reduce recurring entrance of same feature.</Bullet>
-          <Bullet>Remove Max feature which has low usage rate.</Bullet>
-          <Bullet>Combine buy/sell switch interaction to be more intuitive.</Bullet>
-          <Bullet>Combine steps to increase order placing efficiency.</Bullet>
+          <p className="text-[12px] font-semibold text-paper-ink">UX 优化：</p>
+          <Bullet>将 CTA 移至更易触达的位置。</Bullet>
+          <Bullet>减少同一功能的重复入口。</Bullet>
+          <Bullet>移除使用率低的「最大金额」功能。</Bullet>
+          <Bullet>合并买/卖切换，使交互更直观。</Bullet>
+          <Bullet>合并步骤，提升下单效率。</Bullet>
         </div>
         <div className="flex flex-col gap-1.5">
-          <p className="text-[12px] font-semibold text-paper-ink">Reduce UI hierarchy:</p>
-          <Bullet>Font size 5 -&gt; 3</Bullet>
-          <Bullet>Font color 6 -&gt; 3</Bullet>
+          <p className="text-[12px] font-semibold text-paper-ink">降低 UI 层级：</p>
+          <Bullet>字号种类 5 → 3</Bullet>
+          <Bullet>字体颜色 6 → 3</Bullet>
         </div>
       </div>
-      <BeforeAfterPhone label="After" src="/media/After.png" alt="改版后：输入金额" />
+      <BeforeAfterPhone label="改版后" src="/media/After.png" alt="改版后：输入金额" />
     </div>
   )
 }
@@ -67,27 +67,27 @@ function ChoosePaymentOptimized() {
   return (
     <div className="flex w-full min-w-0 flex-col gap-6 lg:flex-row lg:items-start">
       <BeforeAfterPhone
-        label="Before"
+        label="改版前"
         src="/media/OldPayment.png"
         alt="改版前：选择支付方式"
       />
       <div className="flex min-w-0 flex-1 flex-col gap-4 pt-6 [font-family:'Noto_Sans_SC',sans-serif]">
-        <p className="text-[14px] font-bold text-paper-ink">Optimized</p>
+        <p className="text-[14px] font-bold text-paper-ink">优化点</p>
         <div className="flex flex-col gap-1.5">
-          <p className="text-[12px] font-semibold text-paper-ink">UX:</p>
-          <Bullet>老用户将 Pay with 设为可选步骤，缩短下单流程。</Bullet>
+          <p className="text-[12px] font-semibold text-paper-ink">UX：</p>
+          <Bullet>老用户将「支付方式」设为可选步骤，缩短下单流程。</Bullet>
           <Bullet>每类支付最多展示 3 个选项，降低信息过载与决策成本。</Bullet>
           <Bullet>按支付类型分组，帮助用户更快做出选择。</Bullet>
           <Bullet>移除低优先级信息，页面更干净、聚焦。</Bullet>
         </div>
         <div className="flex flex-col gap-1.5">
-          <p className="text-[12px] font-semibold text-paper-ink">UI:</p>
+          <p className="text-[12px] font-semibold text-paper-ink">UI：</p>
           <Bullet>调整选项样式，从视觉上突出单一主任务。</Bullet>
           <Bullet>减少字体样式与色彩数量，降低视觉噪音与层级。</Bullet>
         </div>
       </div>
       <BeforeAfterPhone
-        label="After"
+        label="改版后"
         src="/media/NewPayment.png"
         alt="改版后：底部弹层支付"
       />
@@ -135,7 +135,7 @@ function CompetitorText({
         ))}
       </div>
       <div className="flex flex-col gap-2">
-        <p className="text-[14px] font-bold text-paper-ink">To be improve</p>
+        <p className="text-[14px] font-bold text-paper-ink">待改进</p>
         {insights.map((item) => (
           <Bullet key={item}>{item}</Bullet>
         ))}
@@ -155,15 +155,15 @@ export default function BuyCryptoPageZh() {
 
           <CaseIntro>
             <div className="flex flex-col gap-6">
-              <IntroHeading>Overview</IntroHeading>
+              <IntroHeading>概览</IntroHeading>
               <div className="flex flex-col gap-6">
-                <IntroImpactItem title="Goal">
+                <IntroImpactItem title="目标">
                   解决用户不知道如何下单、不敢下单的问题，从而提升下单转化率。
                 </IntroImpactItem>
-                <IntroImpactItem title="My role">
+                <IntroImpactItem title="我的角色">
                   UX 研究员 · UI / UX 设计师
                 </IntroImpactItem>
-                <IntroImpactItem title="Challenge">
+                <IntroImpactItem title="挑战">
                   • 项目范围：20+ 个支付渠道，涉及 350+ 页面。
                   <br />
                   • 跨团队协作（产品、开发、设计系统团队、UIKit 开发）。
@@ -173,15 +173,15 @@ export default function BuyCryptoPageZh() {
                   metrics={[
                     {
                       value: '+48.34%',
-                      label: 'Step1 convertion rate',
+                      label: '步骤 1 转化率',
                     },
                     {
                       value: '+3.8%',
-                      label: 'CAST',
+                      label: 'CSAT',
                     },
                     {
                       value: '−0.6%',
-                      label: 'UX defect rate',
+                      label: 'UX 缺陷率',
                     },
                   ]}
                 />
@@ -189,7 +189,7 @@ export default function BuyCryptoPageZh() {
             </div>
           </CaseIntro>
 
-          <Section title="Define Requirement">
+          <Section title="需求定义">
             <P medium small>1. 收集用户反馈</P>
             <WideImg src={`${IMG}/user-feedback.png`} alt="用户反馈分类" />
             <P small>
@@ -218,15 +218,15 @@ export default function BuyCryptoPageZh() {
             </div>
           </Section>
 
-          <Section title="User Journey Map">
+          <Section title="用户旅程图">
             <P small>
               对首次购买加密货币（已身份验证）的用户在现有产品上做用户旅程图设计，找出用户在下单时候的卡点和痛点。
             </P>
             <WideImg
               src={`${IMG}/user-journey-map-en-3x.png`}
-              alt="User Journey Map · Verified User Buy Crypto via Card Payment"
+              alt="用户旅程图 · 已认证用户通过银行卡买币"
             />
-            <P medium small>用户friction和痛点主要发生在：</P>
+            <P medium small>用户卡点与痛点主要发生在：</P>
             <NumberedItem n={1}>
               <P small>
                 页面层级与控件过多（买/卖、最小/最大、限额等），用户不知道如何下单，产生犹豫
@@ -243,7 +243,7 @@ export default function BuyCryptoPageZh() {
           </Section>
 
           <Section title="竞品分析" className="gap-6">
-            <SubTitle>Enter amount</SubTitle>
+            <SubTitle>输入金额</SubTitle>
             <div className="flex flex-col gap-6 lg:flex-row">
               <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
                 <BrandLabel>OKX</BrandLabel>
@@ -255,7 +255,7 @@ export default function BuyCryptoPageZh() {
               <CompetitorText
                 okxGood={[
                   'OKX 视觉简洁，功能界面清晰。',
-                  '单一 CTA 与大字号数字帮助用户聚焦任务，',
+                  '单一 CTA 与大字号数字帮助用户聚焦任务。',
                   '高对比度色彩使可交互元素更突出。',
                 ]}
                 binanceGood={['配置项更丰富，适配更多用户类型']}
@@ -264,9 +264,9 @@ export default function BuyCryptoPageZh() {
                   '字号与字体类型过多，UI 层级过重，可用性较差',
                 ]}
                 insights={[
-                  'Simplify interface',
-                  'Hide advanced settings',
-                  'Reduce visual hierarchy',
+                  '简化界面',
+                  '收起高级设置',
+                  '降低视觉层级',
                 ]}
               />
               <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
@@ -279,7 +279,7 @@ export default function BuyCryptoPageZh() {
             </div>
             <EnterAmountOptimized />
             <div className="flex flex-col gap-6 pt-10">
-              <SubTitle>Choose payment</SubTitle>
+              <SubTitle>选择支付方式</SubTitle>
               <div className="flex flex-col gap-6 lg:flex-row">
               <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
                 <BrandLabel>OKX</BrandLabel>
@@ -302,9 +302,9 @@ export default function BuyCryptoPageZh() {
                   '字号与字体类型过多，UI 层级过重',
                 ]}
                 insights={[
-                  'Simplify interface',
-                  'Hide advanced settings',
-                  'Reduce visual hierarchy',
+                  '简化界面',
+                  '收起高级设置',
+                  '降低视觉层级',
                 ]}
               />
               <div className="flex min-w-0 flex-1 flex-col items-center gap-3">
@@ -320,10 +320,9 @@ export default function BuyCryptoPageZh() {
           </Section>
 
           <Section title="设计验证" className="gap-6">
-            <SubTitle>User survey</SubTitle>
+            <SubTitle>用户调研</SubTitle>
             <P small>
-              We conducted a user survey to see user&apos;s satisfaction of the new design and their
-              feedbacks.
+              我们通过用户调研了解用户对新设计的满意度与反馈。
             </P>
             <div className="flex flex-col gap-6 sm:flex-row">
               <WideImg src={`${IMG}/survey-q1-left.png`} alt="问卷问题 1" className="flex-1" />
@@ -353,7 +352,7 @@ export default function BuyCryptoPageZh() {
           </Section>
 
           <Section className="gap-6">
-            <SubTitle>Data validation</SubTitle>
+            <SubTitle>数据验证</SubTitle>
             <P small>
               我们还对比步骤转化率与订单成功率等用户数据：相较旧版，
               新设计步骤 1 至步骤 3 的转化率提升 48.34%，用户 CSAT 提升 3.8%，
@@ -373,9 +372,9 @@ export default function BuyCryptoPageZh() {
               <P small>版本管控</P>
             </NumberedItem>
             <div className="pl-6">
-              <Bullet>Phase I — MVP：核心流程与页面</Bullet>
-              <Bullet>Phase II — 渠道更新</Bullet>
-              <Bullet>Phase III — 其他</Bullet>
+              <Bullet>一期 — MVP：核心流程与页面</Bullet>
+              <Bullet>二期 — 渠道更新</Bullet>
+              <Bullet>三期 — 其他</Bullet>
             </div>
             <P small>
               与产品团队定义 MVP 范围，再与设计系统及 UIKit 开发协作推进所需 UI 组件。
@@ -392,7 +391,20 @@ export default function BuyCryptoPageZh() {
           </Section>
 
           <Section className="!gap-0 !px-0">
-            <FinalUiGallery basePath={IMG} />
+            <FinalUiGallery
+              basePath={IMG}
+              title="最终UI"
+              darkLabel="深色"
+              lightLabel="浅色"
+              screenAlts={{
+                enterAmount: '输入金额',
+                currencyList: '币种列表',
+                payWith: '支付方式',
+                addCard: '添加卡片',
+                confirmOrder: '确认订单',
+                success: '成功',
+              }}
+            />
           </Section>
         </article>
       </div>
